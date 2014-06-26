@@ -45,7 +45,7 @@ Route::get('login/fb', function() {
 
 /* Logout de sesión */
 Route::get('logout', function() { Auth::logout(); return Redirect::to('/'); });
-
+//Route::get('users', array('uses' => 'UsersController@index', 'as' => 'users.index'));
 Route::controller('users', 'UsersController');
 
 

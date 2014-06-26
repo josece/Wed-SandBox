@@ -19,10 +19,16 @@ class UsersController extends \BaseController {
 		$users = User::all();
 		
 		//$users = User::paginate(5);
-		return View::make('users.index', compact('users'));
+		 $this->layout->content = View::make('users.index', compact('users'));
 	}
 
-
+	public function getFb()
+	{
+		
+	    $facebook = new Facebook(Config::get('facebook'));
+	    $params = array('redirect_uri' => url('/login/fb/callback'),'scope' => 'email',);
+	    return Redirect::away($facebook->getLoginUrl($params));
+	}
 	/**
 	 * Show the form for creating a new resource.
 	 *

@@ -6,3 +6,7 @@
 
 	{{ Form::submit('Login', array('class'=>'btn btn-large btn-primary btn-block'))}}
 {{ Form::close() }}
+
+<a href="fb">
+	<img src="{{asset('assets/img/facebook-login-button.png')}}" height="45px" />
+</a>
