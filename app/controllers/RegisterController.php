@@ -1,40 +1,54 @@
 <?php
- 
-use Cribbb\Storage\User\UserRepository as User;
- 
+
+use Cribbb\Registrators\CredentialsRegistrator;
+
 class RegisterController extends BaseController {
- 
+
   /**
-   * User Repository
+   * Create a new instance of the RegisterController
+   *
+   * @return void
    */
-  protected $user;
- 
-  /**
-   * Inject the User Repository
-   */
-  public function __construct(User $user)
+  public function __construct(CredentialsRegistrator $registrator)
   {
-    $this->user = $user;
+    $this->beforeFilter('invite');
+    $this->registrator = $registrator;
   }
- 
+
+  /**
+   * Display the form for creating a new user
+   *
+   * @return View
+   */
   public function index()
   {
-    return View::make('register.index');
+    $this->layout->title = 'Join Cribbb';
+    $this->layout->nest('content', 'register.index');
   }
- 
+
+  /**
+   * Create a new user
+   *
+   * @return Redirect
+   */
   public function store()
   {
-    $s = $this->user->create(Input::all());
- 
-    if($s->isSaved())
+    $user = $this->registrator->create(array_merge(
+      Input::all(), [
+        'referrer_id' => Session::get('referrer_id'),
+        'invitation_code' => Session::get('invitation_code')
+      ]
+    ));
+
+    if($user)
     {
-      return Redirect::route('users.index')
-        ->with('flash', 'The new user has been created');
+      Auth::login($user);
+
+      return Redirect::route('home.index');
     }
- 
-    return Redirect::route('register.index')
-      ->withInput()
-      ->withErrors($s->errors());
+
+    return Redirect::route('register.index')->withInput()
+                                            ->withErrors($this->registrator->errors());
   }
- 
+
 }

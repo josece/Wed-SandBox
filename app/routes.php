@@ -18,6 +18,7 @@ sesiones de facebook basado en:
 https://github.com/msurguy/laravel-facebook-login
 */
 
+/* Inicio de todo */
 Route::get('/', function()
 {
     $data = array();
@@ -27,24 +28,28 @@ Route::get('/', function()
     return View::make('user', array('data'=>$data));
 });
 
+/*
+Route::get('register', array('uses' =>'RegisterController@index', 'as' =>'register.index'));
+Route::post('register', array('uses' => 'RegisterController@store', 'as'=> 'register.store'));
 
-/* Logout de Facebook */
-Route::get('logout', function() {
-    Auth::logout();
-    return Redirect::to('/');
-});
-
-Route::resource('users', 'UserController');
+/* Login nativo*/
+/*Route::get('login', array('uses' => 'SessionController@create','as' => 'session.create'));
+Route::post('login', array('uses' => 'SessionController@store', 'as' => 'session.store'));
 
 /* Login de Facebook */
 Route::get('login/fb', function() {
     $facebook = new Facebook(Config::get('facebook'));
-    $params = array(
-        'redirect_uri' => url('/login/fb/callback'),
-        'scope' => 'email',
-    );
+    $params = array('redirect_uri' => url('/login/fb/callback'),'scope' => 'email',);
     return Redirect::away($facebook->getLoginUrl($params));
 });
+
+/* Logout de sesión */
+Route::get('logout', function() { Auth::logout(); return Redirect::to('/'); });
+
+Route::controller('users', 'UsersController');
+
+
+
 
 /* Callback de Login de Facebook */
 	
