@@ -40,9 +40,12 @@ class UsersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function getEdit($id)
+	public function getEdit($id = null)
 	{
-		
+		if(empty($id)){
+			$user = Auth::user();
+			$id = $user->id;
+		}
 		//
 	    $user = User::find($id);
 	           if (is_null($user))
