@@ -14,8 +14,7 @@
 @startdate 20 June 2014
 
 
-sesiones de facebook basado en:
-https://github.com/msurguy/laravel-facebook-login
+
 */
 
 /* Inicio de todo */
@@ -27,6 +26,14 @@ Route::get('/', function()
     }
 	echo "hello";
     return View::make('user', array('data'=>$data));
+});
+/* Rutas que requieren sesión iniciada */
+Route::controller('user','usersController');
+Route::get('user/logout', function() { Auth::logout(); return Redirect::to('/'); });
+//Route::group(array('prefix'=>'user', 'before' => 'auth'), function(){});
+Route::group(array('before'=>'auth'), function(){
+	
+	Route::get('user/dashboard','UsersController@showProfile');
 });
 
 /*
@@ -55,16 +62,6 @@ Route::get('user/facebook-auth/callback', 'UsersController@facebookAuthCallback'
 
 Route::post('user/create','UsersController@create');
 Route::post('user/signin','UsersController@signin');
-/*
-	Rutas que requieren sesión iniciada
-*/
-Route::controller('user','usersController');
-Route::get('user/logout', function() { Auth::logout(); return Redirect::to('/'); });
-//Route::group(array('prefix'=>'user', 'before' => 'auth'), function(){});
-Route::group(array('before'=>'auth'), function(){
-	
-	Route::get('user/dashboard','UsersController@showProfile');
-});
 
 
 

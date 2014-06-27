@@ -1,5 +1,12 @@
 <?php
- 
+/*
+ * @author Jose Calleja Esnal
+ * 
+ * sesiones de facebook basado en:
+ * https://github.com/msurguy/laravel-facebook-login
+ *
+ */
+
 class UsersController extends \BaseController {
 	 
 	 protected $layout = "layouts.main";
@@ -84,18 +91,6 @@ class UsersController extends \BaseController {
 	}
 
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	    User::find($id)->delete();
-	           return Redirect::route('users.index');
-	}
 
 	public function postCreate() {
 			$validator = Validator::make(Input::all(), User::$rules);
@@ -244,5 +239,18 @@ class UsersController extends \BaseController {
 			//
 		
 		
+		}
+
+		/**
+		 * Remove the specified resource from storage.
+		 *
+		 * @param  int  $id
+		 * @return Response
+		 */
+		public function destroy($id)
+		{
+			//
+		    User::find($id)->delete();
+		           return Redirect::route('users.index');
 		}
 }
