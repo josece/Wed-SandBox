@@ -25,6 +25,7 @@ Route::get('/', function()
     if (Auth::check()) {
         $data = Auth::user();
     }
+	echo "hello";
     return View::make('user', array('data'=>$data));
 });
 
@@ -36,74 +37,42 @@ Route::post('register', array('uses' => 'RegisterController@store', 'as'=> 'regi
 /*Route::get('login', array('uses' => 'SessionController@create','as' => 'session.create'));
 Route::post('login', array('uses' => 'SessionController@store', 'as' => 'session.store'));
 
-/* Login de Facebook */
-Route::get('login/fb', function() {
+/* Login de Facebook 
+Route::get('user/facebok-auth', function() {
     $facebook = new Facebook(Config::get('facebook'));
-    $params = array('redirect_uri' => url('/login/fb/callback'),'scope' => 'email',);
+    $params = array('redirect_uri' => url('user/facebok-auth/callback'),'scope' => 'email',);
     return Redirect::away($facebook->getLoginUrl($params));
 });
 
 /* Logout de sesión */
-Route::get('logout', function() { Auth::logout(); return Redirect::to('/'); });
-//Route::get('users', array('uses' => 'UsersController@index', 'as' => 'users.index'));
-Route::controller('users', 'UsersController');
+/*
+
+Route::get('login', 'UsersController@login');
+
+Route::get('user/register', 'UsersController@register');
+Route::get('user/facebok-auth', 'UsersController@facebookAuth');
+Route::get('user/facebook-auth/callback', 'UsersController@facebookAuthCallback');
+
+Route::post('user/create','UsersController@create');
+Route::post('user/signin','UsersController@signin');
+/*
+	Rutas que requieren sesión iniciada
+*/
+Route::controller('user','usersController');
+Route::get('user/logout', function() { Auth::logout(); return Redirect::to('/'); });
+//Route::group(array('prefix'=>'user', 'before' => 'auth'), function(){});
+Route::group(array('before'=>'auth'), function(){
+	
+	Route::get('user/dashboard','UsersController@showProfile');
+});
 
 
 
-
-/* Callback de Login de Facebook */
+/* Callback de Login de Facebook 
 	
     
-	Route::get('login/fb/callback', function() {
-	    $code = Input::get('code');
-	    if (strlen($code) == 0) return Redirect::to('/')->with('message', 'There was an error communicating with Facebook');
- 
-	    $facebook = new Facebook(Config::get('facebook'));
-	    $uid = $facebook->getUser();
- 
-	    if ($uid == 0) return Redirect::to('/')->with('message', 'There was an error');
- 
-	    $me = $facebook->api('/me');
-		/*
-		Los valores que recibimos de Facebook son un arreglo $me: 
-		array(11) { ["id"],
-			 		["email"]
-					["first_name"]
-					["gender"]
-					["last_name"]
-					["link"]
-					["locale"] "en_US" 
-					["name"]
-			 		["timezone"]=> int(-5) 
-					["updated_time"] 
-					["verified"]=> bool(true) 
-		}
-	 */
-		//dd($me); //equivalente a un var_dump
-	    $profile = Profile::whereUid($uid)->first();
-	    if (empty($profile)) {
- 
-	        $user = new User;
-	        $user->name = $me['first_name'].' '.$me['last_name'];
-	        $user->email = $me['email'];
-	        $user->photo = 'https://graph.facebook.com/'.$uid.'/picture?type=large';
- 
-	        $user->save();
- 
-	        $profile = new Profile();
-	        $profile->uid = $uid;
-	        $profile->username = $uid;
-	        $profile = $user->profiles()->save($profile);
-	    }
- 
-	    $profile->access_token = $facebook->getAccessToken();
-	    $profile->save();
- 
-	    $user = $profile->user;
- 
-	    Auth::login($user);
- 
-	    return Redirect::to('/')->with('message', 'Logged in with Facebook');
+	Route::get('user/facebok-auth/callback', function() {
+	   
 	});
-	
+	*/
 	

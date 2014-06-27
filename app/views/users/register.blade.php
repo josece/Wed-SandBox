@@ -1,4 +1,4 @@
-{{ Form::open(array('url'=>'users/create', 'class'=>'form-signup')) }}
+{{ Form::open(array('url'=>'user/create', 'class'=>'form-signup')) }}
 	<h2 class="form-signup-heading">Please Register</h2>
 
 	<ul>
