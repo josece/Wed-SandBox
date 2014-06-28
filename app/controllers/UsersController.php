@@ -49,17 +49,22 @@ class UsersController extends \BaseController {
 	 */
 	public function getEdit($id = null)
 	{
-		if(empty($id)){
-			$user = Auth::user();
-			$id = $user->id;
+	    if (Auth::check()) {
+			if(empty($id)){
+				$user = Auth::user();
+				$id = $user->id;
+			}
+			//
+		    $user = User::find($id);
+		           if (is_null($user))
+		           {
+		               return Redirect::to('/user/dashboard');
+		           }
+				   $this->layout->content = View::make('users.edit')->withUser($user);
+	    }else{
+			$this->layout->content = "You need to log in first";
 		}
-		//
-	    $user = User::find($id);
-	           if (is_null($user))
-	           {
-	               return Redirect::to('/user/dashboard');
-	           }
-			   $this->layout->content = View::make('users.edit')->withUser($user);
+		
 	}
 
 
@@ -115,6 +120,11 @@ class UsersController extends \BaseController {
 
 		public function postSignin() {
 			if (Auth::attempt(array('email'=>Input::get('email'), 'password'=>Input::get('password')))) {
+				/*
+		        $user->name = $user->firstname.' '.$user->lastname;
+		        $user->email = $me['email'];
+		        $user->photo = 'https://graph.facebook.com/'.$uid.'/picture?type=large';*/
+				
 				return Redirect::to('user/dashboard');//->with('message', 'You are now logged in!');
 			} else {
 				return Redirect::to('user/login')
@@ -170,10 +180,11 @@ class UsersController extends \BaseController {
 		    if (empty($profile)) {
  
 		        $user = new User;
-		        $user->name = $me['first_name'].' '.$me['last_name'];
+				$user->firstname = $me['first_name'];
+				$user->lastname = $me['last_name'];
+		        //$user->name = $me['first_name'].' '.$me['last_name'];
 		        $user->email = $me['email'];
 		        $user->photo = 'https://graph.facebook.com/'.$uid.'/picture?type=large';
- 
 		        $user->save();
  
 		        $profile = new Profile();

@@ -8,5 +8,5 @@
 {{ Form::close() }}
 
 <a href="{{ url('user/facebookauth')}}">
-	<img src="{{asset('assets/img/facebook-login-button.png')}}" height="45px" />
+	<img src="{{asset('assets/img/user/facebook-login-button.png')}}" height="45px" />
 </a>

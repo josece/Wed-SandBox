@@ -24,7 +24,6 @@ Route::get('/', function()
     if (Auth::check()) {
         $data = Auth::user();
     }
-	echo "hello";
     return View::make('user', array('data'=>$data));
 });
 /* Rutas que requieren sesión iniciada */
