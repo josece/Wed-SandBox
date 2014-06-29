@@ -1,3 +1,9 @@
 <h1>Dashboard</h1>
 
-<p>Welcome to your Dashboard. You rock!</p>
+@if (!empty($data))
+    Hello, {{{ $data['firstname'] }}} 
+	
+    <br>
+    Your email is {{ $data['email']}}
+    <br>
+    @endif

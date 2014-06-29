@@ -9,14 +9,8 @@
 
 class UsersController extends \BaseController {
 	 
-	 protected $layout = "layouts.main";
+	protected $layout = "layouts.main";
 
-	 public function getRegister() {
-		 $this->layout->content = View::make('users.register');
-	 }
-	 
-	 
-	 
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -24,12 +18,25 @@ class UsersController extends \BaseController {
 	 */
 	public function index()
 	{
+		//$this->layout->user = Auth::user();
 		//
-		$users = User::all();
+		//$users = User::all();
 		
 		//$users = User::paginate(5);
-		$this->layout->content = View::make('users.index', compact('users'));
+		//$this->layout->content = View::make('users.index', compact('users'));
 	}
+	 public function getRegister() {
+	 	//si tienen ya una sesion iniciada, no se puede ver el formulario de login
+	 	
+	 	 if (Auth::check()) {
+	 	 	return Redirect::to('user/dashboard');
+	 	 }
+		 $this->layout->content = View::make('users.register');
+	 }
+	 
+	 
+	 
+	
 
 	public function getFacebookauth()
 	{
@@ -115,6 +122,10 @@ class UsersController extends \BaseController {
 		}
 
 		public function getLogin() {
+			//si tienen ya una sesion iniciada, no se puede ver el formulario de login
+			if (Auth::check()) {
+				return Redirect::to('user/dashboard');
+			}
 			$this->layout->content = View::make('users.login');
 		}
 
@@ -129,13 +140,13 @@ class UsersController extends \BaseController {
 					->withInput();
 			}
 		}
-		public function getHola(){
-			$this->layout->content = "hola";
-		}
 
 		public function getDashboard() {
+	 	 
+			$data = array();
 		    if (Auth::check()) {
-		        $this->layout->content = View::make('users.dashboard');
+	 	 	$data = Auth::user();
+		        $this->layout->content = View::make('users.dashboard')->withData($data);
 		    }else{
 				$this->layout->content = "You need to log in first";
 			}
@@ -199,8 +210,8 @@ class UsersController extends \BaseController {
 		    $user = $profile->user;
  
 		    Auth::login($user);
- 
-		    return Redirect::to('/')->with('message', 'Logged in with Facebook');
+ 			return Redirect::to('user/dashboard');
+		    //return Redirect::to('/')->with('message', 'Logged in with Facebook');
 		}
 		/**
 		 * Show the form for creating a new resource.

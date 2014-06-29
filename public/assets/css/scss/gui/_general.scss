@@ -1,0 +1,35 @@
+html, body {
+  height: 100%;
+}
+
+/* BEGIN -- STICKY FOOTER */
+.site__wrap { min-height: 100%;  margin-bottom: -85px; }
+.site__wrap:after { content: ""; display: block; }
+.site__footer, .site__wrap:after { height: 85px; }
+.site__footer{	padding:25px 0;	background: #eee;line-height: 1.1em;}
+/* END -- STICKY FOOTER */
+
+
+/**/
+.text--center{ text-align: center; }
+.text--right{ text-align: right; }
+.text--small{ font-size:0.8em !important; }
+
+.push--right{float:right;}
+.push--left{float:left;}
+
+.facebook__button--small{ height: 40px; }
+
+.line__separator{ border-top: solid 2px #aaa; margin:10px 0;	padding:10px 0; }
+.line--small{ width: 60px;}
+
+.object--centered{margin:0 auto;display: block;}
+.block--centered{display: block; text-align: center;}
+
+.loginbox{ background:#eee; padding:20px;}
+
+.list--inline{ list-style: none;
+	li{ float:left; padding:0 10px; }
+}
+
+.photo--thumbnail{ height:50px;margin:5px;}

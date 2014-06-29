@@ -2,7 +2,7 @@
  * Colors
  */
 
-$pinkbase: #fe1967;
+$pinkbase: #419e71;
 
 
 .topnav{
@@ -18,13 +18,21 @@ $pinkbase: #fe1967;
 		margin-bottom:0em;
 		float: right;
 		li{
-			display: inline-block;
+			float:left;
+			//border-right:solid 1px lighten($pinkbase,25%);
+			//&:first-child{
+					border-left:solid 1px lighten($pinkbase,25%);
+			//	}
+
 			a{
 				display: inline-block;
 				padding: 20px;
 				margin: 0;
 				background: lighten($pinkbase, 15%);
-				color:darken($pinkbase, 40%);
+				color:darken($pinkbase, 30%);
+				text-transform: uppercase;
+				text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4);
+				
 				&:hover{
 					background: lighten($pinkbase, 10%);
 				}
@@ -32,3 +40,5 @@ $pinkbase: #fe1967;
 		}
 	}
 }
+
+

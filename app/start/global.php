@@ -79,3 +79,11 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+
+/*
+ * View Composers
+ */
+
+require app_path().'/composers.php';
+

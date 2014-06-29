@@ -29,6 +29,12 @@ Route::get('/', function()
 /* Rutas que requieren sesión iniciada */
 Route::controller('user','usersController');
 Route::get('user/logout', function() { Auth::logout(); return Redirect::to('/'); });
+
+View::composer('layout.main', function($view)
+{
+    $view->with('user',  Auth::user());
+});
+
 //Route::group(array('prefix'=>'user', 'before' => 'auth'), function(){});
 /*Route::group(array('before'=>'auth'), function(){
 	
