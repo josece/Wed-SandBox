@@ -120,10 +120,7 @@ class UsersController extends \BaseController {
 
 		public function postSignin() {
 			if (Auth::attempt(array('email'=>Input::get('email'), 'password'=>Input::get('password')))) {
-				/*
-		        $user->name = $user->firstname.' '.$user->lastname;
-		        $user->email = $me['email'];
-		        $user->photo = 'https://graph.facebook.com/'.$uid.'/picture?type=large';*/
+				
 				
 				return Redirect::to('user/dashboard');//->with('message', 'You are now logged in!');
 			} else {
@@ -131,6 +128,9 @@ class UsersController extends \BaseController {
 					->with('message', 'Your username/password combination was incorrect')
 					->withInput();
 			}
+		}
+		public function getHola(){
+			$this->layout->content = "hola";
 		}
 
 		public function getDashboard() {

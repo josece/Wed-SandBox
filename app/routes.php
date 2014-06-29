@@ -30,11 +30,11 @@ Route::get('/', function()
 Route::controller('user','usersController');
 Route::get('user/logout', function() { Auth::logout(); return Redirect::to('/'); });
 //Route::group(array('prefix'=>'user', 'before' => 'auth'), function(){});
-Route::group(array('before'=>'auth'), function(){
+/*Route::group(array('before'=>'auth'), function(){
 	
 	Route::get('user/dashboard','UsersController@showProfile');
 });
-
+*/
 /*
 Route::get('register', array('uses' =>'RegisterController@index', 'as' =>'register.index'));
 Route::post('register', array('uses' => 'RegisterController@store', 'as'=> 'register.store'));

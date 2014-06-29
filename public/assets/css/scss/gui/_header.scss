@@ -1,0 +1,34 @@
+/*
+ * Colors
+ */
+
+$pinkbase: #fe1967;
+
+
+.topnav{
+	background:lighten($pinkbase, 20%);
+	.topnav__logo{
+		h1{
+			margin-top:0em;
+			margin-bottom: 0em;
+		}
+	}
+	.topnav__list{
+		list-style: none;
+		margin-bottom:0em;
+		float: right;
+		li{
+			display: inline-block;
+			a{
+				display: inline-block;
+				padding: 20px;
+				margin: 0;
+				background: lighten($pinkbase, 15%);
+				color:darken($pinkbase, 40%);
+				&:hover{
+					background: lighten($pinkbase, 10%);
+				}
+			}
+		}
+	}
+}
