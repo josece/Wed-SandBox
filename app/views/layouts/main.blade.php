@@ -11,39 +11,41 @@
 <body>
 	<div class="off-canvas-wrap site__wrap" data-offcanvas>
     <div class="inner-wrap">
-    	<nav class="top-bar topnav" data-topbar>
-		 <section class="show-for-small ">
-		 	<div class="toggle-topbar  menu-icon left">
-		 		<a class="left-off-canvas-toggle " href="#">MENU<span></span></a>
-		 	</div>
-         </section>
-         <section class="topnav__logo small-centered large-uncentered small-4 large-4 columns">
-        	<a href="#" ><h1 class="left">Sistema</h1></a>
-        </section>
-		<section class="top-bar-section">
-			@if(!Auth::check())
-			<ul class="right">
-				<li class="{{Request::is('user/register') ? 'active' : ''}}">{{ HTML::link('user/register', 'Register') }}</li>   
-				<li class="{{Request::is('user/login') ? 'active' : ''}}">{{ HTML::link('user/login', 'Login') }}</li>   
-			</ul>
-			@else
-				<ul class="right hide-for-small">	
-					<li class="has-dropdown">
-						<a href="#"><?php $photourl = !empty($user->photo) ? $user->photo: asset("/assets/img/user/default.jpg");?>
+    	<header class="nav-down header">
+    		<nav class="top-bar topnav" data-topbar>
+    			<section class="show-for-small ">
+    				<div class="toggle-topbar  menu-icon left">
+    					<a class="left-off-canvas-toggle " href="#">MENU<span></span></a>
+    				</div>
+    			</section>
+    			<section class="topnav__logo small-centered large-uncentered small-4 large-4 columns">
+    				<a href="#" ><h1 class="left">Sistema</h1></a>
+    			</section>
+    			<section class="top-bar-section">
+    				@if(!Auth::check())
+    				<ul class="right">
+    					<li class="{{Request::is('user/register') ? 'active' : ''}}">{{ HTML::link('user/register', 'Register') }}</li>   
+    					<li class="{{Request::is('user/login') ? 'active' : ''}}">{{ HTML::link('user/login', 'Login') }}</li>   
+    				</ul>
+    				@else
+    				<ul class="right hide-for-small">	
+    					<li class="has-dropdown">
+    						<a href="#"><?php $photourl = !empty($user->photo) ? $user->photo: asset("/assets/img/user/default.jpg");?>
 
-							{{HTML::image($photourl, "Profile Picture", array('class' => 'photo--thumbnail left hide-for-small'))}}
+    							{{HTML::image($photourl, "Profile Picture", array('class' => 'photo--thumbnail left hide-for-small'))}}
 
-							{{$user->firstname}}
-						</a>
-						<ul class="dropdown">
-							<li>{{ HTML::link('user/edit', 'Edit') }}</li>
-							<li>{{ HTML::link('user/logout', 'Logout') }}</a></li>
-						</ul>
-					</li>
-				</ul>
-			@endif			
-		</section>
-	</nav>
+    							{{$user->firstname}}
+    						</a>
+    						<ul class="dropdown">
+    							<li>{{ HTML::link('user/edit', 'Edit') }}</li>
+    							<li>{{ HTML::link('user/logout', 'Logout') }}</a></li>
+    						</ul>
+    					</li>
+    				</ul>
+    				@endif			
+    			</section>
+    		</nav>
+    	</header>
 	<aside class="left-off-canvas-menu">
 		<ul class="off-canvas-list">
 			<li class="show-for-small">
@@ -63,7 +65,7 @@
 			<li><a href="#">Link 2</a></li>
 		</ul>
 	</aside>
-<section>
+<section class="main-content">
 
 	
 		@if(Session::has('message'))
@@ -117,6 +119,7 @@
 	{{ HTML::script('assets/js/foundation/foundation.alert.js') }}
 	{{ HTML::script('assets/js/foundation/foundation.topbar.js') }}
 	{{ HTML::script('assets/js/foundation/foundation.offcanvas.js') }}
+	{{ HTML::script('assets/js/script.js') }}
 	<script>
     $(document).foundation();
   </script>

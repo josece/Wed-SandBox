@@ -1,7 +1,18 @@
 html, body {
   height: 100%;
 }
+/*correccion para el menu fijo*/
+header.header.nav-up {top: -45px;}
 
+.main-content{margin-top:45px;}
+
+header.header{
+	position: fixed;
+	top:0;
+	transition: top 0.2s ease-in-out;
+	width: 100%;
+	z-index: 2;
+}
 /* BEGIN -- STICKY FOOTER */
 .site__wrap { min-height: 100%;  margin-bottom: -85px; }
 .site__wrap:after { content: ""; display: block; }
