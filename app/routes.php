@@ -24,13 +24,18 @@ Route::get('/', function()
     if (Auth::check()) {
         $data = Auth::user();
     }
-    return View::make('user', array('data'=>$data));
+    return Redirect::to('user/dashboard');
 });
 /* Rutas que requieren sesión iniciada */
 Route::controller('user','usersController');
 Route::get('user/logout', function() { Auth::logout(); return Redirect::to('/'); });
 
-View::composer('layout.main', function($view)
+
+/*
+ * View Composer 
+ * Crea un objeto $user que es usado siempre que se invoca la plantilla layout.main
+ */
+View::composer(array('layout.main', 'users.dashboard'), function($view)
 {
     $view->with('user',  Auth::user());
 });

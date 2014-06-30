@@ -1,9 +1,8 @@
 <h1>Dashboard</h1>
 
-@if (!empty($data))
-    Hello, {{{ $data['firstname'] }}} 
+    Hello, {{$user->firstname}} 
 	
     <br>
-    Your email is {{ $data['email']}}
+    Your email is {{$user->email}}
     <br>
-    @endif
+   

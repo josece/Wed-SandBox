@@ -63,10 +63,9 @@ class UsersController extends \BaseController {
 			}
 			//
 		    $user = User::find($id);
-		           if (is_null($user))
-		           {
-		               return Redirect::to('/user/dashboard');
-		           }
+		    if (is_null($user)) {
+		    	return Redirect::to('/user/dashboard');
+		    }
 				   $this->layout->content = View::make('users.edit')->withUser($user);
 	    }else{
 			$this->layout->content = "You need to log in first";
@@ -142,14 +141,9 @@ class UsersController extends \BaseController {
 		}
 
 		public function getDashboard() {
-	 	 
-			$data = array();
-		    if (Auth::check()) {
-	 	 	$data = Auth::user();
-		        $this->layout->content = View::make('users.dashboard')->withData($data);
-		    }else{
-				$this->layout->content = "You need to log in first";
-			}
+			if (!Auth::check())
+				return Redirect::to('user/login');	
+				$this->layout->content = View::make('users.dashboard');
 		}
 
 		public function getLogout() {
