@@ -9,43 +9,91 @@
 </head>
 
 <body>
-	<nav class="topnav">
-		<div class="row">
-			<div class="topnav__logo large-6 columns medium-6 small-4">
-				<h1>Sistema</h1>
-			</div>
-			<div class="large-6 columns medium-6 small-8">
-				<ul class="topnav__list ">  
-					@if(!Auth::check())
-					<li>{{ HTML::link('user/register', 'Register') }}</li>   
-					<li>{{ HTML::link('user/login', 'Login') }}</li>   
-					@else
-					<?php $photourl = !empty($user->photo) ? $user->photo: asset("/assets/img/user/default.jpg");
-					?>
-					
-					{{HTML::image($photourl, "Profile Picture", array('class' => 'photo--thumbnail push--left'))}}
-					
-					<li>{{ HTML::link('user/logout', 'Logout') }}</li>
-					@endif
-				</ul>  
-			</div>
-		</div>
+	<div class="off-canvas-wrap site__wrap" data-offcanvas>
+    <div class="inner-wrap">
+    	<nav class="top-bar topnav" data-topbar>
+		 <section class="show-for-small ">
+		 	<div class="toggle-topbar  menu-icon left">
+		 		<a class="left-off-canvas-toggle " href="#">MENU<span></span></a>
+		 	</div>
+         </section>
+         <section class="topnav__logo small-centered large-uncentered small-4 large-4 columns">
+        	<a href="#" ><h1 class="left">Sistema</h1></a>
+        </section>
+		<section class="top-bar-section">
+			@if(!Auth::check())
+			<ul class="right">
+				<li class="{{Request::is('user/register') ? 'active' : ''}}">{{ HTML::link('user/register', 'Register') }}</li>   
+				<li class="{{Request::is('user/login') ? 'active' : ''}}">{{ HTML::link('user/login', 'Login') }}</li>   
+			</ul>
+			@else
+				<ul class="right hide-for-small">	
+					<li class="has-dropdown">
+						<a href="#"><?php $photourl = !empty($user->photo) ? $user->photo: asset("/assets/img/user/default.jpg");?>
+
+							{{HTML::image($photourl, "Profile Picture", array('class' => 'photo--thumbnail left hide-for-small'))}}
+
+							{{$user->firstname}}
+						</a>
+						<ul class="dropdown">
+							<li>{{ HTML::link('user/edit', 'Edit') }}</li>
+							<li>{{ HTML::link('user/logout', 'Logout') }}</a></li>
+						</ul>
+					</li>
+				</ul>
+			@endif			
+		</section>
 	</nav>
-	<div class="site__wrap">
+	<aside class="left-off-canvas-menu">
+		<ul class="off-canvas-list">
+			<li class="show-for-small">
+				<label>Foundation</label>
+			</li>
+			<li><a href="#">Link 1</a> </li>
+			 <li><a href="#">Link 1</a> </li>
+                    <li><a href="#">Link 2</a></li>
+                     <li><a href="#">Link 1</a> </li>
+                    <li><a href="#">Link 2</a></li>
+                     <li><a href="#">Link 1</a> </li>
+                    <li><a href="#">Link 2</a></li>
+                     <li><a href="#">Link 1</a> </li>
+                    <li><a href="#">Link 2</a></li>
+                     <li><a href="#">Link 1</a> </li>
+                    <li><a href="#">Link 2</a></li>
+			<li><a href="#">Link 2</a></li>
+		</ul>
+	</aside>
+<section>
+
+	
+		@if(Session::has('message'))
+		<div data-alert class="alert-box large-6 small-centered">
+			{{ Session::get('message') }}
+			<a href="#" class="close">&times;</a>
+		</div>
+		@endif
+		@if(Session::has('success'))
+		<div data-alert class="alert-box success">
+			{{ Session::get('success') }}
+			<a href="#" class="close">&times;</a>
+		</div>
+		@endif
+		@if(Session::has('alert'))
+		<div data-alert class="alert-box alert">
+			{{ Session::get('alert') }}
+			<a href="#" class="close">&times;</a>
+		</div>
+		@endif
 		<div class="row">
 			<div class="large-12 small-12 columns">
-				@if(Session::has('message'))
-				<p class="alert">{{ Session::get('message') }}</p>
-				@endif
+				
 				{{$content}}
 			</div>
 		</div>
-
-		<div class="container">
-
-		</div>
+	</section>
+		 <a class="exit-off-canvas"></a>
 	</div>
-
+</div>
 	<footer class="site__footer">
 
 		<div class="row">
@@ -54,8 +102,8 @@
 				Copyright {{ date('Y') }} &copy; {{link_to('http://calleja.mx', 'CALLEJA.MX', $attributes = array('target' => '_blank', 'title' => 'CALLEJA.MX / Software Artisans'), $secure = null) }}
 <br />
 			</div>
-			<div class="large-6 columns  text--right small-7">
-				<ul class="list--inline text--small push--right">
+			<div class="large-6 columns  text-right small-7">
+				<ul class="inline-list text--small right">
 					<li>
 				Aviso de Privacidad</li> 
 				<li>Términos y condiciones</li>
@@ -63,5 +111,14 @@
 			</div>
 		</div>
 	</footer>
+	{{ HTML::script('assets/js/vendor/jquery.js') }}
+	{{ HTML::script('assets/js/vendor/modernizr.js') }}
+	{{ HTML::script('assets/js/foundation/foundation.js') }}
+	{{ HTML::script('assets/js/foundation/foundation.alert.js') }}
+	{{ HTML::script('assets/js/foundation/foundation.topbar.js') }}
+	{{ HTML::script('assets/js/foundation/foundation.offcanvas.js') }}
+	<script>
+    $(document).foundation();
+  </script>
 </body>
 </html>

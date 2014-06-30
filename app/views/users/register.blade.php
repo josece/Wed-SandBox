@@ -2,11 +2,11 @@
 	{{ Form::open(array('url'=>'user/create', 'class'=>'form-signup')) }}
 	<h2 class="form-signup-heading">Please Register</h2>
 
-	<ul>
+	
 		@foreach($errors->all() as $error)
-			<li>{{ $error }}</li>
+			<div class="alert-box alert">{{ $error }}<a href="#" class="close">&times;</a></div>>
 		@endforeach
-	</ul>
+	
 
 	{{ Form::text('firstname', null, array('class'=>'', 'placeholder'=>'First Name')) }}
 	{{ Form::text('lastname', null, array('class'=>'', 'placeholder'=>'Last Name')) }}

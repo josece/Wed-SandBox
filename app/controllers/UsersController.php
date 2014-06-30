@@ -94,12 +94,12 @@ class UsersController extends \BaseController {
 		   $user->lastname = $input['lastname'];
 		   $user->save();
            //$user->update($input);
-           return Redirect::to('user/edit/'. $id)->with('message', 'Info updated');
+           return Redirect::to('user/edit/'. $id)->with('success', 'Info updated');
        }
 	   return Redirect::to('user/edit/'.$id)
            ->withInput()
            ->withErrors($validation)
-           ->with('message', 'There were validation errors.');
+           ->with('alert', 'There were validation errors.');
 	}
 
 
@@ -136,7 +136,7 @@ class UsersController extends \BaseController {
 				return Redirect::to('user/dashboard');//->with('message', 'You are now logged in!');
 			} else {
 				return Redirect::to('user/login')
-					->with('message', 'Your username/password combination was incorrect')
+					->with('alert', 'Your username/password combination was incorrect')
 					->withInput();
 			}
 		}

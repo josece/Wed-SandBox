@@ -1,11 +1,8 @@
-<h1>Edit User</h1>
+<div class="large-7 columns"><h1>Edit User</h1>
 {{ Form::open(array('url'=>'user/update/' . $user->id, 'class'=>'form-signin')) }}
 
-    <ul>
-        <li>
-            {{ Form::label('password', 'Password:') }}
-            {{ Form::text('password') }}
-        </li>
+    <ul class="no-bullet">
+        
         <li>
             {{ Form::label('email', 'Email:') }}
             {{ Form::text('email', $user->email ) }}
@@ -19,8 +16,9 @@
             {{ Form::text('lastname', $user->lastname) }}
         </li>
         <li>
-            {{ Form::submit('Update', array('class' => 'btn btn-info')) }}
+            {{ Form::submit('Update', array('class' => 'button')) }}
           
         </li>
     </ul>
 {{ Form::close() }}
+</div>
