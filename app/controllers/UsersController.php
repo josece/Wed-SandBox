@@ -82,6 +82,7 @@ class UsersController extends \BaseController {
 		   /* if (is_null($user)) {
 		    	return Redirect::to('/user/dashboard');
 		    }*/
+		$this->layout->scripts = array('assets/js/foundation/foundation.abide.js');
 		$this->layout->content = View::make('users.edit')->withUser($user);
 	    
 		
@@ -94,25 +95,26 @@ class UsersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function postUpdate($id)
-	{
-	   $input = Input::all();
-       $validation = Validator::make($input,array(
-		   'email'=> 'required|unique:users,email,'.$id));
-	   
-       if ($validation->passes()) {
-           $user = User::find($id);
-		   $user->email = $input['email'];
-		   $user->firstname = $input['firstname'];
-		   $user->lastname = $input['lastname'];
-		   $user->save();
+	public function postUpdate($id) {
+		$input = Input::all();
+		$validation = Validator::make($input,array(
+			'email'=> 'required|unique:users,email,'.$id));
+
+		if ($validation->passes()) {
+			$user = User::find($id);
+			$user->email = Input::get('email');
+			$user->firstname = Input::get('firstname');
+			$user->lastname = Input::get('lastname');
+			if(!empty(Input::get('password')))
+				$user->password = Hash::make(Input::get('password'));
+			$user->save();
            //$user->update($input);
-           return Redirect::to('user/edit/'. $id)->with('success', 'Info updated');
-       }
-	   return Redirect::to('user/edit/'.$id)
-           ->withInput()
-           ->withErrors($validation)
-           ->with('alert', 'There were validation errors.');
+			return Redirect::to('user/edit/'. $id)->with('success', 'Info updated');
+		}
+		return Redirect::to('user/edit/'.$id)
+		->withInput()
+		->withErrors($validation)
+		->with('alert', 'There were validation errors.');
 	}
 
 	/**
