@@ -14,10 +14,10 @@ header.header{
 	z-index: 2;
 }
 /* BEGIN -- STICKY FOOTER */
-.site__wrap { min-height: 100%;  margin-bottom: -85px; }
+.site__wrap { min-height: 100%;  margin-bottom: -50px; }
 .site__wrap:after { content: ""; display: block; }
-.site__footer, .site__wrap:after { height: 85px; }
-.site__footer{	padding:25px 0;	background: #eee;line-height: 1.1em;}
+.site__footer, .site__wrap:after { min-height: 50px; }
+.site__footer{	padding:13px 0;	background: #eee;line-height: 1.1em;}
 /* END -- STICKY FOOTER */
 
 
@@ -36,7 +36,7 @@ header.header{
 .block--centered{display: block; text-align: center;}
 
 .loginbox{ background:#eee; padding:20px; margin: 40px 0 20px 0;}
-
+.list--nomargin{margin:0;}
 .list--none{list-style: none;}
 .list--inline{ list-style: none;
 	li{ float:left; padding:0 10px; }
