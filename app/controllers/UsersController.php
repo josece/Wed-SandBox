@@ -36,6 +36,7 @@ class UsersController extends \BaseController {
 	 	 if (Auth::check()) {
 	 	 	return Redirect::to('user/dashboard');
 	 	 }
+	 	 $this->layout->scripts = array('assets/js/foundation/foundation.abide.js');
 		 $this->layout->content = View::make('users.register');
 	 }
 	 

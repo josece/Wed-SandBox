@@ -66,32 +66,29 @@
 		</ul>
 	</aside>
 <section class="main-content">
-
-	
-		@if(Session::has('message'))
-		<div data-alert class="alert-box large-6 small-centered">
+		<div class="row">
+			<div class="large-12 small-12 columns">
+				@if(Session::has('message'))
+		<div data-alert class="alert-box large-6 small-centered columns">
 			{{ Session::get('message') }}
 			<a href="#" class="close">&times;</a>
 		</div>
 		@endif
 		@if(Session::has('success'))
-		<div data-alert class="alert-box success">
+		<div data-alert class="alert-box success large-6 small-centered columns">
 			{{ Session::get('success') }}
 			<a href="#" class="close">&times;</a>
 		</div>
 		@endif
 		@if(Session::has('alert'))
-		<div data-alert class="alert-box alert">
+		<div data-alert class="alert-box alert large-6 small-centered columns" >
 			{{ Session::get('alert') }}
 			<a href="#" class="close">&times;</a>
 		</div>
-		@endif
-		<div class="row">
-			<div class="large-12 small-12 columns">
-				
-				{{$content}}
+		@endif	
 			</div>
 		</div>
+		{{$content}}
 	</section>
 		 <a class="exit-off-canvas"></a>
 	</div>
@@ -120,8 +117,15 @@
 	{{ HTML::script('assets/js/foundation/foundation.topbar.js') }}
 	{{ HTML::script('assets/js/foundation/foundation.offcanvas.js') }}
 	{{ HTML::script('assets/js/script.js') }}
+{{--If the array of custom script files exist, we print it--}}
+@if(isset($scripts)) @foreach ($scripts as $script)
+	{{ HTML::script($script) }}
+@endforeach @endif
 	<script>
     $(document).foundation();
+    @if(isset($script_verbose))
+    	{{$script_verbose}}
+    @endif
   </script>
 </body>
 </html>
