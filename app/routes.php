@@ -32,7 +32,10 @@ Route::get('login', function() { return Redirect::to('user/login'); });
 /**
  * Aquí se cargan los controladores RESTful
  */
+Route::get('user', function() { return Redirect::to('user/home'); });
 Route::controller('user','UsersController');
+Route::controller('reminders','RemindersController');
+Route::controller('password','RemindersController');
 
 /*
  * View Composer 

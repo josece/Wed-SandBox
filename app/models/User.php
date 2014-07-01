@@ -12,7 +12,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			'password'=>'required|alpha_num|between:6,12|confirmed',
 			'password_confirmation'=>'required|alpha_num|between:6,12'
 		);
-	
+	public static $validemail = array('email'=>'required|email|exists:users');
 
 	/**
 	 * The database table used by the model.

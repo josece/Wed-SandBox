@@ -15,8 +15,8 @@ return array(
 	*/
 
 	'mailgun' => array(
-		'domain' => '',
-		'secret' => '',
+		'domain' => 'jaclabs.com',
+		'secret' => 'key-82l6sslqi3qonjcvp325d1ue5h2gjlr5',
 	),
 
 	'mandrill' => array(

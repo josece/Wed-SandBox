@@ -25,6 +25,7 @@ class UsersController extends \BaseController {
         			'postSignin',
 					'getFacebookauth',
 					'getFacebookcallback'
+					
         		)
         	)
         );
@@ -32,9 +33,6 @@ class UsersController extends \BaseController {
         view::share('appname', $appname);
     }
 	
-	public function index(){
-		
-	}
 	 public function getRegister() {
 	 	//si tienen ya una sesion iniciada, no se puede ver el formulario de login
 	 	 if (Auth::check()) {
@@ -45,8 +43,8 @@ class UsersController extends \BaseController {
 		 $this->layout->content = View::make('users.register');
 	 }
 	 
-	 
-	 
+	
+	
 	
 	/**
 	 * Gets Facebook object
