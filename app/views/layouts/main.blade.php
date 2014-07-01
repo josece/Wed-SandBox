@@ -23,7 +23,7 @@
     					<a class="left-off-canvas-toggle " href="#">MENU<span></span></a>
     				</div>
     			</section>
-    			<section class="topnav__logo small-centered large-uncentered small-4 large-4 columns">
+    			<section class="topnav__logo small-centered large-uncentered small-4 medium-3 large-4 columns">
     				<a href="{{url('user/home')}}" ><h1 class="left">Sistema</h1></a>
     			</section>
     			<section class="top-bar-section">
