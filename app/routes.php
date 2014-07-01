@@ -24,7 +24,7 @@ Route::get('/', function()
     if (Auth::check()) {
         $data = Auth::user();
     }*/
-    return Redirect::to('user/dashboard');
+    return Redirect::to('user/home');
 });
 
 Route::get('login', function() { return Redirect::to('user/login'); });
@@ -38,9 +38,9 @@ Route::controller('user','usersController');
 
 /*
  * View Composer 
- * Crea un objeto $user que es usado siempre que se invoca la plantilla layout.main
+ * Crea un objeto $user que es usado siempre que se invoca la plantilla layout/main.blade.php
  */
-View::composer(array('layout.main', 'users.dashboard'), function($view)
+View::composer(array('layout.main', 'users.home'), function($view)
 {
     $view->with('user',  Auth::user());
 });

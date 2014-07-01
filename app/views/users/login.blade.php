@@ -1,10 +1,15 @@
 <div class="row">
-	<div class="large-4 columns loginbox medium-6 push--right">
-		{{ Form::open(array('url'=>'user/signin', 'class'=>'form-signin')) }}
+	<div class="large-5 columns loginbox medium-6 small-centered">
+		{{ Form::open(array('url'=>'user/signin', 'class'=>'form-signin','data-abide'=>'')) }}
 		<h3 class="form-signin-heading">Please Login</h3>
-
-		{{ Form::text('email', null, array('class'=>'', 'placeholder'=>'Email Address')) }}
-		{{ Form::password('password', array('class'=>'', 'placeholder'=>'Password')) }}
+<div class="email-field">
+		{{ Form::email('email', null, array('class'=>'', 'placeholder'=>'Email Address', 'required' =>'required')) }}
+		<small class="error">A valid email address is required.</small>
+	</div>
+	<div class="password-field">
+		{{ Form::password('password', array('class'=>'', 'placeholder'=>'Password', 'required' =>'required', 'id'=>'password', 'pattern' => '(?=.*\d)(?=.*[a-zA-Z]).{4,8}$')) }}
+		<small class="error">Your password must have at least one letter and number and at least 8 characters long.</small>
+	</div>
 
 		{{ Form::submit('Login', array('class'=>'button object--centered radius expand'))}}
 		{{ Form::close() }}

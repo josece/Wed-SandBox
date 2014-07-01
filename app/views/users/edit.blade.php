@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="large-7 columns"><h1>Edit User</h1>
+    <div class="large-7 columns small-centered loginbox"><h1>Edit User</h1>
         {{ Form::open(array('url'=>'user/update/' . $user->id, 'class'=>'form-signin')) }}
 
         <ul class="no-bullet">

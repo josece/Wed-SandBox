@@ -1,7 +1,6 @@
 <div class="row">
-	<div class="large-4 columns loginbox medium-6 push--right">
-		<form method="POST" action="{{url('user/create')}}" accept-charset="UTF-8" class="form-signup " data-abide>
-			{{-- Form::open(array('url'=>'user/create', 'class'=>'form-signup' ,'data-abide'=>'') ) --}}
+	<div class="large-5 columns loginbox medium-6 small-centered">
+			{{ Form::open(array('url'=>'user/create', 'class'=>'form-signup' ,'data-abide'=>'') ) }}
 		<h3 class="form-signup-heading">Please Register</h3>
 
 

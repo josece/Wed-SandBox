@@ -4,11 +4,16 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-	<title>Authentication App With Laravel 4</title>
+	<title>{{$appname}}
+		@if(isset($title)) 
+		/ {{$title}}
+		@endif
+	</title>
 	{{ HTML::style('assets/css/app.css') }}
 </head>
 
 <body>
+
 	<div class="off-canvas-wrap site__wrap" data-offcanvas>
     <div class="inner-wrap">
     	<header class="nav-down header">
@@ -19,7 +24,7 @@
     				</div>
     			</section>
     			<section class="topnav__logo small-centered large-uncentered small-4 large-4 columns">
-    				<a href="#" ><h1 class="left">Sistema</h1></a>
+    				<a href="{{url('user/home')}}" ><h1 class="left">Sistema</h1></a>
     			</section>
     			<section class="top-bar-section">
     				@if(!Auth::check())

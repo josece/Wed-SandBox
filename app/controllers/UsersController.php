@@ -17,15 +17,19 @@ class UsersController extends \BaseController {
 	 *
 	 */
 
-  	public function __construct() {
+  	public function __construct(){
         $this->beforeFilter('auth', 
         	array('except' =>  
         		array('getLogin' ,
         			'getRegister',
-        			'postSignin' 
+        			'postSignin',
+					'getFacebookauth',
+					'getFacebookcallback'
         		)
         	)
         );
+        $appname = "App Name";
+        view::share('appname', $appname);
     }
 	
 	public function index(){
@@ -34,8 +38,9 @@ class UsersController extends \BaseController {
 	 public function getRegister() {
 	 	//si tienen ya una sesion iniciada, no se puede ver el formulario de login
 	 	 if (Auth::check()) {
-	 	 	return Redirect::to('user/dashboard');
+	 	 	return Redirect::to('user/home');
 	 	 }
+	 	 $this->layout->title = "Sign up";
 	 	 $this->layout->scripts = array('assets/js/foundation/foundation.abide.js');
 		 $this->layout->content = View::make('users.register');
 	 }
@@ -137,8 +142,10 @@ class UsersController extends \BaseController {
 	public function getLogin() {
 		//si tienen ya una sesion iniciada, no se puede ver el formulario de login
 		if (Auth::check()) {
-			return Redirect::to('user/dashboard');
+			return Redirect::to('user/home');
 		}
+		$this->layout->title = "Login";
+		$this->layout->scripts = array('assets/js/foundation/foundation.abide.js');
 		$this->layout->content = View::make('users.login');
 	}
 
@@ -148,7 +155,7 @@ class UsersController extends \BaseController {
 	 */
 	public function postSignin() {
 		if (Auth::attempt(array('email'=>Input::get('email'), 'password'=>Input::get('password')))) {
-			return Redirect::to('user/dashboard');//->with('message', 'You are now logged in!');
+			return Redirect::to('user/home');//->with('message', 'You are now logged in!');
 		} else {
 			return Redirect::to('user/login')
 				->with('alert', 'Your username/password combination was incorrect')
@@ -158,8 +165,8 @@ class UsersController extends \BaseController {
 	/**
 	 * Sets the layout content with the login view. 
 	 */
-	public function getDashboard() {
-		$this->layout->content = View::make('users.dashboard');
+	public function getHome() {
+		$this->layout->content = View::make('users.home');
 	}
 	/**
 	 * Logouts user
@@ -222,7 +229,7 @@ class UsersController extends \BaseController {
 			$user = $profile->user;
 
 			Auth::login($user);
-			return Redirect::to('user/dashboard');
+			return Redirect::to('user/home');
 		    //return Redirect::to('/')->with('message', 'Logged in with Facebook');
 		}
 
