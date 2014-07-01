@@ -43,7 +43,7 @@
     						</a>
     						<ul class="dropdown">
     							<li>{{ HTML::link('user/edit', 'Edit') }}</li>
-    							<li>{{ HTML::link('user/logout', 'Logout') }}</a></li>
+    							<li>{{ HTML::link('user/logout', 'Logout') }}</li>
     						</ul>
     					</li>
     				</ul>
@@ -54,20 +54,18 @@
 	<aside class="left-off-canvas-menu">
 		<ul class="off-canvas-list">
 			<li class="show-for-small">
-				<label>Foundation</label>
+				<label>{{$appname}}</label>
 			</li>
-			<li><a href="#">Link 1</a> </li>
-			 <li><a href="#">Link 1</a> </li>
-                    <li><a href="#">Link 2</a></li>
-                     <li><a href="#">Link 1</a> </li>
-                    <li><a href="#">Link 2</a></li>
-                     <li><a href="#">Link 1</a> </li>
-                    <li><a href="#">Link 2</a></li>
-                     <li><a href="#">Link 1</a> </li>
-                    <li><a href="#">Link 2</a></li>
-                     <li><a href="#">Link 1</a> </li>
-                    <li><a href="#">Link 2</a></li>
-			<li><a href="#">Link 2</a></li>
+			<li>{{HTML::image($photourl, "Profile Picture", array('class' => 'photo--thumbnail left '))}}
+			<a href="#">{{$user->firstname}}</a> </li>
+			<li><label>Navigation</label></li>
+			<li>{{ HTML::link('user/edit', 'Edit') }}</li>
+    		<li>{{ HTML::link('user/logout', 'Logout') }}</li>
+            <hr />
+            <li>{{ HTML::link('terms', 'Terms of use') }}</li>
+    		<li>{{ HTML::link('privacy-notice', 'Privacy notice') }}</li>
+    		<li></li>
+            <li><label>Built by</label>{{ HTML::link('http://calleja.mx', 'CALLEJA.MX') }}</li>
 		</ul>
 	</aside>
 <section class="main-content">
@@ -98,7 +96,7 @@
 		 <a class="exit-off-canvas"></a>
 	</div>
 </div>
-	<footer class="site__footer">
+	<footer class="site__footer hide-for-small">
 
 		<div class="row">
 			<div class="large-6 columns text--small small-5">

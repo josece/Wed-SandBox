@@ -105,7 +105,7 @@ class UsersController extends \BaseController {
 			$user->email = Input::get('email');
 			$user->firstname = Input::get('firstname');
 			$user->lastname = Input::get('lastname');
-			if(!empty(Input::get('password')))
+			if(Input::get('password')!= '' )
 				$user->password = Hash::make(Input::get('password'));
 			$user->save();
            //$user->update($input);
