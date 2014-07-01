@@ -17,19 +17,21 @@
 
 */
 
-/* Inicio de todo */
-Route::get('/', function()
-{
-    /*$data = array();
-    if (Auth::check()) {
-        $data = Auth::user();
-    }*/
+/**
+ * Aquí empieza todo
+ */
+Route::get('/', function() {
     return Redirect::to('user/home');
 });
 
+/**
+ * Si intentan hacer login desde /login, los redirigimos a la página correcta
+ */
 Route::get('login', function() { return Redirect::to('user/login'); });
-/* Rutas que requieren sesión iniciada */
 
+/**
+ * Aquí se cargan los controladores RESTful
+ */
 Route::controller('user','usersController');
 
 /*
