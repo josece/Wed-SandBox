@@ -20,15 +20,20 @@
 /* Inicio de todo */
 Route::get('/', function()
 {
-    $data = array();
+    /*$data = array();
     if (Auth::check()) {
         $data = Auth::user();
-    }
+    }*/
     return Redirect::to('user/dashboard');
 });
+
+Route::get('login', function() { return Redirect::to('user/login'); });
 /* Rutas que requieren sesión iniciada */
+//Route::get('users/login', function() { return Redirect::to('user/login'); });
+//Route::group(array('before' => 'auth'), function() {
 Route::controller('user','usersController');
-Route::get('user/logout', function() { Auth::logout(); return Redirect::to('/'); });
+//});
+//Route::get('user/logout', function() { Auth::logout(); return Redirect::to('/'); });
 
 
 /*

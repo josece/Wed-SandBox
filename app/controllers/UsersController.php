@@ -9,8 +9,11 @@
 
 class UsersController extends \BaseController {
 	 
-	protected $layout = "layouts.main";
 
+	protected $layout = "layouts.main";
+  	public function __construct() {
+        $this->beforeFilter('auth', array('except' =>  array('getLogin' ,'getRegister','postSignin' )));
+    }
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -27,7 +30,6 @@ class UsersController extends \BaseController {
 	}
 	 public function getRegister() {
 	 	//si tienen ya una sesion iniciada, no se puede ver el formulario de login
-	 	
 	 	 if (Auth::check()) {
 	 	 	return Redirect::to('user/dashboard');
 	 	 }
@@ -56,20 +58,18 @@ class UsersController extends \BaseController {
 	 */
 	public function getEdit($id = null)
 	{
-	    if (Auth::check()) {
-			if(empty($id)){
-				$user = Auth::user();
-				$id = $user->id;
-			}
-			//
-		    $user = User::find($id);
-		    if (is_null($user)) {
-		    	return Redirect::to('/user/dashboard');
-		    }
-				   $this->layout->content = View::make('users.edit')->withUser($user);
-	    }else{
-			$this->layout->content = "You need to log in first";
+		$this->layout->title = "Edit Info";
+	  
+		if(empty($id)){
+			$user = Auth::user();
+			$id = $user->id;
 		}
+		$user = User::find($id);
+		   /* if (is_null($user)) {
+		    	return Redirect::to('/user/dashboard');
+		    }*/
+		$this->layout->content = View::make('users.edit')->withUser($user);
+	    
 		
 	}
 
@@ -141,8 +141,6 @@ class UsersController extends \BaseController {
 		}
 
 		public function getDashboard() {
-			if (!Auth::check())
-				return Redirect::to('user/login');	
 				$this->layout->content = View::make('users.dashboard');
 		}
 
