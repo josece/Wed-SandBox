@@ -1,13 +1,15 @@
 <div class="row">
     <div class="large-5 medium-6 columns small-centered loginbox"><h3>Edit User</h3>
-        {{ Form::open(array('url'=>'user/update/' . $user->id, 'class'=>'form-signin','data-abide'=>'')) }}
+        {{ Form::open(array('url'=>'user/update/', 'class'=>'form-signin ajax','data-abide'=>'')) }}
 
         <ul class="no-bullet">
 
             <li>
+                <div class="email-field">
                 {{ Form::label('email', 'Email:') }}
-                {{ Form::text('email', $user->email , array('required' =>'required', 'placeholder'=>'Email address')) }}
+                {{ Form::email('email', $user->email , array('required' =>'required', 'placeholder'=>'Email address')) }}
                 <small class="error">A valid email address is required.</small>
+                </div>
             </li>
             <div class="firstname-field">
         
@@ -34,7 +36,7 @@
                 <small class="error">Your password must have at least one letter and number and at least 8 characters long.</small>
             </div>
             <div class="password_confirmation-field">
-                {{ Form::password('password_confirmation', array('class'=>'', 'placeholder'=>'Confirm password', 'required' =>'required', 'data-equalto' => 'password')) }}
+                {{ Form::password('password_confirmation', array('class'=>'', 'placeholder'=>'Confirm password', 'data-equalto' => 'password')) }}
                 <small class="error">The passwords don't match.</small>
             </div>
            

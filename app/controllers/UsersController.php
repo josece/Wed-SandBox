@@ -94,7 +94,8 @@ class UsersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function postUpdate($id) {
+	public function postUpdate($id = null) {
+		$id = is_null($id) ? Auth::user()->id :$id;
 		$input = Input::all();
 		$validation = Validator::make($input,array(
 			'email'=> 'required|unique:users,email,'.$id));
@@ -108,12 +109,17 @@ class UsersController extends \BaseController {
 				$user->password = Hash::make(Input::get('password'));
 			$user->save();
            //$user->update($input);
-			return Redirect::to('user/edit/'. $id)->with('success', 'Info updated');
+			$response = array('success' => 'Info updated.');
+			//return Redirect::to('user/edit/'. $id)->with('success', 'Info updated');
+		}else{
+			$message = 'There were validation errors:"' . $validation->messages();
+			$response = array('alert' =>  $validation->messages());
 		}
-		return Redirect::to('user/edit/'.$id)
-		->withInput()
-		->withErrors($validation)
-		->with('alert', 'There were validation errors.');
+		//return Redirect::to('user/edit/'.$id)
+		//->withInput()
+		//->withErrors($validation)
+		//->with('alert', 'There were validation errors.');
+		return $response;
 	}
 
 	/**
