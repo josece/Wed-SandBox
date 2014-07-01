@@ -16,8 +16,8 @@ header.header{
 /* BEGIN -- STICKY FOOTER */
 .site__wrap { min-height: 100%;  margin-bottom: -50px; }
 .site__wrap:after { content: ""; display: block; }
-.site__footer, .site__wrap:after { min-height: 50px; }
-.site__footer{	padding:13px 0;	background: #eee;line-height: 1.1em;}
+//.site__footer, .site__wrap:after { min-height: 50px; }
+.site__footer{	padding:13px 0;	background: #eee;line-height: 1.1em; min-height: 50px;}
 /* END -- STICKY FOOTER */
 
 

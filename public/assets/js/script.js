@@ -36,3 +36,17 @@ function hasScrolled() {
     
     lastScrollTop = st;
 }
+
+/**
+ * Swipe gestures
+ */
+ $( document ).on( "swipeleft swiperight", function( e ) {
+
+   // if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
+        if ( e.type === "swipeleft"  ) {
+            $('.off-canvas-wrap').removeClass('move-right');
+        } else if ( e.type === "swiperight" ) {
+            $('.off-canvas-wrap').addClass('move-right');
+        }
+    //}
+});

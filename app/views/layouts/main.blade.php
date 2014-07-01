@@ -29,8 +29,8 @@
     			<section class="top-bar-section">
     				@if(!Auth::check())
     				<ul class="right">
-    					<li class="{{Request::is('user/register') ? 'active' : ''}}">{{ HTML::link('user/register', 'Register') }}</li>   
-    					<li class="{{Request::is('user/login') ? 'active' : ''}}">{{ HTML::link('user/login', 'Login') }}</li>   
+    					<li class="">{{ HTML::link('user/register', 'Register') }}</li>   
+    					<li class="">{{ HTML::link('user/login', 'Login') }}</li>   
     				</ul>
     				@else
     				<ul class="right hide-for-small">	
@@ -56,12 +56,17 @@
 			<li class="show-for-small">
 				<label>{{$appname}}</label>
 			</li>
+			@if(Auth::check())
 			<li>{{HTML::image($photourl, "Profile Picture", array('class' => 'photo--thumbnail left '))}}
 			<a href="#">{{$user->firstname}}</a> </li>
 			<li><label>Navigation</label></li>
 			<li>{{ HTML::link('user/edit', 'Edit') }}</li>
     		<li>{{ HTML::link('user/logout', 'Logout') }}</li>
             <hr />
+            @else
+            <li class="{{Request::is('user/register') ? 'active' : ''}}">{{ HTML::link('user/register', 'Register') }}</li>   
+    					<li class="{{Request::is('user/login') ? 'active' : ''}}">{{ HTML::link('user/login', 'Login') }}</li>   
+            @endif
             <li>{{ HTML::link('terms', 'Terms of use') }}</li>
     		<li>{{ HTML::link('privacy-notice', 'Privacy notice') }}</li>
     		<li></li>
@@ -71,7 +76,7 @@
 <section class="main-content">
 		<div class="row">
 			<div class="large-12 small-12 columns">
-				@if(Session::has('message'))
+		@if(Session::has('message'))
 		<div data-alert class="alert-box large-6 small-centered columns">
 			{{ Session::get('message') }}
 			<a href="#" class="close">&times;</a>
@@ -119,6 +124,7 @@
 	{{ HTML::script('assets/js/foundation/foundation.alert.js') }}
 	{{ HTML::script('assets/js/foundation/foundation.topbar.js') }}
 	{{ HTML::script('assets/js/foundation/foundation.offcanvas.js') }}
+	{{ HTML::script('assets/js/vendor/jquery.mobile.custom.min.js')}}
 	{{ HTML::script('assets/js/script.js') }}
 {{--If the array of custom script files exist, we print it--}}
 @if(isset($scripts)) @foreach ($scripts as $script)
