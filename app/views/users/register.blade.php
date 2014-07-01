@@ -5,28 +5,29 @@
 
 
 		@foreach($errors->all() as $error)
-		<div class="alert-box alert">{{ $error }}<a href="#" class="close">&times;</a></div>>
+		<div class="alert-box alert">{{ $error }}<a href="#" class="close">&times;</a></div>
 		@endforeach
 
  	<div class="firstname-field">
-		{{ Form::text('firstname', null, array('class'=>'', 'placeholder'=>'First Name', 'required' =>'required', 'pattern'=>'[a-zA-Z]+')) }}
+		{{ Form::text('firstname', null, array('class'=>'', 'placeholder'=>'First Name *', 'required' =>'required', 'pattern'=>'[a-zA-Z]+')) }}
 		<small class="error">Your name can only have letters</small>
 	</div>
 	<div class="lastname-field">
 		{{ Form::text('lastname', null, array('class'=>'', 'placeholder'=>'Last Name')) }}
 	</div>
 	<div class="email-field">
-		{{ Form::email('email', null, array('class'=>'', 'placeholder'=>'Email Address', 'required' =>'required')) }}
+		{{ Form::email('email', null, array('class'=>'', 'placeholder'=>'Email Address *', 'required' =>'required')) }}
 		<small class="error">A valid email address is required.</small>
 	</div>
 	<div class="password-field">
-		{{ Form::password('password', array('class'=>'', 'placeholder'=>'Password', 'required' =>'required', 'id'=>'password', 'pattern' => '(?=.*\d)(?=.*[a-zA-Z]).{4,8}$')) }}
+		{{ Form::password('password', array('class'=>'', 'placeholder'=>'Password *', 'required' =>'required', 'id'=>'password', 'pattern' => '(?=.*\d)(?=.*[a-zA-Z]).{4,8}$')) }}
 		<small class="error">Your password must have at least one letter and number and at least 8 characters long.</small>
 	</div>
 	<div class="password_confirmation-field">
-		{{ Form::password('password_confirmation', array('class'=>'', 'placeholder'=>'Confirm Password', 'required' =>'required', 'data-equalto' => 'password')) }}
+		{{ Form::password('password_confirmation', array('class'=>'', 'placeholder'=>'Confirm Password * ', 'required' =>'required', 'data-equalto' => 'password')) }}
 		<small class="error">The passwords don't match.</small>
 	</div>
+	<small class="right">Required fields marked with *</small><br /><br/>
 		{{ Form::submit('Register', array('class'=>'button object--centered radius expand'))}}
 		{{ Form::close() }}
 		Already have an account? {{ HTML::link('user/login', 'Log in') }}.<br /><br />

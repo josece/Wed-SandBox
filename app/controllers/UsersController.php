@@ -23,6 +23,7 @@ class UsersController extends \BaseController {
         		array('getLogin' ,
         			'getRegister',
         			'postSignin',
+        			'postCreate',
 					'getFacebookauth',
 					'getFacebookcallback'
 					
@@ -121,7 +122,6 @@ class UsersController extends \BaseController {
 	 */
 	public function postCreate() {
 		$validator = Validator::make(Input::all(), User::$rules);
-
 		if ($validator->passes()) {
 			$user = new User;
 			$user->firstname = Input::get('firstname');
@@ -130,9 +130,9 @@ class UsersController extends \BaseController {
 			$user->password = Hash::make(Input::get('password'));
 			$user->save();
 
-			return Redirect::to('user/login')->with('message', 'Thanks for registering!');
+			return Redirect::to('user/login')->with('success', 'Thanks for registering! You can now log in.');
 		} else {
-			return Redirect::to('user/register')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+			return Redirect::to('user/register')->with('alert', 'Something went wrong')->withErrors($validator)->withInput();
 		}
 	}
 	
