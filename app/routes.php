@@ -21,7 +21,8 @@
  * Aquí empieza todo
  */
 Route::get('/', function() {
-    return Redirect::to('user/home');
+   // return Redirect::to('user/home');
+    echo "test";
 });
 
 /**
