@@ -26,12 +26,17 @@ class UsersController extends \BaseController {
         			'postCreate',
 					'getFacebookauth',
 					'getFacebookcallback'
-					
         		)
         	)
         );
         $appname =  Lang::get('global.appname');
         view::share('appname', $appname);
+    }
+
+
+    public function getIndex() {
+		$users = User::all();
+		$this->layout->content =  View::make('users.index', compact('users'));
     }
 	
 	 public function getRegister() {

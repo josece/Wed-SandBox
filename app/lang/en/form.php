@@ -13,13 +13,18 @@ return array(
 	|
 	*/
 
-	
-
+	"users" => "Users",
+	"id" => "ID",
 	"email" => "Email",
 	"emailaddress" => "Email address",
 
 	"firstname" => "First name",
 	"lastname" => "Last name",
+	"role" => "Role",
+	"actions" => "Actions",
+	"edit" => "Edit",
+	"disable" => "Disable",
+	"delete" => "Delete",
 
 	"login" => "Log in",
 	"login--facebook" => "Sign in with Facebook",
