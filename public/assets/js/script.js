@@ -63,14 +63,17 @@ $(document).ready(function() {
         $form = $(this);
         $url = $form.attr('action');
         event.preventDefault();
+        var dataobj = $(this).serializeArray();
+        dataobj.push({name : 'kind', value:'ajax' });
+        console.log(dataobj);
         $.ajax({
             type: 'POST',
             url: $url,
-            data: $(this).serialize(),
+            data: dataobj,
             dataType: 'json',
         })
         .done(function(data) {
-            console.log(data); 
+            //console.log(data); 
             // take care of that AJAX response
              manageAjaxResponse(data);
         });

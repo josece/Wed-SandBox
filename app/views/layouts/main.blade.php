@@ -42,8 +42,8 @@
     							{{$user->firstname}}
     						</a>
     						<ul class="dropdown">
-    							<li>{{ HTML::link('user/edit', 'Edit') }}</li>
-    							<li>{{ HTML::link('user/logout', 'Logout') }}</li>
+    							<li>{{ HTML::link('user/edit', Lang::get('global.editinfo')) }}</li>
+    							<li>{{ HTML::link('user/logout', Lang::get('global.logout')) }}</li>
     						</ul>
     					</li>
     				</ul>
@@ -60,8 +60,8 @@
 			<li>{{HTML::image($photourl, Lang::get('global.profilepic'), array('class' => 'photo--thumbnail left '))}}
 			<a href="#">{{$user->firstname}}</a> </li>
 			<li><label>{{Lang::get('global.navigation')}}</label></li>
-			<li>{{ HTML::link('user/edit', Lang::get('form.editinfo')) }}</li>
-    		<li>{{ HTML::link('user/logout', Lang::get('form.logout')) }}</li>
+			<li>{{ HTML::link('user/edit', Lang::get('global.editinfo')) }}</li>
+    		<li>{{ HTML::link('user/logout', Lang::get('global.logout')) }}</li>
             <hr />
             @else
             <li class="{{Request::is('user/register') ? 'active' : ''}}">{{ HTML::link('user/register', Lang::get('form.signup')) }}</li>   

@@ -28,15 +28,11 @@ return array(
 	"password--repeat" => "Repeat password",
 
 	"login" => "Log in",
-	
-	"login--facebook" => "Sign in with Facebook",
 
-	"logout" => "Log out",
+	"login--facebook" => "Sign in with Facebook",
 	
 	"signup" => "Sign up",
 
-	"editinfo" => "Edit profile",
-	
 	"change--save" => "Save changes",
 	
 	"change--password" => "Change password",

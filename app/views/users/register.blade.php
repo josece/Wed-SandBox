@@ -8,7 +8,7 @@
 		@endforeach
 
  	<div class="firstname-field">
-		{{ Form::text('firstname', null, array('class'=>'', 'placeholder'=>Lang::get('form.firstname').'*', 'required' =>'required', 'pattern'=>'[a-zA-Z]+')) }}
+		{{ Form::text('firstname', null, array('class'=>'', 'placeholder'=>Lang::get('form.firstname').'*', 'required' =>'required')) }}
 		<small class="error">{{Lang::get('form.error--firstname')}}</small>
 	</div>
 	<div class="lastname-field">

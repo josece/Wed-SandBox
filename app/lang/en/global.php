@@ -17,6 +17,8 @@ return array(
 	"profilepic" => "Profile picture",
 	"menu" => "MENU",
 	"navigation" => "Navigation",
+	"editinfo" => "Edit profile",
+	"logout" => "Log Out",
 	"termsofuse" => "Terms of use",
 	"privacynotice" => "Privacy notice",
 	"builtby" => "Built by",

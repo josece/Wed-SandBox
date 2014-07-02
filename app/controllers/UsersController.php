@@ -90,16 +90,16 @@ class UsersController extends \BaseController {
 
 	/**
 	 * Update the specified resource in storage.
-	 *
+	 * if the call comes with an ajax state a json object is retun, instead of a redirection.
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function postUpdate($id = null) {
+	public function postEdit($id = null) {
 		$id = is_null($id) ? Auth::user()->id :$id;
 		$input = Input::all();
 		$validation = Validator::make($input,array(
 			'email'=> 'required|unique:users,email,'.$id));
-
+		//dd(Input::all());
 		if ($validation->passes()) {
 			$user = User::find($id);
 			$user->email = Input::get('email');
@@ -108,17 +108,17 @@ class UsersController extends \BaseController {
 			if(Input::get('password')!= '' )
 				$user->password = Hash::make(Input::get('password'));
 			$user->save();
-           //$user->update($input);
+
 			$response = array('success' => Lang::get('form.success--update'));
-			//return Redirect::to('user/edit/'. $id)->with('success', 'Info updated');
+			if(Input::get('kind')!='ajax')
+				return Redirect::to('user/edit/')->with('success', Lang::get('form.success--update'));
 		}else{
-			$message = 'There were validation errors:"' . $validation->messages();
+			
 			$response = array('alert' =>  $validation->messages());
 		}
-		//return Redirect::to('user/edit/'.$id)
-		//->withInput()
-		//->withErrors($validation)
-		//->with('alert', 'There were validation errors.');
+		
+		if(Input::get('kind')!='ajax')
+			return Redirect::to('user/edit/'.$id)->withInput()->withErrors($validation)->with('alert', Lang::get('form.error--validation'));
 		return $response;
 	}
 

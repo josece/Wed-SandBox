@@ -1,6 +1,6 @@
 <div class="row">
-    <div class="large-5 medium-6 columns small-centered loginbox"><h3>{{Lang::get('form.editinfo')}}</h3>
-        {{ Form::open(array('url'=>'user/update/', 'class'=>'form-signin ajax','data-abide'=>'')) }}
+    <div class="large-5 medium-6 columns small-centered loginbox"><h3>{{Lang::get('global.editinfo')}}</h3>
+        {{ Form::open(array('url'=>'user/edit/', 'class'=>'form-signin','data-abide'=>'')) }}
 
         <ul class="no-bullet">
 
@@ -17,7 +17,7 @@
     </div>
             <li>
                 {{ Form::label('firstname',  Lang::get('form.firstname').':') }}
-                {{ Form::text('firstname', $user->firstname, array('required' =>'required',  'placeholder'=> Lang::get('form.firstname'), 'pattern'=>'[a-zA-Z]+')) }}
+                {{ Form::text('firstname', $user->firstname, array('required' =>'required',  'placeholder'=> Lang::get('form.firstname'))) }}
                 <small class="error">{{Lang::get('form.error--firstname')}}</small>
             </li>
             <li>
