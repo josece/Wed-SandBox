@@ -71,7 +71,7 @@ class UsersController extends \BaseController {
 	 */
 	public function getEdit($id = null)
 	{
-		$this->layout->title =  Lang::get('form.editinfo');
+		$this->layout->title =  Lang::get('global.editinfo');
 	  
 		if(empty($id)){
 			$user = Auth::user();
