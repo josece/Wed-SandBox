@@ -1,17 +1,14 @@
 <div class="row">
 	<div class="large-5 columns loginbox medium-6 small-centered">
-		{{ Form::open(array('url'=>'reminders/remind', 'class'=>'form-signin','data-abide'=>'')) }}
-		<h3 class="form-signin-heading">Forgot your password?</h3>
-		<p>Get a link to reset it</p>
+		{{ Form::open(array('url'=>'password/remind', 'class'=>'form-signin','data-abide'=>'')) }}
+		<h3 class="form-signin-heading">{{Lang::get('reminders.title--forgot');}}</h3>
+		<p>{{Lang::get('reminders.info--link');}}</p>
 <div class="email-field">
-		{{ Form::email('email', null, array('class'=>'', 'placeholder'=>'Email Address', 'required' =>'required')) }}
-		<small class="error">A valid email address is required.</small>
+		{{ Form::email('email', null, array('class'=>'', 'placeholder'=>Lang::get('form.emailaddress'), 'required' =>'required')) }}
+		<small class="error">{{Lang::get('form.error--email')}}</small>
 	</div>
-	
-
-		{{ Form::submit('Send me a link', array('class'=>'button object--centered radius expand'))}}
+		{{ Form::submit(Lang::get('reminders.send--link'), array('class'=>'button object--centered radius expand'))}}
 		{{ Form::close() }}
-		Already remembered? {{ HTML::link('user/login', 'Log in') }}.<br /><br />
-		
+		{{Lang::get('reminders.remembered');}} {{ HTML::link('user/login', Lang::get('form.login')) }}.<br /><br />	
 	</div>
 </div>

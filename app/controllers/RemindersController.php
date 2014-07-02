@@ -2,8 +2,9 @@
 
 class RemindersController extends \BaseController  {
 	protected $layout = "layouts.main";
+	
 	public function __construct(){
-        $appname = "App Name";
+		$appname = Lang::get('global.appname');
         view::share('appname', $appname);
     }
 
@@ -15,7 +16,7 @@ class RemindersController extends \BaseController  {
 	public function getRemind()
 	{
 		//return View::make('password.remind');
-		$this->layout->title = "Forgot your password?";
+		$this->layout->title = Lang::get('reminders.title--forgot');
 	 	$this->layout->scripts = array('assets/js/foundation/foundation.abide.js');
 		$this->layout->content = View::make('reminders.forgot');
 	}
@@ -30,7 +31,7 @@ class RemindersController extends \BaseController  {
 		$validation = Validator::make(Input::all(), User::$validemail);
 		
 		switch ($response = Password::remind(Input::only('email'), function($message){
-			$message->subject('Reset your password'); 
+			$message->subject(Lang::get('reminders.email--subject')); 
 		}))
 		{
 			case Password::INVALID_USER:
@@ -50,7 +51,7 @@ class RemindersController extends \BaseController  {
 	public function getReset($token = null)
 	{
 		if (is_null($token)) App::abort(404);
-		$this->layout->title = "Reset your password";
+		$this->layout->title = Lang::get('reminders.title--reset');
 	 	$this->layout->scripts = array('assets/js/foundation/foundation.abide.js');
 		$this->layout->content = View::make('reminders.reset')->with('token',$token);
 		//return View::make('reminders.reset')->with('token', $token);
@@ -85,5 +86,4 @@ class RemindersController extends \BaseController  {
 				return Redirect::to('/');
 		}
 	}
-
 }

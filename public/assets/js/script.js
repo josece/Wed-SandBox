@@ -88,9 +88,9 @@ function manageAjaxResponse(data){
             name == 'message' || 
             name == 'success') {
             if(typeof value ==  'object'){
-                if(name=='alert'){
-                    createAlertDialog(name, 'There were some errors.', defaultcontainer);
-                }
+                //if(name=='alert'){
+                  //  createAlertDialog(name, 'There were some errors', defaultcontainer);
+                //}
                 $.each(value, function(tipo,mensaje){
                     createAlertDialog(name, mensaje, '.'+tipo+'-field',' ', 'prepend');
                 })

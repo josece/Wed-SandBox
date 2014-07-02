@@ -30,7 +30,7 @@ class UsersController extends \BaseController {
         		)
         	)
         );
-        $appname = "App Name";
+        $appname =  Lang::get('global.appname');
         view::share('appname', $appname);
     }
 	
@@ -39,7 +39,7 @@ class UsersController extends \BaseController {
 	 	 if (Auth::check()) {
 	 	 	return Redirect::to('user/home');
 	 	 }
-	 	 $this->layout->title = "Sign up";
+	 	 $this->layout->title =  Lang::get('form.signup');
 	 	 $this->layout->scripts = array('assets/js/foundation/foundation.abide.js');
 		 $this->layout->content = View::make('users.register');
 	 }
@@ -71,7 +71,7 @@ class UsersController extends \BaseController {
 	 */
 	public function getEdit($id = null)
 	{
-		$this->layout->title = "Edit Info";
+		$this->layout->title =  Lang::get('form.editinfo');
 	  
 		if(empty($id)){
 			$user = Auth::user();
@@ -109,7 +109,7 @@ class UsersController extends \BaseController {
 				$user->password = Hash::make(Input::get('password'));
 			$user->save();
            //$user->update($input);
-			$response = array('success' => 'Info updated.');
+			$response = array('success' => Lang::get('form.success--update'));
 			//return Redirect::to('user/edit/'. $id)->with('success', 'Info updated');
 		}else{
 			$message = 'There were validation errors:"' . $validation->messages();
@@ -136,9 +136,9 @@ class UsersController extends \BaseController {
 			$user->password = Hash::make(Input::get('password'));
 			$user->save();
 
-			return Redirect::to('user/login')->with('success', 'Thanks for registering! You can now log in.');
+			return Redirect::to('user/login')->with('success', Lang::get('form.success--signup'));
 		} else {
-			return Redirect::to('user/register')->with('alert', 'Something went wrong')->withErrors($validator)->withInput();
+			return Redirect::to('user/register')->with('alert', Lang::get('form.error--something'))->withErrors($validator)->withInput();
 		}
 	}
 	
@@ -150,7 +150,7 @@ class UsersController extends \BaseController {
 		if (Auth::check()) {
 			return Redirect::to('user/home');
 		}
-		$this->layout->title = "Login";
+		$this->layout->title = Lang::get('form.login');
 		$this->layout->scripts = array('assets/js/foundation/foundation.abide.js');
 		$this->layout->content = View::make('users.login');
 	}
@@ -164,7 +164,7 @@ class UsersController extends \BaseController {
 			return Redirect::to('user/home');//->with('message', 'You are now logged in!');
 		} else {
 			return Redirect::to('user/login')
-				->with('alert', 'Your username/password combination was incorrect')
+				->with('alert', Lang::get('form.error--login'))
 				->withInput();
 		}
 	}
@@ -188,12 +188,12 @@ class UsersController extends \BaseController {
 	 */
 	public function getFacebookcallback() {
 		$code = Input::get('code');
-		if (strlen($code) == 0) return Redirect::to('/')->with('message', 'There was an error communicating with Facebook');
+		if (strlen($code) == 0) return Redirect::to('/')->with('message', Lang::get('form.error--facebook'));
 
 		$facebook = new Facebook(Config::get('facebook'));
 		$uid = $facebook->getUser();
 
-		if ($uid == 0) return Redirect::to('/')->with('message', 'There was an error');
+		if ($uid == 0) return Redirect::to('/')->with('message', Lang::get('form.error--something'));
 
 		$me = $facebook->api('/me');
 			/*
@@ -272,7 +272,7 @@ class UsersController extends \BaseController {
 		           return Redirect::route('users.create')
 		               ->withInput()
 		               ->withErrors($validation)
-		               ->with('message', 'There were validation errors.');
+		               ->with('message', Lang::get('form.error--validation'));
 		}
 
 
