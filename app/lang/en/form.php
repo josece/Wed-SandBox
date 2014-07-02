@@ -36,13 +36,14 @@ return array(
 
 
 	"error--email" => "A valid email address is required.",
-	"error--login" => "Your password / username combination was incorrect",
+	"error--login" => "Your password / username combination was incorrect.",
 	"error--password" => "Your password must have at least one letter and number and at least 8 characters long.",
-	"error--passwordmatch" => "Your passwords don't match",
-	"error--firstname" => "Your name can only have letters",
-	"error--facebook" => "There was an error communicating with Facebook",
-	"error--something" => "Something went wrong",
-	"error--validation" => "There were validation errors",
+	"error--passwordmatch" => "Your passwords don't match.",
+	"error--firstname" => "Your name can only have letters.",
+	"error--facebook" => "There was an error communicating with Facebook.",
+	"error--something" => "Something went wrong.",
+	"error--validation" => "There were validation errors.",
+	"error--nouserfound" => "There were no users found with that id.",
 
 	"requiredfields" => "Required fields are marked with *",
 

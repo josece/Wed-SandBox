@@ -35,6 +35,9 @@ class AdminController extends \BaseController {
 			$user = Auth::user();
 		}else{
 			$user = User::find($id);
+			if(is_null($user)){
+				return Redirect::to('user/home')->with('alert', Lang::get('form.error--nouserfound'));
+			}
 		}
 		$this->layout->title =  Lang::get('global.editinfo');
 		$this->layout->scripts = array('assets/js/foundation/foundation.abide.js');
