@@ -61,7 +61,17 @@ class UsersController extends \BaseController {
 	    return Redirect::away($facebook->getLoginUrl($params));
 	}
 	
-
+	public function getEditadmin($id = null){
+		if(empty($id)){
+			$user = Auth::user();
+			$id = $user->id;
+		}
+		$id = Auth::user()->id;
+		$user = User::find($id);
+		$this->layout->title =  Lang::get('global.editinfo');
+		$this->layout->scripts = array('assets/js/foundation/foundation.abide.js');
+		$this->layout->content = View::make('admin.users.edit')->withUser($user);
+	}
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -69,22 +79,12 @@ class UsersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function getEdit($id = null)
-	{
-		$this->layout->title =  Lang::get('global.editinfo');
-	  
-		if(empty($id)){
-			$user = Auth::user();
-			$id = $user->id;
-		}
+	public function getEdit() {
+		$id = Auth::user()->id;
 		$user = User::find($id);
-		   /* if (is_null($user)) {
-		    	return Redirect::to('/user/dashboard');
-		    }*/
+		$this->layout->title =  Lang::get('global.editinfo');
 		$this->layout->scripts = array('assets/js/foundation/foundation.abide.js');
 		$this->layout->content = View::make('users.edit')->withUser($user);
-	    
-		
 	}
 
 
@@ -118,7 +118,7 @@ class UsersController extends \BaseController {
 		}
 		
 		if(Input::get('kind')!='ajax')
-			return Redirect::to('user/edit/'.$id)->withInput()->withErrors($validation)->with('alert', Lang::get('form.error--validation'));
+			return Redirect::to('user/edit/')->withInput()->withErrors($validation)->with('alert', Lang::get('form.error--validation'));
 		return $response;
 	}
 

@@ -24,7 +24,7 @@ header.header{
 
 /**/
 .alert__row{
-	.alert-box{margin-bottom:-45px;}
+	.alert-box{margin-bottom:-45px;z-index: 1;}
 } 
 .text--small{ font-size:0.8em !important; }
 

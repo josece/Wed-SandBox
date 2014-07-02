@@ -99,12 +99,12 @@ Route::filter('csrf', function()
 */
 
 Route::filter('auth.admin', function() {
-    if(Auth::user()->role_id < 3) {
+    if(Auth::user()->role_id < 5) {
         return Redirect::to('user/home')->with('message',Lang::get('global.permissions--notenough'));
     }
 });
 Route::filter('auth.medium', function() {
-    if(Auth::user()->role_id < 3) {
+    if(Auth::user()->role_id < 2) {
         return Redirect::to('user/home')->with('message',Lang::get('global.permissions--notenough'));
     }
 });

@@ -19,12 +19,18 @@
 
 /**
  * Limite de acceso
- * niveles de acceso: 0 | 1 | 2 | 3
+ * niveles de acceso:
+ * auth.admin - 3
+ * auth.medium - 2
+ * auth.basic -1
+ * guest() - 0
  */
 Route::group(array('before' => 'auth|auth.admin'), function() {
-	//Route::get('user/edit',array("before" => "roles:1-2-3,user/home", 'uses' => 'UsersController@getEdit'));		
-	Route::get('user/edit',array('uses' => 'UsersController@getEdit'));		
+	Route::controller('admin','AdminController');
+	/*Route::get('user/super/edit/',array('uses' => 'UsersController@getEditadmin'));
+	Route::get('user/super/edit/{id}',array('uses' => 'UsersController@getEditadmin'));*/
 });
+
 /**
  * Aquí empieza todo
  */
@@ -43,7 +49,7 @@ Route::get('login', function() { return Redirect::to('user/login'); });
 Route::get('user', function() { return Redirect::to('user/home'); });
 Route::controller('user','UsersController');
 Route::controller('password','RemindersController');
-
+//Route::controller('admin','AdminController');
 /*
  * View Composer 
  * Crea un objeto $user que es usado siempre que se invoca la plantilla layout/main.blade.php
