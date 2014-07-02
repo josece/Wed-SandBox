@@ -7,7 +7,7 @@
 		{{ Form::email('email', null, array('class'=>'', 'placeholder'=>Lang::get('form.emailaddress'), 'required' =>'required')) }}
 		<small class="error">{{Lang::get('form.error--email')}}</small>
 	</div>
-		{{ Form::submit(Lang::get('reminders.send--link'), array('class'=>'button object--centered radius expand'))}}
+		{{ Form::submit(Lang::get('reminders.send--link'), array('class'=>'button radius expand'))}}
 		{{ Form::close() }}
 		{{Lang::get('reminders.remembered');}} {{ HTML::link('user/login', Lang::get('form.login')) }}.<br /><br />	
 	</div>

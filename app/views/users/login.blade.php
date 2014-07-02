@@ -10,13 +10,14 @@
 		{{ Form::password('password', array('class'=>'', 'placeholder'=>'Password', 'required' =>'required', 'id'=>'password', 'pattern' => '(?=.*\d)(?=.*[a-zA-Z]).{4,8}$')) }}
 		<small class="error">{{Lang::get('form.error--password')}}</small>
 	</div>
-
-		{{ Form::submit(Lang::get('form.login'), array('class'=>'button object--centered radius expand'))}}
+	<div class="submit-field">
+		{{ Form::submit(Lang::get('form.login'), array('class'=>'button radius expand'))}}
+	</div>
 		{{ Form::close() }}
-		
+			
 		{{ HTML::link('user/register', Lang::get('form.account--new'))}}<br /><br />
 		{{ HTML::link('password/remind',  Lang::get('reminders.title--forgot')) }}<br /><br />
-		<div class="line__separator line--small object--centered"></div>
+		<div class="line__separator line--small object--centered"><span></span></div>
 		<a href="{{ url('user/facebookauth')}}" title="{{Lang::get('form.login--facebook')}}" class="block--centered">
 			<img src="{{asset('assets/img/user/facebook-login-button.png')}}" alt="{{Lang::get('form.login--facebook')}}" class="
 			facebook__button--small"/>
