@@ -95,11 +95,22 @@ Route::filter('csrf', function()
  * @param $roles [1-2-3-0]
  * @param $redirect @url
  * @return Redirect 
- * admin: 3 | editor: 2 | suscriptor: 1 | invitado: 0
+ * auth.admin: 3 | auth.medium: 2 | auth.basic: 1 | guest: 0
 */
 
-Route::filter('roles', function($ruta, $peticion, $roles, $redirect){
-    $roles = explode("-", $roles);
-    if(!in_array(Auth::user()->role_id, $roles))
-        return Redirect::to($redirect)->with('message',Lang::get('global.permissions--notenough')); 
+Route::filter('auth.admin', function() {
+    if(Auth::user()->role_id < 3) {
+        return Redirect::to('user/home')->with('message',Lang::get('global.permissions--notenough'));
+    }
+});
+Route::filter('auth.medium', function() {
+    if(Auth::user()->role_id < 3) {
+        return Redirect::to('user/home')->with('message',Lang::get('global.permissions--notenough'));
+    }
+});
+
+Route::filter('auth.basic', function() {
+    if(Auth::user()->role_id < 1) {
+        return Redirect::to('user/home')->with('message',Lang::get('global.permissions--notenough'));
+    }
 });

@@ -21,8 +21,9 @@
  * Limite de acceso
  * niveles de acceso: 0 | 1 | 2 | 3
  */
-Route::group(array('before' => 'auth'), function() {
+Route::group(array('before' => 'auth|auth.admin'), function() {
 	//Route::get('user/edit',array("before" => "roles:1-2-3,user/home", 'uses' => 'UsersController@getEdit'));		
+	Route::get('user/edit',array('uses' => 'UsersController@getEdit'));		
 });
 /**
  * Aquí empieza todo
