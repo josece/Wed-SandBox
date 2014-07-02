@@ -16,7 +16,6 @@
 			"app/database/migrations",
 			"app/database/seeds",
 			"app/tests/TestCase.php",
-			"app/lib",
 			"app/composers.php"
 		]
 	},
