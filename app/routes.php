@@ -18,6 +18,13 @@
 */
 
 /**
+ * Limite de acceso
+ * niveles de acceso: 0 | 1 | 2 | 3
+ */
+Route::group(array('before' => 'auth'), function() {
+	//Route::get('user/edit',array("before" => "roles:1-2-3,user/home", 'uses' => 'UsersController@getEdit'));		
+});
+/**
  * Aquí empieza todo
  */
 Route::get('/', function() {
@@ -43,3 +50,4 @@ Route::controller('password','RemindersController');
 View::composer(array('layout.main', 'users.home'), function($view) {
     $view->with('user',  Auth::user());
 });
+

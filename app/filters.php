@@ -88,3 +88,18 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+/**
+ * Control de acceso según el ROL de usuario
+ * @param $ruta=null
+ * @param $peticion=null
+ * @param $roles [1-2-3-0]
+ * @param $redirect @url
+ * @return Redirect 
+ * admin: 3 | editor: 2 | suscriptor: 1 | invitado: 0
+*/
+
+Route::filter('roles', function($ruta, $peticion, $roles, $redirect){
+    $roles = explode("-", $roles);
+    if(!in_array(Auth::user()->role_id, $roles))
+        return Redirect::to($redirect)->with('message',Lang::get('global.permissions--notenough')); 
+});

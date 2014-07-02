@@ -22,6 +22,6 @@ return array(
 	"termsofuse" => "Terms of use",
 	"privacynotice" => "Privacy notice",
 	"builtby" => "Built by",
-	"minutes" => "minute|minutes"
-
+	"minutes" => "minute|minutes",
+	"permissions--notenough" => "You don't have enough permissions to access this"
 );
