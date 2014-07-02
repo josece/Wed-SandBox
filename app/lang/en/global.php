@@ -13,8 +13,13 @@ return array(
 	|
 	*/
 
-	"appname" => "this is the name of the site", 
-
+	"appname" => "Sistema", 
+	"profilepic" => "Profile picture",
+	"menu" => "MENU",
+	"navigation" => "Navigation",
+	"termsofuse" => "Terms of use",
+	"privacynotice" => "Privacy notice",
+	"builtby" => "Built by",
 	"minutes" => "minute|minutes"
 
 );

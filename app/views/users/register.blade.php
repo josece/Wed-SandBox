@@ -31,8 +31,8 @@
 		{{ Form::close() }}
 		{{Lang::get('form.account--already')}} {{ HTML::link('user/login', Lang::get('form.login')) }}.<br /><br />
 		<div class="line__separator line--small object--centered"></div>
-		<a href="{{ url('user/facebookauth')}}" class="block--centered">
-			<img src="{{asset('assets/img/user/facebook-login-button.png')}}" class="
+		<a href="{{ url('user/facebookauth')}}" title="{{Lang::get('form.login--facebook')}}" class="block--centered">
+			<img src="{{asset('assets/img/user/facebook-login-button.png')}}" alt="{{Lang::get('form.login--facebook')}}" class="
 			facebook__button--small"/>
 		</a>
 	</div>

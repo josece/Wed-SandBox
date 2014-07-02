@@ -20,24 +20,24 @@
     		<nav class="top-bar topnav" data-topbar>
     			<section class="show-for-small ">
     				<div class="toggle-topbar  menu-icon left">
-    					<a class="left-off-canvas-toggle " href="#">MENU<span></span></a>
+    					<a class="left-off-canvas-toggle " href="#">{{Lang::get('global.menu')}}<span></span></a>
     				</div>
     			</section>
     			<section class="topnav__logo small-centered large-uncentered small-4 medium-3 large-4 columns">
-    				<a href="{{url('user/home')}}" ><h1 class="left">Sistema</h1></a>
+    				<a href="{{url('user/home')}}" ><h1 class="left">{{Lang::get('global.appname')}}</h1></a>
     			</section>
     			<section class="top-bar-section">
     				@if(!Auth::check())
     				<ul class="right">
-    					<li class="">{{ HTML::link('user/register', 'Register') }}</li>   
-    					<li class="">{{ HTML::link('user/login', 'Login') }}</li>   
+    					<li class="">{{ HTML::link('user/register', Lang::get('form.signup')) }}</li>   
+    					<li class="">{{ HTML::link('user/login', Lang::get('form.login')) }}</li>   
     				</ul>
     				@else
     				<ul class="right hide-for-small">	
     					<li class="has-dropdown">
     						<a href="#"><?php $photourl = !empty($user->photo) ? $user->photo: asset("/assets/img/user/default.jpg");?>
 
-    							{{HTML::image($photourl, "Profile Picture", array('class' => 'photo--thumbnail left hide-for-small'))}}
+    							{{HTML::image($photourl, Lang::get('global.profilepic'), array('class' => 'photo--thumbnail left hide-for-small'))}}
 
     							{{$user->firstname}}
     						</a>
@@ -57,20 +57,20 @@
 				<label>{{$appname}}</label>
 			</li>
 			@if(Auth::check())
-			<li>{{HTML::image($photourl, "Profile Picture", array('class' => 'photo--thumbnail left '))}}
+			<li>{{HTML::image($photourl, Lang::get('global.profilepic'), array('class' => 'photo--thumbnail left '))}}
 			<a href="#">{{$user->firstname}}</a> </li>
-			<li><label>Navigation</label></li>
-			<li>{{ HTML::link('user/edit', 'Edit') }}</li>
-    		<li>{{ HTML::link('user/logout', 'Logout') }}</li>
+			<li><label>{{Lang::get('global.navigation')}}</label></li>
+			<li>{{ HTML::link('user/edit', Lang::get('form.editinfo')) }}</li>
+    		<li>{{ HTML::link('user/logout', Lang::get('form.logout')) }}</li>
             <hr />
             @else
-            <li class="{{Request::is('user/register') ? 'active' : ''}}">{{ HTML::link('user/register', 'Register') }}</li>   
-    					<li class="{{Request::is('user/login') ? 'active' : ''}}">{{ HTML::link('user/login', 'Login') }}</li>   
+            <li class="{{Request::is('user/register') ? 'active' : ''}}">{{ HTML::link('user/register', Lang::get('form.signup')) }}</li>   
+    					<li class="{{Request::is('user/login') ? 'active' : ''}}">{{ HTML::link('user/login', Lang::get('form.login')) }}</li>   
             @endif
-            <li>{{ HTML::link('terms', 'Terms of use') }}</li>
-    		<li>{{ HTML::link('privacy-notice', 'Privacy notice') }}</li>
+            <li>{{ HTML::link('terms', Lang::get('global.termsofuse')) }}</li>
+    		<li>{{ HTML::link('privacy-notice', Lang::get('global.privacynotice')) }}</li>
     		<li></li>
-            <li><label>Built by</label>{{ HTML::link('http://calleja.mx', 'CALLEJA.MX') }}</li>
+            <li><label>{{Lang::get('global.builtby')}}</label>{{ HTML::link('http://calleja.mx', 'CALLEJA.MX') }}</li>
 		</ul>
 	</aside>
 <section class="main-content">
@@ -112,8 +112,8 @@
 			<div class="large-6 columns  text-right small-7">
 				<ul class="inline-list text--small right list--nomargin">
 					<li>
-				Aviso de Privacidad</li> 
-				<li>Términos y condiciones</li>
+				{{Lang::get('global.termsofuse')}}</li> 
+				<li>{{Lang::get('global.privacynotice')}}</li>
 			</ul>
 			</div>
 		</div>

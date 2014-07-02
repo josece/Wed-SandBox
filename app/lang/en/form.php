@@ -28,6 +28,8 @@ return array(
 	"password--repeat" => "Repeat password",
 
 	"login" => "Log in",
+	
+	"login--facebook" => "Sign in with Facebook",
 
 	"logout" => "Log out",
 	

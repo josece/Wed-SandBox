@@ -17,8 +17,8 @@
 		{{ HTML::link('user/register', Lang::get('form.account--new'))}}<br /><br />
 		{{ HTML::link('password/remind',  Lang::get('reminders.title--forgot')) }}<br /><br />
 		<div class="line__separator line--small object--centered"></div>
-		<a href="{{ url('user/facebookauth')}}" class="block--centered">
-			<img src="{{asset('assets/img/user/facebook-login-button.png')}}" class="
+		<a href="{{ url('user/facebookauth')}}" title="{{Lang::get('form.login--facebook')}}" class="block--centered">
+			<img src="{{asset('assets/img/user/facebook-login-button.png')}}" alt="{{Lang::get('form.login--facebook')}}" class="
 			facebook__button--small"/>
 		</a>
 	</div>
