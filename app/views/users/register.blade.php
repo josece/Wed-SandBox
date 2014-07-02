@@ -28,6 +28,7 @@
 	</div>
 	<small class="right">{{Lang::get('form.requiredfields')}}</small><br /><br/>
 		{{ Form::submit(Lang::get('form.signup'), array('class'=>'button radius expand'))}}
+		<br />
 		{{ Form::close() }}
 		{{Lang::get('form.account--already')}} {{ HTML::link('user/login', Lang::get('form.login')) }}.<br /><br />
 		<div class="line__separator line--small object--centered"></div>

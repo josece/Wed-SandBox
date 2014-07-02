@@ -13,6 +13,7 @@
 	<div class="submit-field">
 		{{ Form::submit(Lang::get('form.login'), array('class'=>'button radius expand'))}}
 	</div>
+	<br />
 		{{ Form::close() }}
 			
 		{{ HTML::link('user/register', Lang::get('form.account--new'))}}<br /><br />

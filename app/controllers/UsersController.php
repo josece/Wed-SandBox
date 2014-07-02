@@ -35,8 +35,7 @@ class UsersController extends \BaseController {
 
 
     public function getIndex() {
-		$users = User::all();
-		$this->layout->content =  View::make('users.index', compact('users'));
+    	return Redirect::to('user/home');
     }
 	
 	 public function getRegister() {
@@ -166,7 +165,10 @@ class UsersController extends \BaseController {
 	 */
 	public function postSignin() {
 		if (Auth::attempt(array('email'=>Input::get('email'), 'password'=>Input::get('password')))) {
-			return Redirect::to('user/home');//->with('message', 'You are now logged in!');
+			if(Auth::user()->role_id > 2)
+				return Redirect::to('admin/');
+			return Redirect::to('user/');//->with('message', 'You are now logged in!');
+				
 		} else {
 			return Redirect::to('user/login')
 				->with('alert', Lang::get('form.error--login'))
@@ -240,8 +242,9 @@ class UsersController extends \BaseController {
 			$user = $profile->user;
 
 			Auth::login($user);
-			return Redirect::to('user/home');
-		    //return Redirect::to('/')->with('message', 'Logged in with Facebook');
+			if(Auth::user()->role_id > 2)
+				return Redirect::to('admin/');
+			return Redirect::to('user/');
 		}
 
 		/**

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="large-5 medium-6 columns small-centered loginbox"><h3>{{Lang::get('global.editinfo')}}</h3>
-        {{ Form::open(array('url'=>'admin/edituser/'.$user->id, 'class'=>'form-signin','data-abide'=>'')) }}
+        {{ Form::open(array('url'=>'admin/edit-user/'.$user->id, 'class'=>'form-signin','data-abide'=>'')) }}
 
         <ul class="no-bullet">
 

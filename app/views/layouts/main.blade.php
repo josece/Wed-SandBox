@@ -42,6 +42,7 @@
     							{{$user->firstname}}
     						</a>
     						<ul class="dropdown">
+    							@if($user->role_id > 2)<li>{{ HTML::link('admin', Lang::get('global.admin')) }}</li> @endif
     							<li>{{ HTML::link('user/edit', Lang::get('global.editinfo')) }}</li>
     							<li>{{ HTML::link('user/logout', Lang::get('global.logout')) }}</li>
     						</ul>
@@ -59,6 +60,9 @@
 			@if(Auth::check())
 			<li>{{HTML::image($photourl, Lang::get('global.profilepic'), array('class' => 'photo--thumbnail left '))}}
 			<a href="#">{{$user->firstname}}</a> </li>
+				@if($user->role_id > 2)<li>{{ HTML::link('admin', Lang::get('global.admin')) }}</li>
+				<li></li>
+				@endif
 			<li><label>{{Lang::get('global.navigation')}}</label></li>
 			<li>{{ HTML::link('user/edit', Lang::get('global.editinfo')) }}</li>
     		<li>{{ HTML::link('user/logout', Lang::get('global.logout')) }}</li>

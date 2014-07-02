@@ -23,14 +23,26 @@ class AdminController extends \BaseController {
         view::share('appname', $appname);
     }
 	
-	
+	public function getIndex() {
+		return Redirect::to('admin/users');
+    }
+
+    public function getUsers($action = null) {
+    	
+    		$users = User::all();
+			$this->layout->content =  View::make('admin.users', compact('users'));
+
+    	
+    	
+
+    }
 	/**
 	 * Show the form for editing the specified resource.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function getEdituser($id = null){
+	public function getUsers_edit($id = null){
 		if(empty($id)){
 			$user = Auth::user();
 		}else{

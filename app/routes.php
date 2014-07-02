@@ -35,7 +35,7 @@ Route::group(array('before' => 'auth|auth.admin'), function() {
  * Aquí empieza todo
  */
 Route::get('/', function() {
-    return Redirect::to('user/home');
+    //return Redirect::to('user/home');
 });
 
 /**
