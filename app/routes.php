@@ -43,12 +43,18 @@ Route::get('/', function() {
  */
 Route::get('login', function() { return Redirect::to('user/login'); });
 
+Route::get('store/', array('uses' => 'StoresController@index'));
+Route::get('store/{id}', array('uses' => 'StoresController@store'));
+Route::get('store/{id}/products/', array('uses' => 'StoresController@products'));
+
+Route::get('products/', array('uses' => 'ProductsController@index'));
 /**
  * Aquí se cargan los controladores RESTful
  */
-Route::get('user', function() { return Redirect::to('user/home'); });
 Route::controller('user','UsersController');
 Route::controller('password','RemindersController');
+//Route::controller('store','StoresController');
+//Route::get('user', function() { return Redirect::to('user/home'); });
 //Route::controller('admin','AdminController');
 /*
  * View Composer 
