@@ -30,6 +30,7 @@ class UsersController extends \BaseController {
         	)
         );
         $appname =  Lang::get('global.appname');
+        
         view::share('appname', $appname);
     }
 
@@ -101,14 +102,29 @@ class UsersController extends \BaseController {
 	public function postEdit($id = null) {
 		$id = is_null($id) ? Auth::user()->id :$id;
 		$input = Input::all();
+		
 		$validation = Validator::make($input,array(
 			'email'=> 'required|unique:users,email,'.$id));
 		//dd(Input::all());
+
 		if ($validation->passes()) {
 			$user = User::find($id);
 			$user->email = Input::get('email');
 			$user->firstname = Input::get('firstname');
 			$user->lastname = Input::get('lastname');
+
+			if (Input::hasFile('image')) {
+				$file = Input::file('image');
+				$path = Config::get('configuration.picture--folder') . $id.'/';
+				if (!File::isDirectory($path)) 
+					$result = File::makeDirectory($path, 0700, true);
+				$filename = str_random(20) .'.' . $file->getClientOriginalExtension();
+				$file->move($path,$filename);
+				$finalpath = Config::get('configuration.picture--url') . '/'. $id . '/' . $filename;
+				$user->photo = $finalpath;
+			}
+
+
 			if(Input::get('password')!= '' )
 				$user->password = Hash::make(Input::get('password'));
 			$user->save();

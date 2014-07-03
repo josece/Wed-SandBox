@@ -37,10 +37,9 @@
 
     				<ul class="right hide-for-small">	
     					<li class="has-dropdown">
-    						<a href="#"><?php $photourl = !empty($user->photo) ? $user->photo: asset("/assets/img/user/default.jpg");?>
-
+    						<a href="#">
+    							<?php $photourl = !empty($user->photo) ? $user->photo: Config::get('configuration.picture--default');?>
     							{{HTML::image($photourl, Lang::get('global.profilepic'), array('class' => 'photo--thumbnail left hide-for-small'))}}
-
     							{{$user->firstname}}
     						</a>
     						<ul class="dropdown">

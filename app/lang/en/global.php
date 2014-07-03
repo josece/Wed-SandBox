@@ -13,7 +13,8 @@ return array(
 	|
 	*/
 
-	"appname" => "Sistema", 
+	"appname" => Config::get('configuration.appname'), 
+	
 	"profilepic" => "Profile picture",
 	"menu" => "MENU",
 	"navigation" => "Navigation",

@@ -38,7 +38,7 @@ return array(
 	"change--password" => "Change password",
 	"change--yourpassword" => "Change your password",
 	"change--accesslevel" => "Change access level",
-
+	"change--picture" => "Upload new picture",
 
 	"error--email" => "A valid email address is required.",
 	"error--login" => "Your password / username combination was incorrect.",
