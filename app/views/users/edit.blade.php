@@ -6,17 +6,23 @@
             
             <div class="large-5 medium-6 columns ">
                 {{Lang::get('global.profilepic') }}<br /><br />
-                <div class="small-12 columns small-centered">
+                <div class="small-6 large-12 columns small-centered">
                     
                     <?php $profilepic = !empty($user->photo) ? $user->photo: Config::get('configuration.picture--default'); ?>
-                    {{HTML::image($profilepic, Lang::get('global.profilepic'), array('class' => 'left hide-for-small'))}}
+                    {{HTML::image($profilepic, Lang::get('global.profilepic'), array('class' => 'left '))}}
                 </div>
-                <div class="small-12 columns">
+                <div class="small-6 large-12 columns">
                     <br /><br />
                     {{ Form::file('image')}}
                 </div><br />
+                <div class="small-12 columns">
+                    <br />
                  {{ Form::submit(Lang::get('form.change--picture'), array('class' => 'button')) }}
+                 <br /><hr /><br />
+                </div>
+
             </div>
+
     <div class="large-7 medium-6 columns ">
             <div class="email-field">
                 {{ Form::label('email', Lang::get('form.email').':') }}
