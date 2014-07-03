@@ -28,7 +28,7 @@
     			</section>
     			<section class="top-bar-section">
     				@if(!Auth::check())
-    				<ul class="right">
+    				<ul class="right hide-for-small">
     					<li class="{{ (strpos(URL::current(), URL::to('user/register'))!== false) ? 'active' : '' }}">{{ HTML::link('user/register', Lang::get('form.signup')) }}</li>   
     					<li class="{{ (strpos(URL::current(), URL::to('user/login'))!== false) ? 'active' : '' }}">{{ HTML::link('user/login', Lang::get('form.login')) }}</li>   
     				</ul>
