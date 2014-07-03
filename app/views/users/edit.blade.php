@@ -4,7 +4,7 @@
         {{ Form::open(array('url'=>'user/edit/', 'class'=>'form-signin','data-abide'=>'', 'files' => true)) }}
             <hr />
             
-            <div class="large-5 medium-6 columns loginbox">
+            <div class="large-5 medium-6 columns ">
                 {{Lang::get('global.profilepic') }}<br /><br />
                 <div class="small-12 columns small-centered">
                     
@@ -17,7 +17,7 @@
                 </div><br />
                  {{ Form::submit(Lang::get('form.change--picture'), array('class' => 'button')) }}
             </div>
-    <div class="large-7 medium-6 columns loginbox">
+    <div class="large-7 medium-6 columns ">
             <div class="email-field">
                 {{ Form::label('email', Lang::get('form.email').':') }}
                 {{ Form::email('email', $user->email , array('required' =>'required', 'placeholder'=> Lang::get('form.emailaddress'))) }}
