@@ -26,9 +26,10 @@
 		{{ Form::password('password_confirmation', array('class'=>'', 'placeholder'=>Lang::get('form.password--repeat').'*', 'required' =>'required', 'data-equalto' => 'password')) }}
 		<small class="error">{{Lang::get('form.error--passwordmatch')}}</small>
 	</div>
-	<small class="right">{{Lang::get('form.requiredfields')}}</small><br /><br/>
+	<small class="right">{{Lang::get('form.requiredfields')}}</small><br />
+	<div class="submit-field">
 		{{ Form::submit(Lang::get('form.signup'), array('class'=>'button radius expand'))}}
-		<br />
+	</div><br />
 		{{ Form::close() }}
 		{{Lang::get('form.account--already')}} {{ HTML::link('user/login', Lang::get('form.login')) }}.<br /><br />
 		<div class="line__separator line--small object--centered"></div>

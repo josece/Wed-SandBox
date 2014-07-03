@@ -29,10 +29,12 @@
     			<section class="top-bar-section">
     				@if(!Auth::check())
     				<ul class="right">
-    					<li class="">{{ HTML::link('user/register', Lang::get('form.signup')) }}</li>   
-    					<li class="">{{ HTML::link('user/login', Lang::get('form.login')) }}</li>   
+    					<li class="{{ (strpos(URL::current(), URL::to('user/register'))!== false) ? 'active' : '' }}">{{ HTML::link('user/register', Lang::get('form.signup')) }}</li>   
+    					<li class="{{ (strpos(URL::current(), URL::to('user/login'))!== false) ? 'active' : '' }}">{{ HTML::link('user/login', Lang::get('form.login')) }}</li>   
     				</ul>
     				@else
+
+
     				<ul class="right hide-for-small">	
     					<li class="has-dropdown">
     						<a href="#"><?php $photourl = !empty($user->photo) ? $user->photo: asset("/assets/img/user/default.jpg");?>
@@ -42,12 +44,20 @@
     							{{$user->firstname}}
     						</a>
     						<ul class="dropdown">
-    							@if($user->role_id > 2)<li>{{ HTML::link('admin', Lang::get('global.admin')) }}</li> @endif
+    							@if($user->role_id > 2)
+    								<li>{{ HTML::link('admin', Lang::get('global.admin')) }}</li> 
+    							@endif
     							<li>{{ HTML::link('user/edit', Lang::get('global.editinfo')) }}</li>
     							<li>{{ HTML::link('user/logout', Lang::get('global.logout')) }}</li>
     						</ul>
     					</li>
     				</ul>
+    					@if($user->role_id > 2)
+    						<ul class="right">
+    							<li class="{{ (strpos(URL::current(), URL::to('admin/users'))!== false) ? 'active' : '' }}">
+    								{{ HTML::link('admin/users', Lang::get('form.users'))}}</li>   
+    						</ul>
+    					@endif
     				@endif			
     			</section>
     		</nav>

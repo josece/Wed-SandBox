@@ -21,7 +21,7 @@
 					<td>{{$user->lastname}}</td>
 					<td>{{$user->email}}</td>
 					<td>{{$user->role_id}}</td>
-					<td>{{HTML::Link('admin/users-edit/' . $user->id, Lang::get('form.edit'), array('class'=>'button tiny message'))}}</td>
+					<td>{{HTML::Link('admin/usersedit/' . $user->id, Lang::get('form.edit'), array('class'=>'button tiny message'))}}</td>
 					<td>{{-- HTML::Link('admin/users-disable/' . $user->id, Lang::get('form.disable'), array('class'=>'button tiny alert')) --}}</td>
 				</tr>
 				@endforeach

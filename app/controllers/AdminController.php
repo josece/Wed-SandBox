@@ -42,16 +42,16 @@ class AdminController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function getUsers_edit($id = null){
+	public function getUsersedit($id = null){
 		if(empty($id)){
 			$user = Auth::user();
 		}else{
 			$user = User::find($id);
 			if(is_null($user)){
-				return Redirect::to('user/home')->with('alert', Lang::get('form.error--nouserfound'));
+				return Redirect::to('admin/')->with('alert', Lang::get('form.error--nouserfound'));
 			}
 		}
-		$this->layout->title =  Lang::get('global.editinfo');
+		$this->layout->title = Lang::get('global.editinfo');
 		$this->layout->scripts = array('assets/js/foundation/foundation.abide.js');
 		$this->layout->content = View::make('admin.users.edit')->withUser($user);
 	}
@@ -63,7 +63,7 @@ class AdminController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function postEdituser($id = null) {
+	public function postUsersedit($id = null) {
 		$id = is_null($id) ? Auth::user()->id :$id;
 		$input = Input::all();
 		$validation = Validator::make($input,array(
@@ -82,14 +82,14 @@ class AdminController extends \BaseController {
 
 			$response = array('success' => Lang::get('form.success--update'));
 			if(Input::get('kind')!='ajax')
-				return Redirect::to('admin/edituser/'.$id)->with('success', Lang::get('form.success--update'));
+				return Redirect::to('admin/usersedit/'.$id)->with('success', Lang::get('form.success--update'));
 		}else{
 			
 			$response = array('alert' =>  $validation->messages());
 		}
 		
 		if(Input::get('kind')!='ajax')
-			return Redirect::to('admin/edituser/'.$id)->withInput()->withErrors($validation)->with('alert', Lang::get('form.error--validation'));
+			return Redirect::to('admin/usersedit/'.$id)->withInput()->withErrors($validation)->with('alert', Lang::get('form.error--validation'));
 		return $response;
 	}
 
