@@ -17,7 +17,7 @@
                 </div><br />
                 <div class="small-12 columns">
                     <br />
-                 {{ Form::submit(Lang::get('form.change--picture'), array('class' => 'button')) }}
+                 {{ Form::submit(Lang::get('form.change--picture'), array('class' => 'button small')) }}
                  <br /><hr /><br />
                 </div>
 
@@ -40,7 +40,7 @@
             </div>
             
             <div class="submit-field">
-                {{ Form::submit(Lang::get('form.change--save'), array('class' => 'button')) }}
+                {{ Form::submit(Lang::get('form.change--save'), array('class' => 'button small')) }}
 
             </div>
             <hr />
@@ -54,7 +54,7 @@
                 <small class="error">{{Lang::get('form.error--passwordmatch')}}</small>
             </div>
            
-                {{ Form::submit(Lang::get('form.change--password'), array('class' => 'button')) }}
+                {{ Form::submit(Lang::get('form.change--password'), array('class' => 'button small')) }}
 
            
         {{ Form::close() }}

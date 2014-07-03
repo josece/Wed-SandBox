@@ -49,6 +49,8 @@ return array(
 	"error--something" => "Something went wrong.",
 	"error--validation" => "There were validation errors.",
 	"error--nouserfound" => "There were no users found with that id.",
+	"error--image" => "You can only upload images in .bmp, .gif, .jpeg or .png.",
+
 
 	"requiredfields" => "Required fields are marked with *",
 
