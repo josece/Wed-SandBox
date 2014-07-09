@@ -35,16 +35,20 @@ Route::group(array('before' => 'auth|auth.admin'), function() {
  * Aquí empieza todo
  */
 Route::get('/', function() {
-    //return Redirect::to('user/home');
+    return Redirect::to('user/home');
 });
 
 /**
  * Si intentan hacer login desde /login, los redirigimos a la página correcta
  */
 Route::get('login', function() { return Redirect::to('user/login'); });
-
 Route::get('store/', array('uses' => 'StoresController@index'));
-Route::get('store/{id}', array('uses' => 'StoresController@store'));
+Route::get('stores/', array('uses' => 'StoresController@listado'));
+
+Route::get('store/new', array('uses' => 'StoresController@newStore'));
+Route::post('store/new', array('uses' => 'StoresController@postNewStore'));
+
+Route::get('store/{id}', array('uses' => 'StoresController@storeView'));
 Route::get('store/{id}/products/', array('uses' => 'StoresController@products'));
 
 Route::get('products/', array('uses' => 'ProductsController@index'));

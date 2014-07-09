@@ -29,9 +29,9 @@ class UsersController extends \BaseController {
         		)
         	)
         );
-        $appname =  Lang::get('global.appname');
+        /*$appname =  Lang::get('global.appname');
         
-        view::share('appname', $appname);
+        view::share('appname', $appname);*/
     }
 
 

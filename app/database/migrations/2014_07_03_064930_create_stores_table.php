@@ -21,6 +21,7 @@ class CreateStoresTable extends Migration {
 	         $table->string('logo');
 	         $table->string('cover');
 	         $table->text('description');
+	          $table->timestamps();
 	         $table->foreign('user_id')->references('id')->on('users');
 	     });
 	}

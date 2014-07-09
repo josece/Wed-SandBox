@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration {
 	         $table->string('image');
 	         $table->decimal('price', 5, 2);
 	         $table->text('description');
+	          $table->timestamps();
 	         $table->foreign('store_id')->references('id')->on('stores');
 	     });
 	}
