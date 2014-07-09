@@ -183,7 +183,7 @@ class UsersController extends \BaseController {
 	 */
 	public function postSignin() {
 		if (Auth::attempt(array('email'=>Input::get('email'), 'password'=>Input::get('password')))) {
-			if(Auth::user()->role_id > 2)
+			if(Auth::user()->hasRole('admin'))
 				return Redirect::to('admin/');
 			return Redirect::to('user/');//->with('message', 'You are now logged in!');
 				
@@ -260,7 +260,7 @@ class UsersController extends \BaseController {
 			$user = $profile->user;
 
 			Auth::login($user);
-			if(Auth::user()->role_id > 2)
+			if(Auth::user()->hasRole('admin'))
 				return Redirect::to('admin/');
 			return Redirect::to('user/');
 		}

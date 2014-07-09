@@ -7,5 +7,16 @@
     <br>
     Your email is {{$user->email}}
     <br>
+    @if($user->hasRole('admin'))
+    	si!
+    @else
+    	no!
+    @endif
+
+    Tu rol actual es {{$user->getRole()}}
+
+    @foreach ($user->getRoles() as $key=>$rol)
+    {{$key}} ->{{$rol}}
+    @endforeach
    </div>
 </div>

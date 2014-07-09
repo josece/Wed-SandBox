@@ -5,6 +5,16 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 	
+	public function getRoles(){
+		$roles = array(
+			0 => 'guest',
+			1 => 'basic',
+			2 => 'medium',
+			3 => 'admin'
+		);
+		return $roles;
+	}
+
 	public static $rules = array(
 			'firstname'=>'required|alpha|min:2',
 			'lastname'=>'alpha|min:2',
@@ -78,5 +88,22 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 	    return 'remember_token';
 	}
+	public function hasRole($rolename){
+		/*
+		$currentrole = $this->role_id; // returns a number 0, 1, 2, 3
+		$key = array_search($rolename, $this->getRoles()); //returns the key of the role
+		return $currentrole == $key;
+		Aqui abajo ya va resumido.
+		*/
+		return $this->role_id == array_search($rolename, $this->getRoles());
+	}
+
+	public function getRole(){
+		$roles = $this->getRoles();
+		$role_id = $this->role_id;
+		return $roles[$role_id];
+	}
+
+	
 
 }
