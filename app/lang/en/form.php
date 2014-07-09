@@ -17,9 +17,12 @@ return array(
 	"id" => "ID",
 	"email" => "Email",
 	"emailaddress" => "Email address",
+	"email_or_username" => "Email or username",
+	
 
 	"firstname" => "First name",
 	"lastname" => "Last name",
+	"username" => "Username",
 	"role" => "Role",
 	"actions" => "Actions",
 	"edit" => "Edit",
@@ -33,6 +36,7 @@ return array(
 	"password" => "Password",
 	"password--repeat" => "Repeat password",
 	"password--new" => "Type new password",
+	"password--persistent" => "Keep me logged in",
 
 	"change--save" => "Save changes",
 	"change--password" => "Change password",
@@ -50,6 +54,8 @@ return array(
 	"error--validation" => "There were validation errors.",
 	"error--nouserfound" => "There were no users found with that id.",
 	"error--image" => "You can only upload images in .bmp, .gif, .jpeg or .png.",
+	"error--username" => "Your username can only contain letters, numbers, dash and underscore.",
+	"error--email_or_username" => "You can't leave this blank.",
 
 
 	"requiredfields" => "Required fields are marked with *",

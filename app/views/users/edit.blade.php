@@ -24,6 +24,11 @@
             </div>
 
     <div class="large-7 medium-6 columns ">
+         <div class="email-field">
+                {{ Form::label('username', Lang::get('form.username').':') }}
+                {{ Form::text('username', $user->username , array('required' =>'required', 'placeholder'=> Lang::get('form.username'), 'pattern'=> '[a-zA-Z0-9-_]+')) }}
+                <small class="error">{{Lang::get('form.error--username')}}</small>
+            </div>
             <div class="email-field">
                 {{ Form::label('email', Lang::get('form.email').':') }}
                 {{ Form::email('email', $user->email , array('required' =>'required', 'placeholder'=> Lang::get('form.emailaddress'))) }}

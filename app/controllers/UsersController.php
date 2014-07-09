@@ -104,12 +104,15 @@ class UsersController extends \BaseController {
 		$input = Input::all();
 		
 		$validation = Validator::make($input,array(
-			'email'=> 'required|unique:users,email,'.$id));
+			'email'=> 'required|unique:users,email,'.$id,
+			'username'=> 'required|alpha_dash|unique:users,username,'.$id)
+		);
 		//dd(Input::all());
 
 		if ($validation->passes()) {
 			$user = User::find($id);
 			$user->email = Input::get('email');
+			$user->username = Input::get('username');
 			$user->firstname = Input::get('firstname');
 			$user->lastname = Input::get('lastname');
 
@@ -184,6 +187,32 @@ class UsersController extends \BaseController {
 	 * @return Redirect
 	 */
 	public function postSignin() {
+		$usernameinput = Input::get('email');
+		$password = Input::get('password');
+		$field = filter_var($usernameinput, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+		if(Input::get('persistent')){
+			if(Auth::attempt(array($field => $usernameinput, 'password' => $password), true)) {
+				if(Auth::user()->hasRole('admin'))
+					return Redirect::to('admin/');
+				return Redirect::to('user/');//->with('message', 'You are now logged in!');
+			}else{
+				return Redirect::to('user/login')
+				->with('alert', Lang::get('form.error--login'))
+				->withInput();
+			}
+   
+		}else{
+			if(Auth::attempt(array($field => $usernameinput, 'password' => $password))) {
+				if(Auth::user()->hasRole('admin'))
+					return Redirect::to('admin/');
+				return Redirect::to('user/');//->with('message', 'You are now logged in!');
+			}else{
+				return Redirect::to('user/login')
+				->with('alert', Lang::get('form.error--login'))
+				->withInput();
+			}
+		}
+		/*
 		if (Auth::attempt(array('email'=>Input::get('email'), 'password'=>Input::get('password')))) {
 			if(Auth::user()->hasRole('admin'))
 				return Redirect::to('admin/');
@@ -193,7 +222,7 @@ class UsersController extends \BaseController {
 			return Redirect::to('user/login')
 				->with('alert', Lang::get('form.error--login'))
 				->withInput();
-		}
+		}*/
 	}
 	/**
 	 * Sets the layout content with the login view. 

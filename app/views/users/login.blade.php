@@ -3,13 +3,19 @@
 		{{ Form::open(array('url'=>'user/signin', 'class'=>'form-signin','data-abide'=>'')) }}
 		<h3 class="form-signin-heading">{{Lang::get('form.login')}}</h3>
 	<div class="email-field">
-		{{ Form::email('email', null, array('class'=>'', 'placeholder'=>Lang::get('form.emailaddress'), 'required' =>'required')) }}
-		<small class="error">{{Lang::get('form.error--email')}}</small>
+		{{ Form::text('email', null, array('class'=>'', 'placeholder'=>Lang::get('form.email_or_username'), 'required' =>'required')) }}
+		<small class="error">{{Lang::get('form.error--email_or_username')}}</small>
 	</div>
 	<div class="password-field">
 		{{ Form::password('password', array('class'=>'', 'placeholder'=>'Password', 'required' =>'required', 'id'=>'password', 'pattern' => '(?=.*\d)(?=.*[a-zA-Z]).{4,8}$')) }}
 		<small class="error">{{Lang::get('form.error--password')}}</small>
 	</div>
+	<div class="persistent-field">
+		{{ Form::label('persistent', Lang::get('form.password--persistent'), array('class' => 'element--inline')) }}
+		<span class="left">{{ Form::checkbox('persistent', 1 ) }}&nbsp;</span>
+		
+	</div>
+	
 	<div class="submit-field">
 		{{ Form::submit(Lang::get('form.login'), array('class'=>'button radius expand'))}}
 	</div>
