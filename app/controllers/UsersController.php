@@ -113,17 +113,19 @@ class UsersController extends \BaseController {
 			$user->firstname = Input::get('firstname');
 			$user->lastname = Input::get('lastname');
 
-			if (Input::hasFile('image') && Validator::make($input,array('image'=> 'image'))->passes()) {
-				$file = Input::file('image');
-				$path = Config::get('configuration.picture--folder') . $id.'/';
-				if (!File::isDirectory($path)) 
-					$result = File::makeDirectory($path, 0700, true);
-				$filename = str_random(20) .'.' . $file->getClientOriginalExtension();
-				$file->move($path,$filename);
-				$finalpath = Config::get('configuration.picture--url') . '/'. $id . '/' . $filename;
-				$user->photo = $finalpath;
-			}else{
-				return  Redirect::to('user/edit/')->withInput()->withErrors($validation)->with('alert', Lang::get('form.error--image'));
+			if (Input::hasFile('image')){
+				if(Validator::make($input,array('image'=> 'image'))->passes()) {
+					$file = Input::file('image');
+					$path = Config::get('configuration.picture--folder') . $id.'/';
+					if (!File::isDirectory($path)) 
+						$result = File::makeDirectory($path, 0700, true);
+					$filename = str_random(20) .'.' . $file->getClientOriginalExtension();
+					$file->move($path,$filename);
+					$finalpath = Config::get('configuration.picture--url') . '/'. $id . '/' . $filename;
+					$user->photo = $finalpath;
+				}else{
+					return  Redirect::to('user/edit/')->withInput()->withErrors($validation)->with('alert', Lang::get('form.error--image'));
+				}
 			}
 
 

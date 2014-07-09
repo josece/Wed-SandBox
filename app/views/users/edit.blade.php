@@ -18,7 +18,7 @@
                 <div class="small-12 columns">
                     <br />
                  {{ Form::submit(Lang::get('form.change--picture'), array('class' => 'button small')) }}
-                 <br /><hr /><br />
+                 <br /><hr class="hide-for-medium-up"/><br />
                 </div>
 
             </div>
