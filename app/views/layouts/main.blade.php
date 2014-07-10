@@ -142,6 +142,7 @@
 					{{ HTML::script('assets/js/foundation/foundation.offcanvas.js') }}
 					{{ HTML::script('assets/js/vendor/jquery.mobile.custom.min.js')}}
 					{{ HTML::script('assets/js/script.js') }}
+					{{ HTML::script('assets/js/vendor/stickyfooter.js') }}
 					{{--If the array of custom script files exist, we print it--}}
 					@if(isset($scripts)) @foreach ($scripts as $script)
 					{{ HTML::script($script) }}
