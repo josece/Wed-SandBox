@@ -9,6 +9,8 @@
 	</div>
 		{{ Form::submit(Lang::get('reminders.send--link'), array('class'=>'button radius expand'))}}
 		{{ Form::close() }}
-		{{Lang::get('reminders.remembered');}} {{ HTML::link('user/login', Lang::get('form.login')) }}.<br /><br />	
+		<div class="margin--top">
+			{{Lang::get('reminders.remembered');}} {{ HTML::link('user/login', Lang::get('form.login')) }}.
+		</div>
 	</div>
 </div>

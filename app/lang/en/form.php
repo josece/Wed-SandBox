@@ -56,6 +56,7 @@ return array(
 	"error--image" => "You can only upload images in .bmp, .gif, .jpeg or .png.",
 	"error--username" => "Your username can only contain letters, numbers, dash and underscore.",
 	"error--email_or_username" => "You can't leave this blank.",
+	"error--not_confirmed" => "You need to confirm your email account first.",
 
 
 	"requiredfields" => "Required fields are marked with *",
@@ -63,7 +64,7 @@ return array(
 	"account--new" => "Create an account",
 	"account--already" => "Already have an account?",
 
-	"success--signup" => "Thanks for registering! You can now log in.",
+	"success--signup" => "Thanks for registering! Please confirm your email in order to log in.",
 	"success--update" => "Your info was successfully changed"
 
 	

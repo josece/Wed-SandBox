@@ -25,7 +25,8 @@ class UsersController extends \BaseController {
         			'postSignin',
         			'postCreate',
 					'getFacebookauth',
-					'getFacebookcallback'
+					'getFacebookcallback',
+					'getVerify'
         		)
         	)
         );
@@ -157,19 +158,55 @@ class UsersController extends \BaseController {
 		$validator = Validator::make(Input::all(), User::$rules);
 		if ($validator->passes()) {
 			$user = new User;
-			$user->firstname = Input::get('firstname');
+			$firstname = Input::get('firstname');
+			$email = Input::get('email');
+
+			$user->firstname = $firstname;
+			$user->email = $email;
 			$user->lastname = Input::get('lastname');
-			$user->email = Input::get('email');
 			$user->username = Input::get('username');
 			$user->password = Hash::make(Input::get('password'));
-			$user->save();
+			/* Create confirmation code */
+			$confirmationcode = str_random(40);
+			$user->confirmation_code = $confirmationcode;
+			/* Send code to user */
+			$data = array(
+				'firstname' => $firstname,
+				'confirmation_code' => $confirmationcode
+			);
+			Mail::send(array('emails.auth.confirm', 'emails.auth.confirm-plain'), $data, function($message) use ($firstname, $email){
+				 $message->to($email, $firstname)->subject(Lang::get('confirmation.email--subject'));
+			});
 
+			$user->save();
 			return Redirect::to('user/login')->with('success', Lang::get('form.success--signup'));
 		} else {
 			return Redirect::to('user/register')->with('alert', Lang::get('form.error--something'))->withErrors($validator)->withInput();
 		}
 	}
-	
+	/**
+	* Verify email account
+	* @param $code confirmation_code
+	*/
+	public function getVerify($code = null){
+		if (is_null($code)) App::abort(404);
+		$user = User::where('confirmation_code','=',$code)->first();
+		
+		if($user->confirmed) {
+			//do nothing
+			$message = Lang::get('confirmation.verify--already');
+		} else {
+			//change confirmed status
+			$user->confirmed = 1;
+			$user->save();
+			//auto login
+			Auth::login($user);
+			$message = Lang::get('confirmation.verify--confirmed');
+		}
+		return Redirect::to('user/')->with('message', $message);
+
+	}
+
 	/**
 	 * Sets the layout content with the login view. 
 	 */
@@ -190,26 +227,41 @@ class UsersController extends \BaseController {
 	public function postSignin() {
 		$usernameinput = Input::get('email');
 		$password = Input::get('password');
+		$persistent = Input::get('persistent');
 		$field = filter_var($usernameinput, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-		if(Input::get('persistent')){
-			if(Auth::attempt(array($field => $usernameinput, 'password' => $password), true)) {
+		//load everything in an array, fancy ah?
+		$credentials = array(
+			$field => $usernameinput,
+			'password' => $password
+			);
+		if(Auth::attempt($credentials)){
+			//ya se validó pero no sabemos si el usuario está confirmado
+			if(Auth::user()->isConfirmed()){
 				if(Auth::user()->hasRole('admin'))
 					return Redirect::to('admin/');
-				return Redirect::to('user/');//->with('message', 'You are now logged in!');
+				return Redirect::to('user/');
 			}else{
+				Auth::logout();
 				return Redirect::to('user/login')
-				->with('alert', Lang::get('form.error--login'))
+				->with('alert', Lang::get('form.error--not_confirmed'))
 				->withInput();
 			}
-   
+
+			
 		}else{
-			if(Auth::attempt(array($field => $usernameinput, 'password' => $password))) {
+			return Redirect::to('user/login')
+				->with('alert', Lang::get('form.error--login'))
+				->withInput();
+		}
+		/*
+			if(Auth::attempt(array($field => $usernameinput, 'password' => $password, 'confirmed' => 1), true)) {
 				if(Auth::user()->hasRole('admin'))
 					return Redirect::to('admin/');
 				return Redirect::to('user/');//->with('message', 'You are now logged in!');
 			}else{
 				return Redirect::to('user/login')
-				->with('alert', Lang::get('form.error--login'))
+				->withErrors()
+				//->with('alert', Lang::get('form.error--login'))
 				->withInput();
 			}
 		}
@@ -278,6 +330,7 @@ class UsersController extends \BaseController {
 		        //$user->name = $me['first_name'].' '.$me['last_name'];
 				$user->email = $me['email'];
 				$user->photo = 'https://graph.facebook.com/'.$uid.'/picture?type=large';
+				$user->confirmed = 1;
 				$user->save();
 
 				$profile = new Profile();
