@@ -126,11 +126,9 @@
 				</div>
 				<div class="large-6 columns  text-right small-7">
 					<ul class="inline-list text--small right list--nomargin">
-						<li>
-							{{Lang::get('global.termsofuse')}}</li> 
+						<li>{{Lang::get('global.termsofuse')}}</li> 
 							<li>{{Lang::get('global.privacynotice')}}</li>
-						</ul>
-					</div>
+					</ul>
 				</div>
 			</div>
 		</footer>
