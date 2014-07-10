@@ -52,8 +52,14 @@
         .on('click.fndtn.offcanvas', '.exit-off-canvas', function (e) {
           self.click_remove_class(e, move_class + left_postfix);
           if (right_postfix) self.click_remove_class(e, move_class + right_postfix);
-        });
-
+        })
+        /* this prevents the scroll when off-canvas is open */
+        .on('open.fndtn.offcanvas', '[data-offcanvas]', function() {
+          $('html').css('overflow', 'hidden');
+        }) /*and this one takes it back to normal */
+        .on('close.fndtn.offcanvas', '[data-offcanvas]', function() {
+          $('html').css('overflow', 'auto');
+        })
     },
 
     toggle: function(class_name, $off_canvas) {
