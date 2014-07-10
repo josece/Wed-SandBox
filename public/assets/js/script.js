@@ -2,6 +2,7 @@
  * Hide Header on scroll down based on the scrolling speed
  * Show Header when scrolling back up
 **/
+/*
 var didScroll;
 var lastScrollTop = 0;
 var delta = 5;
@@ -12,6 +13,7 @@ $(window).scroll(function(event){
 });
 
 setInterval(function() {
+
     if (didScroll) {
         hasScrolled();
         didScroll = false;
@@ -28,6 +30,7 @@ function hasScrolled() {
     // If they scrolled down and are past the navbar, add class .nav-up.
     // This is necessary so you never see what is "behind" the navbar.
     if (st > lastScrollTop && st > navbarHeight){
+
         // Scroll Down
         $('.header').removeClass('nav-down').addClass('nav-up');
     } else {
@@ -39,7 +42,7 @@ function hasScrolled() {
     
     lastScrollTop = st;
 }
-
+*/
 /**
  * Swipe gestures
  * Open the nav bar when swiping left
@@ -58,6 +61,7 @@ function hasScrolled() {
  * Manage forms with AJAX
  *
 **/
+/*
 $(document).ready(function() {
     $('.ajax').submit(function(event){
         $form = $(this);
@@ -105,7 +109,7 @@ function manageAjaxResponse(data){
             
         }
     });
-}
+}*/
 /**
  * alerttype    [ alert | message | success ]
  * message      [ string]
@@ -113,6 +117,7 @@ function manageAjaxResponse(data){
  * params       [ string]
  * location     [ html | prepend | append ]
  **/
+ /*
 function createAlertDialog(alerttype, message, destination, params, location){
     params = (typeof params === "undefined") ? "large-6 small-centered columns" : params;
     location = (typeof location === "undefined") ? 'html' : location;
@@ -135,4 +140,4 @@ function createAlertDialog(alerttype, message, destination, params, location){
 
     
      $('.alert-box > a.close').click(function() { $(this).closest('[data-alert]').fadeOut(); });
-}
+}*/

@@ -25,6 +25,9 @@
  * auth.basic -1
  * guest() - 0
  */
+Route::get('test', function(){
+    return View::make('layouts.master')->with('user',  Auth::user());;
+});
 Route::group(array('before' => 'auth|auth.admin'), function() {
 	Route::controller('admin','AdminController');
 	/*Route::get('user/super/edit/',array('uses' => 'UsersController@getEditadmin'));
