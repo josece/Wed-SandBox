@@ -61,7 +61,6 @@ class UsersController extends \BaseController {
 	 */
 	public function getFacebookauth()
 	{
-		
 	    $facebook = new Facebook(Config::get('facebook'));
 	    $params = array('redirect_uri' => url('/user/facebookcallback'),'scope' => 'email',);
 	    return Redirect::away($facebook->getLoginUrl($params));
@@ -108,8 +107,6 @@ class UsersController extends \BaseController {
 			'email' => 'required|unique:users,email,' . $id,
 			'username' => 'required|alpha_dash|unique:users,username,' . $id)
 		);
-		//dd(Input::all());
-
 		if ($validation->passes()) {
 			$user = User::find($id);
 			$user->email = Input::get('email');
@@ -135,8 +132,6 @@ class UsersController extends \BaseController {
 					return  Redirect::to('user/edit/')->withInput()->withErrors($validation);//->with('alert', Lang::get('form.error--image'));
 				}
 			}
-
-
 			if(Input::get('password')!= '' )
 				$user->password = Hash::make(Input::get('password'));
 			$user->save();
@@ -194,8 +189,7 @@ class UsersController extends \BaseController {
 	*/
 	public function getVerify($code = null){
 		if (is_null($code)) App::abort(404);
-		$user = User::where('confirmation_code','=',$code)->first();
-		
+		$user = User::where('confirmation_code','=', $code)->first();
 		if($user->confirmed) {
 			//do nothing
 			$message = Lang::get('confirmation.verify--already');
@@ -239,12 +233,13 @@ class UsersController extends \BaseController {
 			'password' => $password
 			);
 		if(Auth::attempt($credentials)){
-			//ya se validó pero no sabemos si el usuario está confirmado
+			//ya que se validaron las credenciales, reviso si el usuario está confirmado
 			if(Auth::user()->isConfirmed()){
 				if(Auth::user()->hasRole('admin'))
 					return Redirect::to('admin/');
 				return Redirect::to('user/');
 			}else{
+				//destruyo la sesión y mando error manual
 				Auth::logout();
 				return Redirect::to('user/login')
 				->with('alert', Lang::get('form.error--not_confirmed'))
@@ -257,29 +252,6 @@ class UsersController extends \BaseController {
 				->with('alert', Lang::get('form.error--login'))
 				->withInput();
 		}
-		/*
-			if(Auth::attempt(array($field => $usernameinput, 'password' => $password, 'confirmed' => 1), true)) {
-				if(Auth::user()->hasRole('admin'))
-					return Redirect::to('admin/');
-				return Redirect::to('user/');//->with('message', 'You are now logged in!');
-			}else{
-				return Redirect::to('user/login')
-				->withErrors()
-				//->with('alert', Lang::get('form.error--login'))
-				->withInput();
-			}
-		}
-		/*
-		if (Auth::attempt(array('email'=>Input::get('email'), 'password'=>Input::get('password')))) {
-			if(Auth::user()->hasRole('admin'))
-				return Redirect::to('admin/');
-			return Redirect::to('user/');//->with('message', 'You are now logged in!');
-				
-		} else {
-			return Redirect::to('user/login')
-				->with('alert', Lang::get('form.error--login'))
-				->withInput();
-		}*/
 	}
 	/**
 	 * Sets the layout content with the login view. 
