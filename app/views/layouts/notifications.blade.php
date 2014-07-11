@@ -18,7 +18,7 @@
             <a href="#" class="close">&times;</a>
         </div>
         @endif
-        {{--Errores de validacion --}}
+        <?php /*Errores de validacion --}}
             @if($errors->has())
                 @foreach ($errors->all() as $error)
                  <div data-alert class="alert-box alert large-6 small-centered columns" >
@@ -27,6 +27,7 @@
                  </div>
                 @endforeach
             @endif
+*/?>
         @if(Session::has('warning'))
         <div data-alert class="alert-box warning large-6 small-centered columns" >
             {{ Session::get('warning') }}

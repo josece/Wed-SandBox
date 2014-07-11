@@ -1,4 +1,6 @@
-<div class="row">
+@section('scripts')
+    {{ HTML::script('assets/js/foundation/foundation.abide.js') }}
+@stop<div class="row">
 	<div class="large-5 columns loginbox medium-6 small-centered">
 		{{ Form::open(array('url'=>'user/signin', 'class'=>'form-signin','data-abide'=>'')) }}
 		<h3 class="form-signin-heading">{{Lang::get('form.login')}}</h3>

@@ -1,4 +1,6 @@
-<div class="row">
+@section('scripts')
+    {{ HTML::script('assets/js/foundation/foundation.abide.js') }}
+@stop<div class="row">
     <div class="large-5 medium-6 columns small-centered loginbox"><h3>{{Lang::get('global.editinfo')}}</h3>
         {{ Form::open(array('url'=>'admin/usersedit/'.$user->id, 'class'=>'form-signin','data-abide'=>'')) }}
 

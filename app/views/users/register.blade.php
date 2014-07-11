@@ -1,11 +1,14 @@
-<div class="row">
+@section('scripts')
+    {{ HTML::script('assets/js/foundation/foundation.abide.js') }}
+@stop<div class="row">
 	<div class="large-5 columns loginbox medium-6 small-centered">
 		{{ Form::open(array('url'=>'user/create', 'class'=>'form-signup' ,'data-abide'=>'') ) }}
 		<h3 class="form-signup-heading">{{Lang::get('form.signup')}}</h3>
-
-		@foreach($errors->all() as $error)
-		<div class="alert-box alert">{{ $error }}<a href="#" class="close">&times;</a></div>
-		@endforeach
+		<div class="errors-field">
+			@foreach($errors->all() as $error)
+				<div data-alert class="alert-box alert">{{ $error }}<a href="#" class="close">&times;</a></div>
+			@endforeach
+		</div>
 		<div class="username-field">
 			{{ Form::text('username', null , array('required' =>'required', 'placeholder'=> Lang::get('form.username') .'*', 'pattern'=> '[a-zA-Z0-9-_]+')) }}
 			<small class="error">{{Lang::get('form.error--username')}}</small>

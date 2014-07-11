@@ -4,6 +4,11 @@
     {{ Form::open(array('url'=>'user/edit/', 'class'=>'form-signin','data-abide'=>'', 'files' => true)) }}
     <div class="large-12 medium-12 small-12 columns loginbox">
         <h3>{{Lang::get('global.editinfo')}}</h3>
+        <div class="errors-field">
+            @foreach($errors->all() as $error)
+                <div data-alert class="alert-box alert">{{ $error }}<a href="#" class="close">&times;</a></div>
+            @endforeach
+        </div>
         <hr />
         <div class="large-5 medium-6 columns ">
             {{Lang::get('global.profilepic') }}

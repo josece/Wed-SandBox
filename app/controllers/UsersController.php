@@ -46,7 +46,6 @@ class UsersController extends \BaseController {
 	 	 	return Redirect::to('user/home');
 	 	 }
 	 	 $this->layout->title =  Lang::get('form.signup');
-	 	 $this->layout->scripts = array('assets/js/foundation/foundation.abide.js');
 		 $this->layout->content = View::make('users.register');
 	 }
 	 
@@ -74,7 +73,6 @@ class UsersController extends \BaseController {
 		$id = Auth::user()->id;
 		$user = User::find($id);
 		$this->layout->title =  Lang::get('global.editinfo');
-		$this->layout->scripts = array('assets/js/foundation/foundation.abide.js');
 		$this->layout->content = View::make('admin.users.edit')->withUser($user);
 	}
 
@@ -88,7 +86,6 @@ class UsersController extends \BaseController {
 		$id = Auth::user()->id;
 		$user = User::find($id);
 		$this->layout->title =  Lang::get('global.editinfo');
-		//$this->layout->scripts = array('assets/js/foundation/foundation.abide.js');
 		$this->layout->content = View::make('users.edit')->withUser($user);
 	}
 
@@ -214,7 +211,6 @@ class UsersController extends \BaseController {
 			return Redirect::to('user/home');
 		}
 		$this->layout->title = Lang::get('form.login');
-		$this->layout->scripts = array('assets/js/foundation/foundation.abide.js');
 		$this->layout->content = View::make('users.login');
 	}
 
