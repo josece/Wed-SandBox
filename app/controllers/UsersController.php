@@ -88,13 +88,9 @@ class UsersController extends \BaseController {
 	public function getEdit() {
 		$id = Auth::user()->id;
 		$user = User::find($id);
-		//$this->layout->title =  Lang::get('global.editinfo');
+		$this->layout->title =  Lang::get('global.editinfo');
 		//$this->layout->scripts = array('assets/js/foundation/foundation.abide.js');
-		//$this->layout->content = View::make('users.edit')->withUser($user);
-		$title =  Lang::get('global.editinfo');
-		return View::make('users.edit')
-			->withUser($user)
-			->withTitle($title);
+		$this->layout->content = View::make('users.edit')->withUser($user);
 	}
 
 
@@ -108,9 +104,9 @@ class UsersController extends \BaseController {
 		$id = is_null($id) ? Auth::user()->id :$id;
 		$input = Input::all();
 		
-		$validation = Validator::make($input,array(
-			'email'=> 'required|unique:users,email,'.$id,
-			'username'=> 'required|alpha_dash|unique:users,username,'.$id)
+		$validation = Validator::make($input, array(
+			'email' => 'required|unique:users,email,' . $id,
+			'username' => 'required|alpha_dash|unique:users,username,' . $id)
 		);
 		//dd(Input::all());
 
@@ -122,17 +118,21 @@ class UsersController extends \BaseController {
 			$user->lastname = Input::get('lastname');
 
 			if (Input::hasFile('image')){
-				if(Validator::make($input,array('image'=> 'image'))->passes()) {
+				$validation = Validator::make($input, array('image' => 'image'));
+				if($validation->passes()) {
 					$file = Input::file('image');
 					$path = Config::get('configuration.picture--folder') . $id.'/';
+					//create folder if it doesn't exist yet
 					if (!File::isDirectory($path)) 
 						$result = File::makeDirectory($path, 0700, true);
+					//new name for the uploaded image
 					$filename = str_random(20) .'.' . $file->getClientOriginalExtension();
+					//save image to permanent location
 					$file->move($path,$filename);
 					$finalpath = Config::get('configuration.picture--url') . '/'. $id . '/' . $filename;
 					$user->photo = $finalpath;
 				}else{
-					return  Redirect::to('user/edit/')->withInput()->withErrors($validation)->with('alert', Lang::get('form.error--image'));
+					return  Redirect::to('user/edit/')->withInput()->withErrors($validation);//->with('alert', Lang::get('form.error--image'));
 				}
 			}
 
@@ -150,7 +150,7 @@ class UsersController extends \BaseController {
 		}
 		
 		if(Input::get('kind')!='ajax')
-			return Redirect::to('user/edit/')->withInput()->withErrors($validation)->with('alert', Lang::get('form.error--validation'));
+			return Redirect::to('user/edit/')->withInput()->withErrors($validation);//->withErrors($validation)->with('alert', Lang::get('form.error--validation'));
 		return $response;
 	}
 
