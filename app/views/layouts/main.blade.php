@@ -88,28 +88,7 @@
 					</ul>
 				</aside>
 				<article class="main-content">
-					<div class="row alert__row">
-						<div class="large-12 small-12 columns alert__container">
-							@if(Session::has('message'))
-							<div data-alert class="alert-box large-6 small-centered columns">
-								{{ Session::get('message') }}
-								<a href="#" class="close">&times;</a>
-							</div>
-							@endif
-							@if(Session::has('success'))
-							<div data-alert class="alert-box success large-6 small-centered columns">
-								{{ Session::get('success') }}
-								<a href="#" class="close">&times;</a>
-							</div>
-							@endif
-							@if(Session::has('alert'))
-							<div data-alert class="alert-box alert large-6 small-centered columns" >
-								{{ Session::get('alert') }}
-								<a href="#" class="close">&times;</a>
-							</div>
-							@endif	
-						</div>
-					</div>
+					@include('layouts.notifications')
 					{{$content}}
 				</article>
 				<a class="exit-off-canvas"></a>
@@ -144,14 +123,10 @@
 					{{ HTML::script('assets/js/script.js') }}
 					{{ HTML::script('assets/js/vendor/stickyfooter.js') }}
 					{{--If the array of custom script files exist, we print it--}}
-					@if(isset($scripts)) @foreach ($scripts as $script)
-					{{ HTML::script($script) }}
-					@endforeach @endif
+					@yield('scripts')
 					<script>
 					$(document).foundation();
-					@if(isset($script_verbose))
-					{{$script_verbose}}
-					@endif
+					@yield('scriptsverbose')
 					</script>
 				</body>
 				</html>

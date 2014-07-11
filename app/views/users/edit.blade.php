@@ -1,8 +1,3 @@
-@extends('layouts.master')
-@section('scripts')
-    {{ HTML::script('assets/js/foundation/foundation.abide.js') }}
-@stop
-@section('content')
 <div class="row">
     {{ Form::open(array('url'=>'user/edit/', 'class'=>'form-signin','data-abide'=>'', 'files' => true)) }}
     <div class="large-12 medium-12 small-12 columns loginbox">
@@ -23,8 +18,8 @@
                <hr class="hide-for-medium-up"/>
                <br />
            </div>
-       </div>
-    <div class="large-7 medium-6 columns ">
+        </div>
+        <div class="large-7 medium-6 columns ">
              <div class="username-field">
                 {{ Form::label('username', Lang::get('form.username').':') }}
                 {{ Form::text('username', $user->username , array('required' =>'required', 'placeholder'=> Lang::get('form.username'), 'pattern'=> '[a-zA-Z0-9-_]+')) }}
@@ -62,4 +57,3 @@
     </div>
     {{ Form::close() }}
 </div>
-@stop

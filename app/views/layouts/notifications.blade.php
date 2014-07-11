@@ -1,63 +1,28 @@
-@if (count($errors->all()) > 0)
-<div class="row alert__row">
-    <div data-alert class="alert-box alert large-6 small-centered columns" >
-             <strong>Error</strong>: Check the form below for errors.
-            <a href="#" class="close">&times;</a>
-        </div>
-</div>
-@endif 
-
-@if(Session::has('info') || Session::has('success') || Session::has('warning') || Session::has('error'))
 <div class="row alert__row">
     <div class="large-12 small-12 columns alert__container">
-        @if($message = Session::get('info'))
+        @if(Session::has('message'))
         <div data-alert class="alert-box large-6 small-centered columns">
-            @if(is_array($message))
-                @foreach ($message as $m)
-                    {{ $m }}
-                @endforeach
-            @else
-                {{ $message }}
-            @endif
+            {{ Session::get('message') }}
             <a href="#" class="close">&times;</a>
         </div>
         @endif
-        @if($message = Session::get('success'))
+        @if(Session::has('success'))
         <div data-alert class="alert-box success large-6 small-centered columns">
-            @if(is_array($message))
-                @foreach ($message as $m)
-                    {{ $m }}
-                @endforeach
-            @else
-                {{ $message }}
-            @endif
+            {{ Session::get('success') }}
             <a href="#" class="close">&times;</a>
         </div>
         @endif
-        @if($message = Session::get('error'))
+        @if(Session::has('alert'))
         <div data-alert class="alert-box alert large-6 small-centered columns" >
-             @if(is_array($message))
-                @foreach ($message as $m)
-                    {{ $m }}
-                @endforeach
-            @else
-                {{ $message }}
-            @endif
+            {{ Session::get('alert') }}
             <a href="#" class="close">&times;</a>
         </div>
         @endif
-         @if($message = Session::get('warning'))
+        @if(Session::has('warning'))
         <div data-alert class="alert-box warning large-6 small-centered columns" >
-             @if(is_array($message))
-                @foreach ($message as $m)
-                    {{ $m }}
-                @endforeach
-            @else
-                {{ $message }}
-            @endif
+            {{ Session::get('warning') }}
             <a href="#" class="close">&times;</a>
         </div>
         @endif  
     </div>
 </div>
-@endif
