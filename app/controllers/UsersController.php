@@ -88,9 +88,13 @@ class UsersController extends \BaseController {
 	public function getEdit() {
 		$id = Auth::user()->id;
 		$user = User::find($id);
-		$this->layout->title =  Lang::get('global.editinfo');
-		$this->layout->scripts = array('assets/js/foundation/foundation.abide.js');
-		$this->layout->content = View::make('users.edit')->withUser($user);
+		//$this->layout->title =  Lang::get('global.editinfo');
+		//$this->layout->scripts = array('assets/js/foundation/foundation.abide.js');
+		//$this->layout->content = View::make('users.edit')->withUser($user);
+		$title =  Lang::get('global.editinfo');
+		return View::make('users.edit')
+			->withUser($user)
+			->withTitle($title);
 	}
 
 

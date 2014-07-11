@@ -61,10 +61,3 @@
     </div>
 </div>
 @endif
-<div class="row">
-    <div class="large-12">
-        <?php for ($i = 1; $i <= 20; $i++) {
-            echo "$i <br />";
-        } ?>
-    </div>
-</div>

@@ -12,43 +12,27 @@
 	</title>
 	{{ HTML::style('assets/css/app.css') }}
 </head>
-
-<body>
-	
-	<div class="off-canvas-wrap site__wrap" data-offcanvas>
-		
+	<body>
+		<div class="off-canvas-wrap site__wrap" data-offcanvas>
 			<div class="inner-wrap">
 				@include('layouts.navigation', array('user' => $user))
 				<article class="main-content">
 					@include('layouts.notifications')
+					@yield('content')
 					@include('layouts.footer')
 				</article>
 				<a class="exit-off-canvas"></a>
-
 			</div> <!--close inner wrap -->
-			
 		</div><!--close offcanvas -->
-	
-	
-
-	{{ HTML::script('assets/js/vendor/jquery.js') }}
-	{{ HTML::script('assets/js/vendor/modernizr.js') }}
-	{{ HTML::script('assets/js/foundation/foundation.js') }}
-	{{ HTML::script('assets/js/foundation/foundation.alert.js') }}
-	{{ HTML::script('assets/js/foundation/foundation.topbar.js') }}
-	{{ HTML::script('assets/js/foundation/foundation.offcanvas.js') }}
-	{{ HTML::script('assets/js/vendor/jquery.mobile.custom.min.js')}}
-	{{ HTML::script('assets/js/script.js') }}
-	{{ HTML::script('assets/js/vendor/stickyfooter.js') }}
-	{{--If the array of custom script files exist, we print it--}}
-	@if(isset($scripts)) @foreach ($scripts as $script)
-	{{ HTML::script($script) }}
-	@endforeach @endif
-	<script>
-	$(document).foundation();
-	@if(isset($script_verbose))
-	{{$script_verbose}}
-	@endif
-	</script>
-</body>
+		{{ HTML::script('assets/js/vendor/jquery.js') }}
+		{{ HTML::script('assets/js/vendor/modernizr.js') }}
+		{{ HTML::script('assets/js/foundation/foundation.js') }}
+		{{ HTML::script('assets/js/foundation/foundation.alert.js') }}
+		{{ HTML::script('assets/js/foundation/foundation.topbar.js') }}
+		{{ HTML::script('assets/js/foundation/foundation.offcanvas.js') }}
+		{{ HTML::script('assets/js/vendor/jquery.mobile.custom.min.js')}}
+		{{ HTML::script('assets/js/script.js') }}
+		{{ HTML::script('assets/js/vendor/stickyfooter.js') }}
+		@yield('scripts')
+	</body>
 </html>
