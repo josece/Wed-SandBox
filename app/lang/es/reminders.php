@@ -21,7 +21,7 @@ return array(
 
 	"sent" => "¡Se ha enviado el mail para restablecer la contraseña!",
 
-	"title--forgot" => "Olvide mi contraseña",
+	"title--forgot" => "Olvidé mi contraseña",
 
 	"title--reset" => "Restablecer contraseña",
 
