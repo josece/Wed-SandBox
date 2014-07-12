@@ -2,7 +2,7 @@
 	<div class="large-12 columns">
 
 		<h2>{{Lang::get('stores.store--title')}}</h2>
-			{{ HTML::link('store/new', Lang::get('stores.store--new'), array('class' => 'button small') )}}
+			{{ HTML::link('admin/store/new', Lang::get('stores.store--new'), array('class' => 'button small') )}}
 		@if($stores->isEmpty())
 			<div class="margin--top">
 				{{Lang::get('stores.store--none')}}</div>
@@ -22,8 +22,8 @@
 					<td>{{$store->id}}</td>
 					<td>{{$store->name}}</td>
 					
-					<td>{{HTML::Link('stores/usersedit/' . $store->id, Lang::get('form.edit'), array('class'=>'button tiny message'))}}</td>
-					<td>{{-- HTML::Link('admin/users-disable/' . $store->id, Lang::get('form.disable'), array('class'=>'button tiny alert')) --}}</td>
+					<td>{{HTML::Link('admin/store/' . $store->id.'/edit', Lang::get('form.edit'), array('class'=>'button tiny message'))}}</td>
+					<td>{{HTML::Link('admin/store/' . $store->id, Lang::get('form.view'), array('class'=>'button tiny success'))}}</td>
 				</tr>
 				@endforeach
 			</tbody>

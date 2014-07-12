@@ -17,8 +17,8 @@
 			</ul>
 			@else
 			<ul class="right hide-for-small">	
-				<li class="{{(strpos(URL::current(), URL::to('stores'))!== false) ? 'active' : ''; }}">
-					{{ HTML::link('stores', Lang::get('stores.store--title'))}}</li>   
+				<li class="{{(strpos(URL::current(), URL::to('admin/stores'))!== false) ? 'active' : ''; }}">
+					{{ HTML::link('admin/stores', Lang::get('stores.store--title'))}}</li>   
 					@if($user->role_id > 2)
 					<li class="{{ (strpos(URL::current(), URL::to('admin/users'))!== false) ? 'active' : '' }}">
 						{{ HTML::link('admin/users', Lang::get('form.users'))}}</li>   

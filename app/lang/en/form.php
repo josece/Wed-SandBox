@@ -28,6 +28,7 @@ return array(
 	"edit" => "Edit",
 	"disable" => "Disable",
 	"delete" => "Delete",
+	"view" => "View",
 
 	"login" => "Log in",
 	"login--facebook" => "Sign in with Facebook",

@@ -1,4 +1,6 @@
-<div class="row">
+@section('scripts')
+    {{ HTML::script('assets/js/foundation/foundation.abide.js') }}
+@stop<div class="row">
 	<div class="large-12">
 		 <h3>{{Lang::get('stores.store--new')}}</h3>
 		 {{ Form::open(array('url'=>'store/new/', 'class'=>'form-signin','data-abide'=>'')) }}

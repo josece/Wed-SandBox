@@ -15,7 +15,9 @@ class StoresController extends \BaseController {
 	public function index(){
 		//
 	}
+
 	public function newStore(){
+		$this->layout->title = Lang::get('stores.store--new') ;
 		$this->layout->content = View::make('stores.new');
 	}
 	public function postNewStore(){
@@ -50,7 +52,9 @@ class StoresController extends \BaseController {
 		if(is_null($id))
 			return Redirect::to('store');
 		$store = $this->getStore($id);
-		return $store->name;
+		$this->layout->title = $store->name;
+		$this->layout->content = View::make('stores.store')->withStore($store);
+		//return $store->name;
 	}
 
 	public function products($id = null){
