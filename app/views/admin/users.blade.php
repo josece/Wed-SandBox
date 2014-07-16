@@ -1,7 +1,8 @@
+@include('layouts.datatables')
 <div class="row">
 	<div class="large-12 columns">
-		<h2>{{Lang::get('form.users')}}
-		<table>
+		<h2>{{Lang::get('form.users')}}</h2>
+		<table class="datatable">
 			<thead>
 				<tr>
 					<th>{{Lang::get('form.id')}}</th>
@@ -9,7 +10,8 @@
 					<th>{{Lang::get('form.lastname')}}</th>
 					<th>{{Lang::get('form.email')}}</th>
 					<th>{{Lang::get('form.role')}}</th>
-					<th colspan="2">{{Lang::get('form.actions')}}</th>
+					<th>{{Lang::get('form.actions')}}</th>
+					<th>{{Lang::get('form.actions')}}</th>
 				</tr>
 			</thead>
 			<tbody>
