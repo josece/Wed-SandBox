@@ -5,6 +5,7 @@
 
 		<h2>{{Lang::get('stores.store--title')}}</h2>
 			{{ HTML::link('admin/store/new', Lang::get('stores.store--new'), array('class' => 'button small') )}}
+		
 		@if($stores->isEmpty())
 			<div class="margin--top">
 				{{Lang::get('stores.store--none')}}</div>

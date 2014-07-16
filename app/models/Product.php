@@ -2,9 +2,17 @@
  
 class Product extends Eloquent {
  
-    public function store()
-    {
+ 	protected $table = 'products';
+
+ 	/*
+	* Definicion de relaciones
+	*/
+ 	public function category() {
+ 		return $this->belongsTo('productCategory');
+ 	}
+    public function store() {
         return $this->belongsTo('store');
     }
+
 	
 }

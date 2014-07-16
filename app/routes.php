@@ -41,10 +41,13 @@ Route::group(array('prefix' => 'admin','before' => 'auth'), function() {
 	Route::get('store/new', array('uses' => 'StoresController@getNewStore'));
 	Route::post('store/new', array('uses' => 'StoresController@postNewStore'));
 
-	Route::get('store/{id}', array('uses' => 'StoresController@storeView'));
+	Route::get('store/{id}', array('uses' => 'StoresController@getStoreView'));
 	Route::get('store/{id}/edit', array('uses' => 'StoresController@getEdit'));
 	Route::post('store/{id}/edit', array('uses' => 'StoresController@postEdit'));
 	Route::get('store/{id}/products', array('uses' => 'StoresController@getProducts'));
+
+	Route::get('store/{id}/product/new', array('uses' => 'ProductsController@getNewProduct'));	
+	Route::post('store/{id}/product/new', array('uses' => 'ProductsController@postNewProduct'));	
 
 });
 

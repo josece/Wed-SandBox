@@ -87,3 +87,7 @@ require app_path().'/filters.php';
 
 require app_path().'/composers.php';
 
+/*
+ * Custom Helpers
+ */
+require app_path().'/start/custom_helpers.php';

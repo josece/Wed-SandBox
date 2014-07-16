@@ -5,6 +5,18 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 	
+	/*
+	* Definicion de relaciones
+	*/
+	public function profiles() {
+		return $this->hasMany('Profile');
+	}
+
+	public function stores() {
+		return $this->hasMany('Store');
+	}
+
+
 	public function getRoles(){
 		$roles = array(
 			0 => 'guest',
@@ -56,8 +68,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @return string
 	 */
-	public function getAuthPassword()
-	{
+	public function getAuthPassword() {
 		return $this->password;
 	}
 
@@ -66,29 +77,22 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @return string
 	 */
-	public function getReminderEmail()
-	{
+	public function getReminderEmail() {
 		return $this->email;
 	}
 
-	public function profiles()
-	{
-		return $this->hasMany('Profile');
-	}
-	public function getRememberToken()
-	{
+	public function getRememberToken() {
 	    return $this->remember_token;
 	}
 
-	public function setRememberToken($value)
-	{
+	public function setRememberToken($value) {
 	    $this->remember_token = $value;
 	}
 
-	public function getRememberTokenName()
-	{
+	public function getRememberTokenName() {
 	    return 'remember_token';
 	}
+
 	public function hasRole($rolename){
 		/*
 		$currentrole = $this->role_id; // returns a number 0, 1, 2, 3

@@ -11,4 +11,6 @@ return array(
 	"error--description" => "Dinos un poco de tu tienda, tranquilo, no tiene que ser muy largo",
 	"success--add" => 'La tienda fue creada con éxito',
 	"success--edit" => 'La información fue modificada con éxito',
+
+	"product--new" => "Nuevo producto"
 );

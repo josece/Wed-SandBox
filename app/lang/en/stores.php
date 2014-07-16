@@ -12,4 +12,5 @@ return array(
 	"success--add" => 'The store was successfully created',
 	"success--edit" => 'The store has been updated',
 	
+	"product--new" => "Add new product"
 );
