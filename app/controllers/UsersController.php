@@ -91,7 +91,7 @@ class UsersController extends \BaseController {
 		$id = Auth::user()->id;
 		$user = User::find($id);
 		$this->layout->title =  Lang::get('global.editinfo');
-		$this->layout->content = View::make('admin.users.edit')->withUser($user);
+		$this->layout->content = View::make('users.edit')->withUser($user);
 	}
 
 	/**
@@ -250,8 +250,8 @@ class UsersController extends \BaseController {
 		if(Auth::attempt($credentials)){
 			//ya que se validaron las credenciales, reviso si el usuario está confirmado
 			if(Auth::user()->isConfirmed()){
-				if(Auth::user()->hasRole('admin'))
-					return Redirect::to('admin/');
+				//if(Auth::user()->hasRole('admin'))
+				//	return Redirect::to('admin/');
 				return Redirect::to('user/');
 			}else{
 				//destruyo la sesión y mando error manual
@@ -336,8 +336,8 @@ class UsersController extends \BaseController {
 			$user = $profile->user;
 
 			Auth::login($user);
-			if(Auth::user()->hasRole('admin'))
-				return Redirect::to('admin/');
+			//if(Auth::user()->hasRole('admin'))
+			//	return Redirect::to('admin/');
 			return Redirect::to('user/');
 		}
 

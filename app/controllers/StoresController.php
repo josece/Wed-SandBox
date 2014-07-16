@@ -30,7 +30,7 @@ class StoresController extends \BaseController {
 		$store->permalink = $permalink;
 		$store->description = Input::get('description');
 		$store->save();
-		return Redirect::to('stores')->with('success', Lang::get('stores.success--add'));
+		return Redirect::to('admin/stores')->with('success', Lang::get('stores.success--add'));
 	}
 	/**
 	 * Current session user's stores.
@@ -57,7 +57,7 @@ class StoresController extends \BaseController {
 		//return $store->name;
 	}
 
-	public function products($id = null){
+	public function getProducts($id = null){
 		if(is_null($id))
 			return Redirect::to('products');
 
@@ -78,6 +78,20 @@ class StoresController extends \BaseController {
        		$store = Store::where('permalink', '=', $id)->first();
    		}
    		return $store;
+	}
+
+	public function getEdit($id = null){
+		$store = $this->getStore($id);
+		$this->layout->title = 'Edit Store';
+		$this->layout->content = View::make('stores.edit')->withStore($store);
+	}
+	public function postEdit($id = null){
+		$validator = Validator::make(Input::all(),array('name' => 'required'));
+		$store = $this->getStore($id);
+		$store->name = Input::get('name');
+		$store->description = Input::get('description');
+		$store->save();
+		return Redirect::to('admin/stores')->with('success', Lang::get('stores.success--edit'));
 	}
 
 	

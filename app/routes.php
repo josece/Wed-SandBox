@@ -38,6 +38,9 @@ Route::group(array('prefix' => 'admin','before' => 'auth|auth.admin'), function(
 
 	Route::get('store/{id}', array('uses' => 'StoresController@storeView'));
 	Route::get('store/{id}/edit', array('uses' => 'StoresController@getEdit'));
+	Route::post('store/{id}/edit', array('uses' => 'StoresController@postEdit'));
+	Route::get('store/{id}/products', array('uses' => 'StoresController@getProducts'));
+
 	/*Route::get('user/super/edit/',array('uses' => 'UsersController@getEditadmin'));
 	Route::get('user/super/edit/{id}',array('uses' => 'UsersController@getEditadmin'));*/
 });
@@ -53,7 +56,7 @@ Route::get('/', function() {
  * Si intentan hacer login desde /login, los redirigimos a la página correcta
  */
 Route::get('login', function() { return Redirect::to('user/login'); });
-Route::get('admin/store/{id}/products/', array('uses' => 'StoresController@products'));
+//Route::get('admin/store/{id}/products/', array('uses' => 'StoresController@products'));
 
 Route::get('products/', array('uses' => 'ProductsController@index'));
 /**

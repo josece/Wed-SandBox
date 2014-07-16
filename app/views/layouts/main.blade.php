@@ -11,6 +11,7 @@
 			@endif
 		</title>
 		{{ HTML::style('assets/css/app.css') }}
+		@yield('stylesheets')
 	</head>
 	<body>
 		<div class="off-canvas-wrap site__wrap" data-offcanvas>
@@ -37,7 +38,7 @@
 		@yield('scripts')
 		<script>
 		$(document).foundation();
-		@yield('scriptsverbose')
+		
 		</script>
 	</body>
 </html>

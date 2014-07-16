@@ -105,7 +105,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $roles[$role_id];
 	}
 	public function confirm(){
-		$this->confirmed = 2;
+		$this->confirmed = 1;
 		$this->save();
 	}
 	public function isConfirmed(){

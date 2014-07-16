@@ -1,4 +1,31 @@
-<div class="row">
+@section('stylesheets')
+	{{ HTML::style('assets/css/datatables.css') }}
+@stop
+@section('scripts')
+    {{ HTML::script('assets/js/vendor/jquery.dataTables.min.js') }}
+    {{ HTML::script('assets/js/vendor/dataTables.foundation.js') }}
+<script type="text/javascript" language="javascript" class="init">
+$(document).ready(function() {
+    $('#jose').dataTable({
+    	"language": {
+            "lengthMenu": "{{Lang::get('datatables.lengthMenu')}}",
+            "zeroRecords": "{{Lang::get('datatables.zeroRecords')}}",
+            "info": "{{Lang::get('datatables.info')}}",
+            "infoEmpty": "{{Lang::get('datatables.infoEmpty')}}",
+            "infoFiltered": "{{Lang::get('datatables.infoFiltered')}}",
+            "search": "{{Lang::get('datatables.search')}}",            
+            "paginate": {
+        	"first":     "{{Lang::get('datatables.paginate--first')}}",
+       		"last":      "{{Lang::get('datatables.paginate--last')}}",
+        	"next":       "{{Lang::get('datatables.paginate--next')}}",
+        	"previous":   "{{Lang::get('datatables.paginate--previous')}}",
+    		},
+        }
+    });
+
+} );
+</script>
+@stop<div class="row">
 	<div class="large-12 columns">
 
 		<h2>{{Lang::get('stores.store--title')}}</h2>
@@ -7,15 +34,18 @@
 			<div class="margin--top">
 				{{Lang::get('stores.store--none')}}</div>
 		@else
-		<table class="margin--top">
+		<br />&nbsp;<br />
+		<table class="margin--top" id="jose" width="100%">
 			<thead>
 				<tr>
 					<th>{{Lang::get('form.id')}}</th>
 					<th>{{Lang::get('stores.store--name')}}</th>
-					<th colspan="2">{{Lang::get('form.actions')}}</th>
+					<th>{{Lang::get('form.actions')}}</th>
+					<th>{{Lang::get('form.actions')}}</th>
 				</tr>
 			</thead>
 			<tbody>
+
 				@foreach ($stores as $store)
 
 				<tr>
@@ -29,7 +59,5 @@
 			</tbody>
 		</table>
 		@endif
-
-
 	</div>
 </div>
