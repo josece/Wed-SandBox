@@ -6,6 +6,7 @@
     {{ HTML::script('assets/js/vendor/dataTables.foundation.js') }}
 <script type="text/javascript" language="javascript" class="init">
 $(document).ready(function() {
+    setInterval(checkForDOMChange, 1000);
     $('.datatable').dataTable({
     	"language": {
            "emptyTable":     "{{Lang::get('datatables.emptyTable')}}",
