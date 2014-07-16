@@ -29,7 +29,12 @@
 Route::group(array('prefix' => 'admin','before' => 'auth|auth.admin'), function() {
 	Route::controller('admin','AdminController');
 	Route::get('users','AdminController@getUsers');
-		
+	//Route::get('user/super/edit/',array('uses' => 'UsersController@getEditadmin'));
+	Route::get('user/{id}/edit',array('uses' => 'AdminController@getUsersedit'));
+	Route::post('user/{id}/edit',array('uses' => 'AdminController@postUsersedit'));
+});
+
+Route::group(array('prefix' => 'admin','before' => 'auth'), function() {
 	Route::get('store/', array('uses' => 'StoresController@index'));
 	Route::get('stores/', array('uses' => 'StoresController@listado'));
 
@@ -41,9 +46,8 @@ Route::group(array('prefix' => 'admin','before' => 'auth|auth.admin'), function(
 	Route::post('store/{id}/edit', array('uses' => 'StoresController@postEdit'));
 	Route::get('store/{id}/products', array('uses' => 'StoresController@getProducts'));
 
-	/*Route::get('user/super/edit/',array('uses' => 'UsersController@getEditadmin'));
-	Route::get('user/super/edit/{id}',array('uses' => 'UsersController@getEditadmin'));*/
 });
+
 
 /**
  * Aquí empieza todo

@@ -2,7 +2,7 @@
     {{ HTML::script('assets/js/foundation/foundation.abide.js') }}
 @stop<div class="row">
     <div class="large-5 medium-6 columns small-centered loginbox"><h3>{{Lang::get('global.editinfo')}}</h3>
-        {{ Form::open(array('url'=>'admin/usersedit/'.$user->id, 'class'=>'form-signin','data-abide'=>'')) }}
+        {{ Form::open(array('url'=>'admin/user/'.$user->id.'/edit', 'class'=>'form-signin','data-abide'=>'')) }}
 
         <ul class="no-bullet">
 
@@ -30,6 +30,10 @@
         </ul>
         <hr>
         
+        {{ Form::label('confirmed', Lang::get('form.confirm--status')) }}
+        {{Form::checkbox( 'confirmed', 1, $user->confirmed)}}
+        <hr>
+        
 
     <?php 
     $useraccess = "";
@@ -42,7 +46,7 @@
         
         
         {{Lang::get('form.change--accesslevel')}}<br /><br />
-        <label>This user is currently set to {{$useraccess}}.</label>
+        <label>{{Lang::get('form.current--accesslevel')}} {{$useraccess}}.</label>
 
         {{Form::select('accesslevel', array('0' => Lang::get('global.permissions--guest'), 
                                         '1' => Lang::get('global.permissions--basic'),

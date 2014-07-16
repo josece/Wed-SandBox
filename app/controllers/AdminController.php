@@ -52,7 +52,6 @@ class AdminController extends \BaseController {
 			}
 		}
 		$this->layout->title = Lang::get('global.editinfo');
-		$this->layout->scripts = array('assets/js/foundation/foundation.abide.js');
 		$this->layout->content = View::make('admin.users.edit')->withUser($user);
 	}
 
@@ -67,7 +66,10 @@ class AdminController extends \BaseController {
 		$id = is_null($id) ? Auth::user()->id :$id;
 		$input = Input::all();
 		$validation = Validator::make($input,array(
-			'email'=> 'required|unique:users,email,'.$id));
+			'email'=> 'required|unique:users,email,'.$id,
+			'confirmed' => 'boolean'
+		));
+
 		//dd(Input::all());
 		if ($validation->passes()) {
 			$user = User::find($id);
@@ -76,20 +78,21 @@ class AdminController extends \BaseController {
 			$user->email = Input::get('email');
 			$user->firstname = Input::get('firstname');
 			$user->lastname = Input::get('lastname');
+			$user->confirmed = Input::get('confirmed');
 			if(Input::get('password')!= '' )
 				$user->password = Hash::make(Input::get('password'));
 			$user->save();
 
 			$response = array('success' => Lang::get('form.success--update'));
 			if(Input::get('kind')!='ajax')
-				return Redirect::to('admin/usersedit/'.$id)->with('success', Lang::get('form.success--update'));
+				return Redirect::to('admin/users')->with('success', Lang::get('form.success--update'));
 		}else{
 			
 			$response = array('alert' =>  $validation->messages());
 		}
 		
 		if(Input::get('kind')!='ajax')
-			return Redirect::to('admin/usersedit/'.$id)->withInput()->withErrors($validation)->with('alert', Lang::get('form.error--validation'));
+			return Redirect::to('admin/users')->withInput()->withErrors($validation)->with('alert', Lang::get('form.error--validation'));
 		return $response;
 	}
 

@@ -33,6 +33,8 @@ return array(
 	"login" => "Log in",
 	"login--facebook" => "Sign in with Facebook",
 	"signup" => "Sign up",
+	"current--accesslevel" => "The current access level is set to",
+	"confirm--status" => "Confirmed",
 
 	"password" => "Password",
 	"password--repeat" => "Repeat password",

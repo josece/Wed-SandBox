@@ -33,6 +33,8 @@ return array(
 	"login" => "Entrar",
 	"login--facebook" => "Entra con Facebook",
 	"signup" => "Registro",
+	"current--accesslevel" => "El nivel actual del usuario es ",
+	"confirm--status" => "Confirmado",
 
 	"password" => "Contraseña",
 	"password--repeat" => "Repite la contraseña",

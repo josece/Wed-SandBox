@@ -83,6 +83,7 @@ class UsersController extends \BaseController {
 	    return Redirect::away($facebook->getLoginUrl($params));
 	}
 	
+	
 	public function getEditadmin($id = null){
 		if(empty($id)){
 			$user = Auth::user();
@@ -91,7 +92,7 @@ class UsersController extends \BaseController {
 		$id = Auth::user()->id;
 		$user = User::find($id);
 		$this->layout->title =  Lang::get('global.editinfo');
-		$this->layout->content = View::make('users.edit')->withUser($user);
+		$this->layout->content = View::make('admin.users.edit')->withUser($user);
 	}
 
 	/**
