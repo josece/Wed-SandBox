@@ -16,10 +16,11 @@ class StoresController extends \BaseController {
 		//
 	}
 
-	public function newStore(){
+	public function getNewStore(){
 		$this->layout->title = Lang::get('stores.store--new') ;
 		$this->layout->content = View::make('stores.new');
 	}
+
 	public function postNewStore(){
 		$user_id = Auth::user()->id;
 		$validator = Validator::make(Input::all(),array('name' => 'required'));
@@ -33,14 +34,24 @@ class StoresController extends \BaseController {
 		return Redirect::to('admin/stores')->with('success', Lang::get('stores.success--add'));
 	}
 	/**
-	 * Current session user's stores.
+	 * get user's stores.
+	 * @param user_id
+	 * @return stores [object]
 	 */
+	public function getStores($user_id = null){
+		if(is_null($user_id)){
+			$user = Auth::user();
+			$user_id = $user->id;
+		}
+		$stores = Store::where('user_id','=',$user_id)->get();
+		return $stores;
+	}
+
 	public function listado(){
-		$user = Auth::user();
-		$id = $user->id;
-		$stores = Store::where('user_id','=',$id)->get();
+		$stores = $this->getStores();
 		$this->layout->content =  View::make('stores.index', compact('stores'));
 	}
+
 	public function getSlug($title) {
 		$slug = Str::slug($title);
 		$slugCount = 0;
@@ -48,15 +59,37 @@ class StoresController extends \BaseController {
 		//$slugCount = count( Store::whereRaw("slug REGEXP '^{$slug}(-[0-9]*)?$'")->get() );
 		return ($slugCount > 0) ? "{$slug}-{$slugCount}" : $slug;
 	}
-	public function storeView($id = null){
-		if(is_null($id))
-			return Redirect::to('store');
-		$store = $this->getStore($id);
-		$this->layout->title = $store->name;
-		$this->layout->content = View::make('stores.store')->withStore($store);
-		//return $store->name;
+
+	/**
+	* Get Store Owner
+	* @param store_id
+	* @return user_id
+	*/
+	public function getStoreOwner($store_id = null){
+		if(is_null($store_id))
+			return false;
+		 $stores = $this->getStore($store_id);
+		return  $stores->user_id;
 	}
 
+	public function storeView($store_id = null){
+		if(is_null($store_id))
+			return Redirect::to('admin/stores');
+		//if not admin, if store doesn't belong to current session, error.
+		$user = Auth::user();
+		//if the store ownser is the same as the sessions
+		if($this->getStoreOwner($store_id) != $user->id 
+			&& !$user->hasRole('admin'))
+			return Redirect::to('admin/stores')->withAlert(Lang::get('global.permissions--notenough'));
+		$store = $this->getStore($store_id);
+		$this->layout->title = $store->name;
+		$this->layout->content = View::make('stores.store')->withStore($store);
+	}
+	/**
+	 * Gets the Store products object provided the store_id or permalink
+	 * @param $store_id
+	 * @return Store [object]
+	 */
 	public function getProducts($id = null){
 		if(is_null($id))
 			return Redirect::to('products');

@@ -24,7 +24,7 @@ return array(
 	"privacynotice" => "Privacy notice",
 	"builtby" => "Built by",
 	"minutes" => "minute|minutes",
-	"permissions--notenough" => "You don't have enough permissions to access this",
+	"permissions--notenough" => "You are not allowed to view this",
 	"permissions--guest" => "Guest",
 	"permissions--basic" => "Basic",
 	"permissions--medium" => "Medium",

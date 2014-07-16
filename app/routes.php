@@ -38,7 +38,7 @@ Route::group(array('prefix' => 'admin','before' => 'auth'), function() {
 	Route::get('store/', array('uses' => 'StoresController@index'));
 	Route::get('stores/', array('uses' => 'StoresController@listado'));
 
-	Route::get('store/new', array('uses' => 'StoresController@newStore'));
+	Route::get('store/new', array('uses' => 'StoresController@getNewStore'));
 	Route::post('store/new', array('uses' => 'StoresController@postNewStore'));
 
 	Route::get('store/{id}', array('uses' => 'StoresController@storeView'));
