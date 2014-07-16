@@ -82,18 +82,6 @@ class UsersController extends \BaseController {
 	    $params = array('redirect_uri' => url('/user/facebookcallback'),'scope' => 'email',);
 	    return Redirect::away($facebook->getLoginUrl($params));
 	}
-	
-	
-	public function getEditadmin($id = null){
-		if(empty($id)){
-			$user = Auth::user();
-			$id = $user->id;
-		}
-		$id = Auth::user()->id;
-		$user = User::find($id);
-		$this->layout->title =  Lang::get('global.editinfo');
-		$this->layout->content = View::make('admin.users.edit')->withUser($user);
-	}
 
 	/**
 	 * Show the form for editing the specified resource.
