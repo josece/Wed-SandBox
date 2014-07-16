@@ -9,6 +9,8 @@ return array(
 	"store--none" => 'No hay ninguna tienda creada todavía. Haz la primera.',
 	"error--nametaken" => "Por favor elige otro nombre para la tienda",
 	"error--description" => "Dinos un poco de tu tienda, tranquilo, no tiene que ser muy largo",
+	"error--add" => "Ocurrió un error al crear la tienda, inténtalo de nuevo.",
+	"error--edit" => "Ocurrió un error al modificar la tienda, inténtalo de nuevo.",
 	"success--add" => 'La tienda fue creada con éxito',
 	"success--edit" => 'La información fue modificada con éxito',
 

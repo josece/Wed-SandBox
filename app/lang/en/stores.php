@@ -9,6 +9,8 @@ return array(
 	"store--none" => 'You don\'t have any stores yet, create one.',
 	"error--nametaken" => "Please choose other name for your store",
 	"error--description" => "Tell us about your store, don't worry, it doesn't have to be long",
+	"error--add" => "Something went wrong, try creating the store again.",
+	"error--edit" => "Something went wrong, try modifying the store info again.",
 	"success--add" => 'The store was successfully created',
 	"success--edit" => 'The store has been updated',
 	
