@@ -8,9 +8,7 @@
 class ProductsController extends \BaseController {
 
 	protected $layout = "layouts.main";
-
-
-
+	
 	/**
 	* get Add new product view
 	* @param store_id
@@ -39,5 +37,12 @@ class ProductsController extends \BaseController {
 			$product->save();
 		$this->layout->title = Lang::get('stores.product--new');
 		$this->layout->content = View::make('products.new')->withStore($store);
+	}
+
+	public function generateProductSlug($product_name) {
+		$slug = Str::slug($product_name); //first make the name safe for a URL
+		$slugCount = 0; //now count how many have the same slug structure
+		$slugCount = count( Product::whereRaw("permalink REGEXP '^{$slug}(-[0-9]*)?$'")->get() );
+		return ($slugCount > 0) ? "{$slug}-{$slugCount}" : $slug; //return original if its the only one
 	}
 }

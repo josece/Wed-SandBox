@@ -5,13 +5,18 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 	
-	/*
-	* Definicion de relaciones
-	*/
+	/**
+	 * Retrieve all the Profile objects that the current user has
+	 * @return profile [object]
+	 */
 	public function profiles() {
 		return $this->hasMany('Profile');
 	}
 
+	/**
+	 * Retrieve all of the store objects that the current user holds
+	 * @return store [object]
+	 */
 	public function stores() {
 		return $this->hasMany('Store');
 	}
