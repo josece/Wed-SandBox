@@ -4,13 +4,9 @@ class Product extends Eloquent {
  
  	protected $table = 'products';
 
- 	/**
-	 * Retrieve the Category object where the current product is listed at
-	 * @return category [object]
-	 */
- 	public function category() {
- 		return $this->belongsTo('productCategory');
- 	}
+ 	public function taxonomies() {
+		return $this->belongsToMany('Product');
+	}
 
  	/**
 	 * Retrieve the Store object where the current product is listed at

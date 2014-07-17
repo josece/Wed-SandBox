@@ -13,14 +13,14 @@ class CreateProductCategories extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('product_categories', function($table){
+		Schema::create('taxonomies', function($table){
 			$table->increments('id');
 			$table->string('name');
+			$table->text('description');
 			$table->string('slug');
+			$table->integer('count');
+			$table->string('type');
 			$table->integer('parent_id')->unsigned()->default(0);
-		});
-		Schema::table('products', function($table) {
-			$table->integer('product_category_id')->unsigned()->default(0);
 		});
 	}
 
@@ -32,10 +32,7 @@ class CreateProductCategories extends Migration {
 	public function down()
 	{
 		//
-		Schema::drop('product_categories');
-		Schema::table('products', function($table) {
-		    $table->dropColumn('product_category_id');
-		});
+		Schema::drop('taxonomies');
 	}
 
 }
