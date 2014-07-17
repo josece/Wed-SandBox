@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
@@ -13,6 +15,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->hasMany('Profile');
 	}
 
+	use UserTrait, RemindableTrait;
 	/**
 	 * Retrieve all of the store objects that the current user holds
 	 * @return store [object]
@@ -55,7 +58,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-	protected $hidden = array('password');
+	protected $hidden = array('password', 'remember_token');
 
 	/**
 	 * Get the unique identifier for the user.
