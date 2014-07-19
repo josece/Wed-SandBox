@@ -46,34 +46,22 @@ class StoresController extends \BaseController {
 	public function generateStoreSlug($store_name) {
 		$slug = Str::slug($store_name); //first make the name safe for a URL
 		$slugCount = 0; //now count how many have the same slug structure
-		$slugCount = count( Store::whereRaw("permalink REGEXP '^{$slug}(-[0-9]*)?$'")->get() );
+		$slugCount = count( Store::whereRaw("permalink REGEXP '^{$slug}(-[0-9]*)?$'")->get());
 		return ($slugCount > 0) ? "{$slug}-{$slugCount}" : $slug; //return original if its the only one
 	}
 
 	public function getStoreView($store_id = null){
-		if(!$this->userHasAccessToStore($store_id))
-			return Redirect::to('admin/stores')->withAlert(Lang::get('global.permissions--notenough'));
 		$store = Store::getStore($store_id);
+		//let's check if the current users sessions has access to the store
+		if($store == "false") //if(Store::userHasAccessToStore($store->id) == "false")
+			return Redirect::to('admin/stores')->withAlert(Lang::get('global.permissions--notenough'));
+		//if we made it through here, everythings fine, so let's display the store info.
 		$this->layout->title = $store->name;
 		$this->layout->content = View::make('stores.store')->withStore($store)->withProducts($this->getProducts($store_id));
+		
 	}
 
-	/**
-	* Determines if a user has access to edit store information
-	* @param store_id
-	* @return boolean
-	*/
-	private function userHasAccessToStore($store_id = null){
-		if(is_null($store_id))
-			return false;
-		$user = Auth::user();
-		$store = Store::getStore($store_id);
-		//if the store ownser is not the same as the sessions and is not the admin
-		if( $store->user()->first()->id != $user->id 
-			&& !$user->hasRole('admin'))
-			return false;
-		return true;
-	}
+	
 	/**
 	 * Gets the Store products object provided the store_id or permalink
 	 * @param $store_id

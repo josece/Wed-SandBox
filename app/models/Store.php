@@ -27,13 +27,32 @@ class Store extends Eloquent {
 	 */
 	public function scopeGetStore($query, $store_id = null){
 		if(is_null($store_id)){
-			return false;
+			return "false";
 		}
 		if (is_numeric($store_id)) {
-			$store = $query->find($store_id);
+			$store = $query->findOrFail($store_id);
 		} else {
-       		$store = $query->where('permalink', '=', $store_id)->first();
+       		$store = $query->where('permalink', '=', $store_id)->firstOrFail();
    		}
+   			//let's check the access 
+   			$user = Auth::user();
+   			if( $store->user_id != $user->id && !$user->hasRole('admin'))
+   				return "false";
    		return $store;
 	}
+
+	/*
+	* Determines if a user has access to edit store information
+	* @param store_number_id
+	* @return boolean
+	*
+	public function scopeUserHasAccessToStore($query, $store_number_id = null){
+		$user = Auth::user();
+		$store = Store::find($store_number_id);
+		//if the store owner is not the same as the sessions and is not the admin
+		if( $store->user_id != $user->id 
+			&& !$user->hasRole('admin'))
+			return "false";
+		return "true";
+	}*/
 }

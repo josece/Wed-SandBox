@@ -14,9 +14,9 @@ class ProductsController extends \BaseController {
 	* @param store_id
 	*/
 	public function getNewProduct($store_id = null){
-		if(!App::make('StoresController')->userHasAccessToStore($store_id))
+		$store = Store::getStore($store_id);
+		if($store == "false") //if(Store::userHasAccessToStore($store->id) == "false")
 			return Redirect::to('admin/stores')->withAlert(Lang::get('global.permissions--notenough'));
-		$store = $this->getStore($store_id);
 		$this->layout->title = Lang::get('stores.product--new');
 		$this->layout->content = View::make('products.new')->withStore($store);
 	}
@@ -25,9 +25,9 @@ class ProductsController extends \BaseController {
 	* @param store_id
 	*/
 	public function postNewProduct($store_id = null){
-		if(!App::make('StoresController')->userHasAccessToStore($store_id))
+		$store = Store::getStore($store_id);
+		if($store == "false") //if(Store::userHasAccessToStore($store->id) == "false")
 			return Redirect::to('admin/stores')->withAlert(Lang::get('global.permissions--notenough'));
-		$store = $this->getStore($store_id);
 		$user_id = Auth::user()->id;
 			$product = new Product;
 			$product->name = Input::get('name');

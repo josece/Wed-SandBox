@@ -11,6 +11,7 @@ return array(
 	"error--description" => "Dinos un poco de tu tienda, tranquilo, no tiene que ser muy largo",
 	"error--add" => "Ocurrió un error al crear la tienda, inténtalo de nuevo.",
 	"error--edit" => "Ocurrió un error al modificar la tienda, inténtalo de nuevo.",
+	"error--not-exist" => "La tienda que estás intentando ver, no existe.",
 	"success--add" => 'La tienda fue creada con éxito',
 	"success--edit" => 'La información fue modificada con éxito',
 
