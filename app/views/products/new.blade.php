@@ -12,16 +12,21 @@
             </ul>
         </div>
         <div class="medium-8 large-9 columns">
-             <h3>{{Lang::get('stores.product--new')}}</h3>
+             <h3>{{Lang::get('products.product--new')}}</h3>
             <div class="name-field">
-                {{ Form::label('name', Lang::get('stores.store--name').':') }}
-                {{ Form::text('name','', array('required' =>'required', 'placeholder'=> Lang::get('stores.store--name'))) }}
-                <small class="error">{{Lang::get('stores.error--nametaken')}}</small>
+                {{ Form::label('name', Lang::get('products.product--name').':') }}
+                {{ Form::text('name','', array('required' =>'required', 'placeholder'=> Lang::get('products.product--name'))) }}
+                <small class="error">{{Lang::get('products.error--nametaken')}}</small>
+            </div>
+            <div class="price-field">
+                {{ Form::label('price', Lang::get('products.product--price').':') }}
+                {{ Form::text('price','', array('required' =>'required', 'placeholder'=> Lang::get('products.product--price'), 'pattern' => 'number')) }}
+                <small class="error">{{Lang::get('products.error--number')}}</small>
             </div>
             <div class="description-field">
                 {{ Form::label('description', Lang::get('stores.store--description').':') }}
-                {{ Form::textarea('description','', array('required' =>'required', 'placeholder'=> Lang::get('stores.store--description'))) }}
-                <small class="error">{{Lang::get('stores.error--description')}}</small>
+                {{ Form::textarea('description','', array('required' =>'required', 'placeholder'=> Lang::get('products.product--description'))) }}
+                <small class="error">{{Lang::get('products.error--description')}}</small>
             </div>
             <div class="submit-field">
                 {{ Form::submit(Lang::get('form.change--save'), array('class' => 'button small')) }}

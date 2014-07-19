@@ -28,14 +28,19 @@ class ProductsController extends \BaseController {
 		$store = Store::getStore($store_id);
 		if($store == "false") //if(Store::userHasAccessToStore($store->id) == "false")
 			return Redirect::to('admin/stores')->withAlert(Lang::get('global.permissions--notenough'));
-		$user_id = Auth::user()->id;
+		//$user_id = Auth::user()->id;
+
+		$validator = Validator::make(Input::all(), array(
+			'name' => 'required')
+		);
 			$product = new Product;
 			$product->name = Input::get('name');
 			$product->description = Input::get('description');
 			$product->price = Input::get('price');
+			$product->permalink = $this->generateProductSlug($product->name);
 			$product->store_id = $store_id;
 			$product->save();
-		$this->layout->title = Lang::get('stores.product--new');
+		$this->layout->title = Lang::get('products.product--new');
 		$this->layout->content = View::make('products.new')->withStore($store);
 	}
 

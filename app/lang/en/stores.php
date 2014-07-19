@@ -14,6 +14,6 @@ return array(
 	"error--not-exist" => "The store you are trying to see, doesn't exist.",
 	"success--add" => 'The store was successfully created',
 	"success--edit" => 'The store has been updated',
-	
-	"product--new" => "Add new product"
+
+	"product--new" => "Add new product",
 );

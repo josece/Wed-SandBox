@@ -67,7 +67,7 @@ class StoresController extends \BaseController {
 	 * @param $store_id
 	 * @return Store [object]
 	 */
-	public function getProducts($store_id = null){
+	private function getProducts($store_id = null){
 		if(is_null($store_id))
 			return Redirect::to('products');
 		$products = Store::getStore($store_id)->products();

@@ -1,0 +1,13 @@
+<?php
+
+/* Product pages */
+return array(
+	"product--new" => "Add new product",
+	"product--price" => "Price",
+	"product--name" => "Product name",
+	"product--description" => "Description",
+
+
+	"error--number" => "The price can only contain numbers and dots. example: 49.50",
+	"error--description" => "Tell us a little your product, don't worry, it doesn't have to be long",
+);
