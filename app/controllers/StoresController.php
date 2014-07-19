@@ -57,23 +57,22 @@ class StoresController extends \BaseController {
 			return Redirect::to('admin/stores')->withAlert(Lang::get('global.permissions--notenough'));
 		//if we made it through here, everythings fine, so let's display the store info.
 		$this->layout->title = $store->name;
-		$this->layout->content = View::make('stores.store')->withStore($store)->withProducts($this->getProducts($store_id));
-		
+		$this->layout->content = View::make('stores.store')->withStore($store)->withProducts( $store->products);
 	}
 
 	
-	/**
+	/*
 	 * Gets the Store products object provided the store_id or permalink
 	 * @param $store_id
 	 * @return Store [object]
-	 */
+	 *
 	private function getProducts($store_id = null){
 		if(is_null($store_id))
 			return Redirect::to('products');
 		$products = Store::getStore($store_id)->products();
 		return $products;
 	}
-
+*/
 	public function getEdit($store_id = null){
 		if(!$this->userHasAccessToStore($store_id))
 			return Redirect::to('admin/stores')->withAlert(Lang::get('global.permissions--notenough'));
