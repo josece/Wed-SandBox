@@ -167,7 +167,7 @@ class UsersController extends \BaseController {
 
 			$user->firstname = $firstname;
 			$user->email = $email;
-			$user->lastname = Input::get('lastname');
+			//$user->lastname = Input::get('lastname');
 			$user->username = Input::get('username');
 			$user->password = Hash::make(Input::get('password'));
 			/* Create confirmation code */

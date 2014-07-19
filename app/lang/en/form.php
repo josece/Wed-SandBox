@@ -68,8 +68,8 @@ return array(
 	"account--already" => "Already have an account?",
 
 	"success--signup" => "Thanks for registering! Please confirm your email in order to log in.",
-	"success--update" => "Your info was successfully changed"
+	"success--update" => "Your info was successfully changed",
 
-	
+	"reminder--notice" => "An email will be sent to verify your account."
 
 );

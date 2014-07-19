@@ -17,12 +17,11 @@
 			{{ Form::text('firstname', null, array('class'=>'', 'placeholder'=>Lang::get('form.firstname').'*', 'required' =>'required')) }}
 			<small class="error">{{Lang::get('form.error--firstname')}}</small>
 		</div>
-		<div class="lastname-field">
-			{{ Form::text('lastname', null, array('class'=>'', 'placeholder'=>Lang::get('form.lastname'))) }}
-		</div>
 		<div class="email-field">
+			<small class="right">{{Lang::get('form.reminder--notice')}}</small><br />
 			{{ Form::email('email', null, array('class'=>'', 'placeholder'=>Lang::get('form.emailaddress').'*', 'required' =>'required')) }}
 			<small class="error">{{Lang::get('form.error--email')}}</small>
+
 		</div>
 		<div class="password-field">
 			{{ Form::password('password', array('class'=>'', 'placeholder'=>Lang::get('form.password').'*', 'required' =>'required', 'id'=>'password', 'pattern' => '(?=.*\d)(?=.*[a-zA-Z]).{4,8}$')) }}

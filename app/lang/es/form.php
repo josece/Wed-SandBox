@@ -22,7 +22,7 @@ return array(
 
 	"firstname" => "Nombre",
 	"lastname" => "Apellido",
-	"username" => "Usuario",
+	"username" => "Nombre de usuario",
 	"role" => "Rol",
 	"actions" => "Acciones",
 	"edit" => "Editar",
@@ -68,8 +68,8 @@ return array(
 	"account--already" => "Ya tienes cuenta?",
 
 	"success--signup" => "Gracias por registrarte! Por favor confirma tu email para poder entrar.",
-	"success--update" => "Tus datos han sido cambiados."
-
+	"success--update" => "Tus datos han sido cambiados.",
+	"reminder--notice" => "Se enviará un email para verificar la cuenta."
 	
 
 );
