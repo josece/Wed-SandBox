@@ -13,6 +13,37 @@ class ProductsController extends \BaseController {
 	* get Add new product view
 	* @param store_id
 	*/
+	public function getEditProduct($product_id = null){
+		$product = Product::getProduct($product_id);
+		if($product == "false") 
+			return Redirect::to('admin/stores')->withAlert(Lang::get('global.permissions--notenough'));
+		$this->layout->title = Lang::get('stores.product--new');
+		$this->layout->content = View::make('products.edit')->withProduct($product);
+	}
+
+	/**
+	* post Add new product view
+	* @param store_id
+	*/
+	public function postEditProduct($product_id = null){
+		$product = Product::getProduct($product_id);
+		if($product == "false") //if(Store::userHasAccessToStore($store->id) == "false")
+			return Redirect::to('admin/stores')->withAlert(Lang::get('global.permissions--notenough'));
+		//$user_id = Auth::user()->id;
+
+		$validator = Validator::make(Input::all(), array(
+			'name' => 'required')
+		);
+			$product->name = Input::get('name');
+			$product->description = Input::get('description');
+			$product->price = Input::get('price');
+			$product->save();
+		return Redirect::to('admin/store/'. $product->store_id)->withSuccess(Lang::get('products.success--edit'));
+	}
+	/**
+	* get Add new product view
+	* @param store_id
+	*/
 	public function getNewProduct($store_id = null){
 		$store = Store::getStore($store_id);
 		if($store == "false") //if(Store::userHasAccessToStore($store->id) == "false")

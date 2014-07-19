@@ -24,7 +24,6 @@
 						<th>{{Lang::get('products.product--name')}}</th>
 						<th>{{Lang::get('products.product--price')}}</th>
 						<th>{{Lang::get('form.actions')}}</th>
-						<th>{{Lang::get('form.actions')}}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -36,8 +35,8 @@
 						<td>{{$product->name}}</td>
 						<td>{{$product->price}}</td>
 
-						<td>{{HTML::Link('admin/store/' . $store->id.'/edit', Lang::get('form.edit'), array('class'=>'button tiny message'))}}</td>
-						<td>{{HTML::Link('admin/store/' . $store->id, Lang::get('form.view'), array('class'=>'button tiny success'))}}</td>
+						<td>{{HTML::Link('admin/product/' . $product->id.'/edit', Lang::get('form.edit'), array('class'=>'button tiny message'))}}</td>
+						
 					</tr>
 					@endforeach
 				</tbody>

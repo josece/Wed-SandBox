@@ -47,7 +47,10 @@ Route::group(array('prefix' => 'admin','before' => 'auth'), function() {
 	Route::get('store/{id}/products', array('uses' => 'StoresController@getProducts'));
 
 	Route::get('store/{id}/product/new', array('uses' => 'ProductsController@getNewProduct'));	
-	Route::post('store/{id}/product/new', array('uses' => 'ProductsController@postNewProduct'));	
+	Route::post('store/{id}/product/new', array('uses' => 'ProductsController@postNewProduct'));
+
+	Route::get('product/{id}/edit', array('uses' => 'ProductsController@getEditProduct'));	
+	Route::post('product/{id}/edit', array('uses' => 'ProductsController@postEditProduct'));	
 
 });
 
