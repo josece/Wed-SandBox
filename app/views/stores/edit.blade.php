@@ -3,7 +3,7 @@
 @stop<div class="row">
 	<div class="large-12">
 		 <h3>{{Lang::get('stores.store--edit')}}</h3>
-		 {{ Form::open(array('url'=>'admin/store/'.$store->id.'/edit/', 'class'=>'form-signin','data-abide'=>'')) }}
+		 {{ Form::open(array('url'=>'admin/store/'.$store->permalink.'/edit/', 'class'=>'form-signin','data-abide'=>'')) }}
 
 		<div class="name-field">
                 {{ Form::label('name', Lang::get('stores.store--name').':') }}

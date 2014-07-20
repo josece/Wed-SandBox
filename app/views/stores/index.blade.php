@@ -28,8 +28,8 @@
 					<td>{{$store->id}}</td>
 					<td>{{$store->name}}</td>
 					
-					<td>{{HTML::Link('admin/store/' . $store->id.'/edit', Lang::get('form.edit'), array('class'=>'button tiny message'))}}</td>
-					<td>{{HTML::Link('admin/store/' . $store->id, Lang::get('form.view'), array('class'=>'button tiny success'))}}</td>
+					<td>{{HTML::Link('admin/store/' . $store->permalink.'/edit', Lang::get('form.edit'), array('class'=>'button tiny message'))}}</td>
+					<td>{{HTML::Link('admin/store/' . $store->permalink, Lang::get('form.view'), array('class'=>'button tiny success'))}}</td>
 				</tr>
 				@endforeach
 			</tbody>

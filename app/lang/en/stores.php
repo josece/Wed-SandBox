@@ -16,4 +16,5 @@ return array(
 	"success--edit" => 'The store has been updated',
 
 	"product--new" => "Add new product",
+	"product--none" => "There are no products yet in this store",
 );

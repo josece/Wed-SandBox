@@ -13,6 +13,8 @@ return array(
 	"error--edit" => "Ocurrió un error al modificar la tienda, inténtalo de nuevo.",
 	"error--not-exist" => "La tienda que estás intentando ver, no existe.",
 	"success--add" => 'La tienda fue creada con éxito',
-	"success--edit" => 'La información fue modificada con éxito'
+	"success--edit" => 'La información fue modificada con éxito',
 
+	"product--new" => "Agregar nuevo producto",
+	"product--none" => "No hay productos en esta tienda.",
 );

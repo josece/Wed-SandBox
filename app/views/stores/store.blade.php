@@ -10,10 +10,11 @@
 		</div>
 		<div class="medium-8 large-9 columns">
 
-			{{ HTML::link('admin/store/'.$store->id.'/product/new', Lang::get('stores.product--new'), array('class' => 'button small') )}}
-			@if(empty($products))
+			{{ HTML::link('admin/store/'.$store->permalink.'/product/new', Lang::get('stores.product--new'), array('class' => 'button small') )}}
+			
+			@if($products->isEmpty())
 			<div class="margin--top">
-				{{Lang::get('products.product--none')}}
+				{{Lang::get('stores.product--none')}}
 			</div>
 			@else
 			<br />&nbsp;<br />
