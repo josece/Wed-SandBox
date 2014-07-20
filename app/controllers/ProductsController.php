@@ -71,8 +71,7 @@ class ProductsController extends \BaseController {
 			$product->permalink = $this->generateProductSlug($product->name);
 			$product->store_id = $store_id;
 			$product->save();
-		$this->layout->title = Lang::get('products.product--new');
-		$this->layout->content = View::make('products.new')->withStore($store);
+		return Redirect::to('admin/store/'. $store->permalink)->withSuccess(Lang::get('products.success--add'));
 	}
 
 	public function generateProductSlug($product_name) {

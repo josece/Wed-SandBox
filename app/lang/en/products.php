@@ -14,4 +14,5 @@ return array(
 
 
 	"success--edit" => 'The product has been updated',
+	"success--add" => 'The product has been added',
 );

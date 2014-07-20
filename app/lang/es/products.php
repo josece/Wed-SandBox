@@ -12,4 +12,6 @@ return array(
 	"error--description" => "Cuéntanos un poco de tu producto, aunque sea algo breve.",
 
 	"success--edit" => 'El producto ha sido modificado',
+	"success--add" => 'El producto ha sido agregado',
+	
 );
