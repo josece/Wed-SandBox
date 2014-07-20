@@ -28,30 +28,31 @@
 //Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 Route::group(array('prefix' => 'admin','before' => 'auth|auth.admin'), function() {
 	Route::controller('admin','AdminController');
+	/* List User */
 	Route::get('users','AdminController@getUsers');
-	//Route::get('user/super/edit/',array('uses' => 'UsersController@getEditadmin'));
+	/* Edit User */
 	Route::get('user/{id}/edit',array('uses' => 'AdminController@getUsersedit'));
 	Route::post('user/{id}/edit',array('uses' => 'AdminController@postUsersedit'));
 });
 
 Route::group(array('prefix' => 'admin','before' => 'auth'), function() {
-	Route::get('store/', array('uses' => 'StoresController@index'));
+	/* List Stores*/
 	Route::get('stores/', array('uses' => 'StoresController@listado'));
-
+	/* New Store */
 	Route::get('store/new', array('uses' => 'StoresController@getNewStore'));
 	Route::post('store/new', array('uses' => 'StoresController@postNewStore'));
-
-	Route::get('store/{id}', array('uses' => 'StoresController@getStoreView'));
+	/* Edit Store */
 	Route::get('store/{id}/edit', array('uses' => 'StoresController@getEdit'));
 	Route::post('store/{id}/edit', array('uses' => 'StoresController@postEdit'));
-	Route::get('store/{id}/products', array('uses' => 'StoresController@getProducts'));
-
+	/* List Products */
+	Route::get('store/{id}', array('uses' => 'StoresController@getStoreView'));
+	Route::get('store/{id}/products', array('uses' => 'StoresController@getStoreView'));
+	/* New Product */
 	Route::get('store/{id}/product/new', array('uses' => 'ProductsController@getNewProduct'));	
 	Route::post('store/{id}/product/new', array('uses' => 'ProductsController@postNewProduct'));
-
+	/* Edit Product */
 	Route::get('product/{id}/edit', array('uses' => 'ProductsController@getEditProduct'));	
-	Route::post('product/{id}/edit', array('uses' => 'ProductsController@postEditProduct'));	
-
+	Route::post('product/{id}/edit', array('uses' => 'ProductsController@postEditProduct'));
 });
 
 
@@ -66,17 +67,15 @@ Route::get('/', function() {
  * Si intentan hacer login desde /login, los redirigimos a la página correcta
  */
 Route::get('login', function() { return Redirect::to('user/login'); });
-//Route::get('admin/store/{id}/products/', array('uses' => 'StoresController@products'));
-
 Route::get('products/', array('uses' => 'ProductsController@index'));
+
+Route::get('store/{id}', array('uses' => 'StoresController@getStore'));
+Route::get('product/{id}', array('uses' => 'ProductsController@getProduct'));
 /**
  * Aquí se cargan los controladores RESTful
  */
 Route::controller('user','UsersController');
 Route::controller('password','RemindersController');
-//Route::controller('store','StoresController');
-//Route::get('user', function() { return Redirect::to('user/home'); });
-//Route::controller('admin','AdminController');
 /*
  * View Composer 
  * Crea un objeto $user que es usado siempre que se invoca la plantilla layout/main.blade.php

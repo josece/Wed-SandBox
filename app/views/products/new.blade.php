@@ -20,12 +20,12 @@
             </div>
             <div class="price-field">
                 {{ Form::label('price', Lang::get('products.product--price').':') }}
-                {{ Form::text('price','', array('required' =>'required', 'placeholder'=> Lang::get('products.product--price'), 'pattern' => 'number')) }}
+                <input type="number" step="0.5" required="required" placeholder="{{Lang::get('products.product--price')}}" pattern="number" name="price" >
                 <small class="error">{{Lang::get('products.error--number')}}</small>
             </div>
             <div class="description-field">
                 {{ Form::label('description', Lang::get('stores.store--description').':') }}
-                {{ Form::textarea('description','', array('required' =>'required', 'placeholder'=> Lang::get('products.product--description'))) }}
+                {{ Form::textarea('description','', array('placeholder'=> Lang::get('products.product--description'))) }}
                 <small class="error">{{Lang::get('products.error--description')}}</small>
             </div>
             <div class="submit-field">

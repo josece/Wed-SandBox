@@ -43,7 +43,7 @@
 				</section>
 			</nav>
 		</header>
-		<aside class="left-off-canvas-menu">
+		<aside class="left-off-canvas-menu hide-for-medium-up">
 			<ul class="off-canvas-list">
 				<li class="show-for-small">
 					<label>{{$appname}}</label>
