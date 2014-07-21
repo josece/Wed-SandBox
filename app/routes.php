@@ -76,6 +76,7 @@ Route::get('product/{id}', array('uses' => 'ProductsController@getProduct'));
  */
 Route::controller('user','UsersController');
 Route::controller('password','RemindersController');
+Route::controller('admin/categories','CategoriesController');
 /*
  * View Composer 
  * Crea un objeto $user que es usado siempre que se invoca la plantilla layout/main.blade.php

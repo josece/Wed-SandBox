@@ -32,5 +32,6 @@
                 {{ Form::submit(Lang::get('form.change--save'), array('class' => 'button small')) }}
             </div>
         </div>
+        {{Form::close()}}
 	</div>
 </div>

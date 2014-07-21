@@ -3,12 +3,19 @@
  * @author Jose Calleja Esnal
  * 
  * 3 de julio de 2014
+
+
+ 	getEditProduct(product_id)
+	postEditProduct(product_id)
+	getNewProduct(store_id)
+	postNewProduct(store_id)
+	generateProductSlug(product_name)
  */
 
 class ProductsController extends \BaseController {
 
 	protected $layout = "layouts.main";
-	
+
 	/**
 	* get Add new product view
 	* @param store_id
@@ -18,7 +25,7 @@ class ProductsController extends \BaseController {
 		if($product == "false") 
 			return Redirect::to('admin/stores')->withAlert(Lang::get('global.permissions--notenough'));
 		$this->layout->title = Lang::get('stores.product--new');
-		$this->layout->content = View::make('products.edit')->withProduct($product);
+		$this->layout->content = View::make('admin.products.edit')->withProduct($product);
 	}
 
 	/**
@@ -49,7 +56,7 @@ class ProductsController extends \BaseController {
 		if($store == "false") //if(Store::userHasAccessToStore($store->id) == "false")
 			return Redirect::to('admin/stores')->withAlert(Lang::get('global.permissions--notenough'));
 		$this->layout->title = Lang::get('stores.product--new');
-		$this->layout->content = View::make('products.new')->withStore($store);
+		$this->layout->content = View::make('admin.products.new')->withStore($store);
 	}
 	/**
 	* post Add new product view

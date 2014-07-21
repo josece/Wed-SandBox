@@ -17,9 +17,10 @@ class CreateProductCategories extends Migration {
 			$table->increments('id');
 			$table->string('name');
 			$table->text('description');
-			$table->string('slug');
+			$table->string('permalink');
 			$table->integer('count');
 			$table->string('type');
+			$table->timestamps();
 			$table->integer('parent_id')->unsigned()->default(0);
 		});
 	}

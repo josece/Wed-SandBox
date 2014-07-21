@@ -16,9 +16,10 @@ class StoresController extends \BaseController {
 		//
 	}
 
+/* Admin functions */
 	public function getNewStore(){
 		$this->layout->title = Lang::get('stores.store--new') ;
-		$this->layout->content = View::make('stores.new');
+		$this->layout->content = View::make('admin.stores.new');
 	}
 
 	public function postNewStore(){
@@ -40,7 +41,7 @@ class StoresController extends \BaseController {
 
 	public function listado(){
 		$stores = Auth::user()->stores;
-		$this->layout->content =  View::make('stores.index', compact('stores'));
+		$this->layout->content =  View::make('admin.stores.index', compact('stores'));
 	}
 
 	public function generateStoreSlug($store_name) {
@@ -57,28 +58,15 @@ class StoresController extends \BaseController {
 			return Redirect::to('admin/stores')->withAlert(Lang::get('global.permissions--notenough'));
 		//if we made it through here, everythings fine, so let's display the store info.
 		$this->layout->title = $store->name;
-		$this->layout->content = View::make('stores.store')->withStore($store)->withProducts( $store->products);
+		$this->layout->content = View::make('admin.stores.store')->withStore($store)->withProducts( $store->products);
 	}
 
-	
-	/*
-	 * Gets the Store products object provided the store_id or permalink
-	 * @param $store_id
-	 * @return Store [object]
-	 *
-	private function getProducts($store_id = null){
-		if(is_null($store_id))
-			return Redirect::to('products');
-		$products = Store::getStore($store_id)->products();
-		return $products;
-	}
-*/
 	public function getEdit($store_id = null){
 		if(!$this->userHasAccessToStore($store_id))
 			return Redirect::to('admin/stores')->withAlert(Lang::get('global.permissions--notenough'));
 		$store = Store::getStore($store_id);
 		$this->layout->title = 'Edit Store';
-		$this->layout->content = View::make('stores.edit')->withStore($store);
+		$this->layout->content = View::make('admin.stores.edit')->withStore($store);
 	}
 
 	public function postEdit($id = null){
@@ -93,6 +81,6 @@ class StoresController extends \BaseController {
 		return Redirect::to('admin/stores')->withAlert(Lang::get('stores.error--edit'));
 	}
 
-	
+/* end of admin functions*/
 
 }
