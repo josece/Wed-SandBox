@@ -29,6 +29,7 @@ class CategoriesController extends \BaseController {
 			$category->name = Input::get('name');
 			$category->description = Input::get('description');
 			$category->type = 'Product_category';
+			$category->parent_id = Input::get('parent');
 			$category->permalink = $this->generateTaxonomySlug($category->name);
 			$category->save();
 			return Redirect::to('admin/categories/new')->withSuccess(Lang::get('stores.success--add'));

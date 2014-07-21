@@ -21,9 +21,11 @@
             <div class="name-field">
                 {{ Form::label('parent', Lang::get('categories.category--parent').':') }}
                 {{-- Form::select('size', $categories->all --}}
+                <?php $array = array('0' => 'Sin padre'); ?>
                 @foreach (Taxonomy::all() as $category)
-                    {{$category->name}}
+                    <?php $array = array_add($array, $category->id , $category->name); ?>
                 @endforeach
+                {{Form::select('parent', $array)}}
                 <small class="error">{{Lang::get('categories.error--parent')}}</small>
             </div>
             <div class="name-field">
