@@ -37,6 +37,17 @@ class CategoriesController extends \BaseController {
 
 	}
 
+	public function getLoadcategoriesraw($parent_id = 0) {
+		return View::make('admin.categories.choose')->withParent($parent_id);
+	}
+
+	public function getLoadcategories($parent_id = 0) {
+		$this->layout->content = "Categorias";
+		$this->layout->content =  View::make('admin.categories.choose')->withParent($parent_id);
+	}
+
+	
+
 	public function generateTaxonomySlug($taxonomy_name) {
 		$slug = Str::slug($taxonomy_name); //first make the name safe for a URL
 		$slugCount = 0; //now count how many have the same slug structure

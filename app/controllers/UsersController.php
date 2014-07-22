@@ -236,22 +236,18 @@ class UsersController extends \BaseController {
 			$field => $usernameinput,
 			'password' => $password
 			);
-		if(Auth::attempt($credentials)){
+		if(Auth::attempt($credentials, $persistent)){
 			//ya que se validaron las credenciales, reviso si el usuario está confirmado
 			if(Auth::user()->isConfirmed()){
-				//if(Auth::user()->hasRole('admin'))
-				//	return Redirect::to('admin/');
 				return Redirect::to('user/');
 			}else{
-				//destruyo la sesión y mando error manual
+				//el usuario no esta confirmado entonces destruyo la sesión y mando error manual
 				Auth::logout();
 				return Redirect::to('user/login')
 				->with('alert', Lang::get('form.error--not_confirmed'))
 				->withInput();
 			}
-
-			
-		}else{
+		}else{ //errores de validación
 			return Redirect::to('user/login')
 				->with('alert', Lang::get('form.error--login'))
 				->withInput();
@@ -324,7 +320,7 @@ class UsersController extends \BaseController {
 
 			$user = $profile->user;
 
-			Auth::login($user);
+			Auth::login($user, true);
 			//if(Auth::user()->hasRole('admin'))
 			//	return Redirect::to('admin/');
 			return Redirect::to('user/');

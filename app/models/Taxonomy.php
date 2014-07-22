@@ -15,4 +15,8 @@ class Taxonomy extends Eloquent {
 	public function parent() {
 		return $this->belongsTo('Taxonomy', 'parent_id');
 	}
+	public function scopeGetfromparent($query, $parent_id) {
+		$categories = $query->whereRaw("parent_id = $parent_id && type= 'Product_category'")->get();
+		return $categories;
+	}
 }
