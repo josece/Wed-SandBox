@@ -61,9 +61,10 @@ function hasScrolled() {
  * Manage forms with AJAX
  *
 **/
-/*
+
 $(document).ready(function() {
     $('.ajax').submit(function(event){
+        console.log("test");
         $form = $(this);
         $url = $form.attr('action');
         event.preventDefault();
@@ -109,7 +110,7 @@ function manageAjaxResponse(data){
             
         }
     });
-}*/
+}
 /**
  * alerttype    [ alert | message | success ]
  * message      [ string]
@@ -117,7 +118,7 @@ function manageAjaxResponse(data){
  * params       [ string]
  * location     [ html | prepend | append ]
  **/
- /*
+ 
 function createAlertDialog(alerttype, message, destination, params, location){
     params = (typeof params === "undefined") ? "large-6 small-centered columns" : params;
     location = (typeof location === "undefined") ? 'html' : location;
@@ -140,4 +141,4 @@ function createAlertDialog(alerttype, message, destination, params, location){
 
     
      $('.alert-box > a.close').click(function() { $(this).closest('[data-alert]').fadeOut(); });
-}*/
+}

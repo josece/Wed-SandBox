@@ -53,6 +53,10 @@ Route::group(array('prefix' => 'admin','before' => 'auth'), function() {
 	/* Edit Product */
 	Route::get('product/{id}/edit', array('uses' => 'ProductsController@getEditProduct'));	
 	Route::post('product/{id}/edit', array('uses' => 'ProductsController@postEditProduct'));
+	/* Product Variations */
+	Route::get('product/{id}/variation/new', array('uses' => 'ProductsController@getNewProductVariation', 'as' => 'productvariation.getNew'));	
+	Route::post('product/{id}/variation/new', array('uses' => 'ProductsController@postNewProductVariation', 'as' => 'productvariation.postNew'));	
+	Route::get('product/{id}/variation/{variation}/delete', array('uses' => 'ProductsController@deleteProductVariation', 'as' => 'productvariation.delete'));	
 });
 
 

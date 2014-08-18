@@ -22,10 +22,11 @@ class ProductsController extends \BaseController {
 	*/
 	public function getEditProduct($product_id = null){
 		$product = Product::getProduct($product_id);
+		$store = Store::getStore($product->store_id);
 		if($product == "false") 
 			return Redirect::to('admin/stores')->withAlert(Lang::get('global.permissions--notenough'));
 		$this->layout->title = Lang::get('stores.product--new');
-		$this->layout->content = View::make('admin.products.edit')->withProduct($product);
+		$this->layout->content = View::make('admin.stores.products.edit')->withProduct($product)->withStore($store);
 	}
 
 	/**
@@ -45,7 +46,7 @@ class ProductsController extends \BaseController {
 			$product->description = Input::get('description');
 			$product->price = Input::get('price');
 			$product->save();
-		return Redirect::to('admin/store/'. $product->store_id)->withSuccess(Lang::get('products.success--edit'));
+		return Redirect::to('admin/product/'. $product_id .'/edit')->withSuccess(Lang::get('products.success--edit'));
 	}
 	/**
 	* get Add new product view
@@ -56,7 +57,7 @@ class ProductsController extends \BaseController {
 		if($store == "false") //if(Store::userHasAccessToStore($store->id) == "false")
 			return Redirect::to('admin/stores')->withAlert(Lang::get('global.permissions--notenough'));
 		$this->layout->title = Lang::get('stores.product--new');
-		$this->layout->content = View::make('admin.products.new')->withStore($store);
+		$this->layout->content = View::make('admin.stores.products.new')->withStore($store);
 	}
 	/**
 	* post Add new product view
@@ -79,6 +80,36 @@ class ProductsController extends \BaseController {
 			$product->store_id = $store_id;
 			$product->save();
 		return Redirect::to('admin/store/'. $store->permalink)->withSuccess(Lang::get('products.success--add'));
+	}
+	/**
+	* get Add New product Variation View
+	* @param store_id
+	*/
+	public function getNewProductVariation($product_id = null){
+		$product = Product::getProduct($product_id);
+		return View::make('admin.stores.products.variations.new')->withProduct($product);
+	}
+	public function postNewProductVariation($product_id =null){
+		$product = Product::getProduct($product_id);
+		$validator = Validator::make(Input::all(), array(
+			'name' => 'required')
+		);
+		if($validator->passes()){
+			$variation = new ProductVariation;
+			$variation->name = Input::get('name');
+			$variation->product_id =$product_id;
+			$variation->price = Input::get('price');
+			$variation->save();
+			return array('variation_id' => $variation->id);
+		}
+		return array('alert' =>  $validator->messages());
+	}
+
+	public function deleteProductVariation($product_id = null, $variation_id = null){
+		//falta validación
+		$variation = ProductVariation::find($variation_id);
+		$variation->delete();
+		return "deleted";
 	}
 
 	public function generateProductSlug($product_name) {

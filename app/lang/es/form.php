@@ -60,6 +60,7 @@ return array(
 	"error--username" => "Tu usuario solo puede tener letras, números, guiones medios y guión bajo.",
 	"error--email_or_username" => "No puedes dejar este campo vacío.",
 	"error--not_confirmed" => "Necesitas confirmar tu email primero.",
+	"error--empty" => "Este campo no puede quedar vacío",
 
 
 	"requiredfields" => "Los campos requeridos están marcados con *",

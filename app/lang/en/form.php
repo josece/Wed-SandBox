@@ -60,6 +60,7 @@ return array(
 	"error--username" => "Your username can only contain letters, numbers, dash and underscore.",
 	"error--email_or_username" => "You can't leave this blank.",
 	"error--not_confirmed" => "You need to confirm your email account first.",
+	"error--empty" => "This field can't be empty",
 
 
 	"requiredfields" => "Required fields are marked with *",

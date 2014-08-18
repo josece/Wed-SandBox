@@ -52,7 +52,7 @@
             <hr />
             {{Lang::get('form.change--yourpassword')}}:<br /><br />
             <div class="password-field">
-                {{ Form::password('password', array('id'=>'password',  'placeholder'=>Lang::get('form.password--new'), 'pattern' => '(?=.*\d)(?=.*[a-zA-Z]).{4,8}$')) }}
+                {{ Form::password('password', array('id'=>'password',  'placeholder'=>Lang::get('form.password--new'), 'pattern' => '(?=.*\d)(?=.*[a-zA-Z]).{8,32}$')) }}
                 <small class="error">{{Lang::get('form.error--password')}}</small>
             </div>
             <div class="password_confirmation-field">

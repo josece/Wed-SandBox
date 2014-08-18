@@ -8,6 +8,9 @@ class Product extends Eloquent {
 		return $this->belongsToMany('Product');
 	}
 
+	public function variations() {
+		return $this->hasMany('ProductVariation');
+	}
  	/**
 	 * Retrieve the Store object where the current product is listed at
 	 * @return store [object]

@@ -15,13 +15,14 @@ class CreateStoresTable extends Migration {
 		//
 		Schema::create('stores', function($table) {
 	         $table->increments('id');
-	         $table->unsignedInteger('user_id');
+	         //$table->unsignedInteger('user_id');
+	         $table->Integer('user_id')->unsigned();
 	         $table->string('name');
 	         $table->string('permalink')->unique();
 	         $table->string('logo');
 	         $table->string('cover');
 	         $table->text('description');
-	          $table->timestamps();
+	         $table->timestamps();
 	         $table->foreign('user_id')->references('id')->on('users');
 	     });
 	}

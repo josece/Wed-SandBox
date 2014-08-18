@@ -31,6 +31,7 @@
 		{{ HTML::script('assets/js/foundation/foundation.alert.js') }}
 		{{ HTML::script('assets/js/foundation/foundation.topbar.js') }}
 		{{ HTML::script('assets/js/foundation/foundation.offcanvas.js') }}
+		{{ HTML::script('assets/js/foundation/foundation.reveal.js') }}
 		{{ HTML::script('assets/js/vendor/jquery.mobile.custom.min.js')}}
 		{{ HTML::script('assets/js/script.js') }}
 		{{ HTML::script('assets/js/vendor/stickyfooter.js') }}
@@ -38,7 +39,7 @@
 		@yield('scripts')
 		<script>
 		$(document).foundation();
-		
+		@yield('scriptsverbose')
 		</script>
 	</body>
 </html>
